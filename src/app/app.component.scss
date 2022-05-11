@@ -1,0 +1,17 @@
+.contenido{
+    margin:0rem 8rem;
+}
+
+body {
+    position: relative;
+    padding-bottom: 3rem;
+    min-height: 100vh;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(26,26,26);
+    padding: 2rem;
+}
