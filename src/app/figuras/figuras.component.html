@@ -1,0 +1,15 @@
+<div class="contenedor">
+        <div class="encabezado">
+          <h1>Figuras</h1><p class="separator">|</p><p>Filtrar...</p>
+        </div>
+        
+        <div class="figuritas">
+            <div class="card" *ngFor="let figura of figuras">
+                <img src="http://localhost:1337{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
+                <div class="card-body">
+                  <p class="card-text"><b>{{figura.name}}</b></p>
+                  <h2 class="card-text">{{figura.price_int}}<span class="dec">, {{figura.price_dec}} €</span> </h2>
+                </div>
+              </div>
+        </div>   
+</div>

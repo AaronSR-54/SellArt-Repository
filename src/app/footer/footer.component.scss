@@ -1,11 +1,8 @@
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgb(26,26,26);
-    padding: 2rem;
-}
 p{
     color: rgb(246,246,246);
 }
-
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

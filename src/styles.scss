@@ -7,7 +7,7 @@ body{
     background-color: rgb(242,242,242);
 }
 
-h1{
+h1,h2{
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
@@ -15,4 +15,9 @@ h1{
 a,p{
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+}
+
+.contenedor{
+    padding: 0 15rem;
+    min-height: calc(100vh - 144px - 96.5px - 32px);
 }
