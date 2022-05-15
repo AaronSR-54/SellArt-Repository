@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FiguraResponse } from '../models/figuras.interfaces';
-import { Figuras} from '../models/interfaces';
+import { Figuras, FiguraTipos} from '../models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +37,18 @@ export class FigurasService {
       })
     )
   }
+
+  getFiguraTipos(): Observable<FiguraTipos> {
+    return this.http.get<any>(`${this.url}/tipos-figuras`)
+    .pipe(
+      map((response: any) => {
+        return response.data.map((item: FiguraResponse) => {
+          return {
+            id: item.id,
+            name: item.attributes.name,
+          }
+      })
+    })
+  )}
+
 }

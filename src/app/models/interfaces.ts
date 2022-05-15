@@ -13,6 +13,11 @@ export interface Figura {
     }
 }
 
+export interface FiguraTipo {
+    id: number;
+    name: string;
+}
+
 export interface Pintura {
     id: number;
     name: string;
@@ -27,6 +32,12 @@ export interface Pintura {
         name: string;
     }
 }
+
+export interface PinturaTipo {
+    id: number;
+    name: string;
+}
+
 
 export interface Accesorio {
     id: number;
@@ -43,6 +54,14 @@ export interface Accesorio {
     }
 }
 
+export interface AccesorioTipo {
+    id: number;
+    name: string;
+}
+
 export type Figuras = Figura[];
+export type FiguraTipos = FiguraTipo[];
 export type Pinturas = Pintura[];
+export type PinturaTipos = PinturaTipo[];
 export type Accesorios = Accesorio[];
+export type AccesorioTipos = AccesorioTipo[];

@@ -12,6 +12,7 @@ import { PinturasComponent } from './pinturas/pinturas.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ArtistasComponent } from './artistas/artistas.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ArtistasComponent } from './artistas/artistas.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

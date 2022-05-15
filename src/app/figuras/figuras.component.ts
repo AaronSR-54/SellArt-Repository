@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Figuras } from '../models/interfaces';
+import { Figuras, FiguraTipos } from '../models/interfaces';
 import { FigurasService } from '../services/figuras.service';
 
 @Component({
@@ -10,11 +10,19 @@ import { FigurasService } from '../services/figuras.service';
 export class FigurasComponent implements OnInit {
 
   figuras: Figuras = [];
+  figurasFiltradas: Figuras = [];
+  figuraTipos: FiguraTipos = [];
+
+  tipoId: any = null;
+  nombre: string = "";
+   
+  filtrado: boolean = false;
 
   constructor(private figurasService : FigurasService) { }
 
   ngOnInit(): void {
-    this.getFiguras().then();
+    this.getFiguras().then((value)=> this.figurasFiltradas=this.figuras);
+    this.getFiguraTipos();
   }
 
   getFiguras(){
@@ -33,6 +41,45 @@ export class FigurasComponent implements OnInit {
         (error) => reject(error)
       )
     })
+  }
+
+  getFiguraTipos(){
+    return new Promise((resolve, reject) => {
+      this.figurasService.getFiguraTipos().subscribe(
+        (res: FiguraTipos) => {
+          console.log(res);
+          this.figuraTipos = res;
+          resolve("resolved");
+        },
+        (error) => reject(error)
+      )
+    })
+  }
+
+  filtrar(){
+    this.filtrado = true;
+    this.figurasFiltradas = [];
+    this.figuras.forEach((figura) => {
+      if(this.tipoId==="" && this.nombre===""){
+        this.filtrado = false;
+      }else{
+        if((this.tipoId==="" && figura.name.toLowerCase().trim().includes(this.nombre.toLowerCase().trim())) || 
+           (figura.figura_tipo.id===this.tipoId && this.nombre==="") || 
+           (figura.figura_tipo.id===this.tipoId && figura.name.toLowerCase().trim().includes(this.nombre.toLowerCase().trim()))){
+          
+            this.figurasFiltradas.push(figura);
+        }
+      }
+    })
+
+    if(!this.filtrado){
+      this.figurasFiltradas = this.figuras
+    }
+  }
+
+  limpiarFiltros(){
+    this.tipoId="";
+    this.nombre="";
   }
 
 }

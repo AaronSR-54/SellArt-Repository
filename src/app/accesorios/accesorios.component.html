@@ -1,14 +1,52 @@
 <div class="contenedor">
   <div class="encabezado">
-    <h1>Accesorios</h1><p class="separator">|</p><p>Filtrar...</p>
+    <h1>Accesorios</h1><p class="separator">|</p>
+    <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="!filtrado">Filtrar...</p>
+    <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="filtrado">Modificar filtros...</p>
   </div>
-    <div class="accesoritos">
-        <div class="card" *ngFor="let accesorio of accesorios">
-            <img src="http://localhost:1337{{accesorio.image.url}}" class="card-img-top" alt="{{accesorio.image.name}}">
-            <div class="card-body">
-              <p class="card-text"><b>{{accesorio.name}}</b></p>
-              <h2 class="card-text">{{accesorio.price_int}}<span class="dec">, {{accesorio.price_dec}} €</span> </h2>
-            </div>
+  
+  <div class="accesorios">
+      <div class="card" *ngFor="let accesorio of accesoriosFiltrados">
+          <img src="http://localhost:1337{{accesorio.image.url}}" class="card-img-top" alt="{{accesorio.image.name}}">
+          <div class="card-body">
+            <p class="card-text"><b>{{accesorio.name}}</b></p>
+            <h2 class="card-text">{{accesorio.price_int}}<span class="dec">, {{accesorio.price_dec}} €</span> </h2>
           </div>
-    </div>   
+        </div>
+  </div>   
+</div>
+
+<div class="modal fade" id="modalFilters">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+
+<!-- Modal body -->
+<div class="modal-body">
+  <h1 class="modal-title">Filtrar por...</h1>
+  <div class="inputs">
+    <div class="input">
+      <p>Tipo: </p>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="tipoId">
+        <option selected></option>
+        <option [ngValue]="tipo.id" *ngFor="let tipo of accesorioTipos"><p>{{tipo.name}}</p></option>
+      </select>
+    </div>
+    <div class="input">
+      <p>Nombre: </p>
+      <input type="text" class="form-control" [(ngModel)]="nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+    </div>
+  </div> 
+</div>
+
+<!-- Modal footer -->
+<div class="modal-footer" id="buttons">
+  <button type="button" class="limpiar" (click)="limpiarFiltros()"><p>Limpiar</p></button>
+  <div>
+    <button type="button" class="cerrar" data-bs-dismiss="modal"><p>Cancelar</p></button>
+    <button type="button" class="filtrar" data-bs-dismiss="modal" (click)="filtrar()"><p>Filtrar</p></button>
+  </div>
+</div>
+
+</div>
+</div>
 </div>

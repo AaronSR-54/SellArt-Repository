@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Pinturas } from '../models/interfaces';
+import { Pinturas, PinturaTipos } from '../models/interfaces';
 import { PinturaResponse } from '../models/pinturas.interfaces';
 
 @Injectable({
@@ -37,4 +37,18 @@ export class PinturasService {
       })
     )
   }
+
+  getPinturaTipos(): Observable<PinturaTipos> {
+    return this.http.get<any>(`${this.url}/pintura-tipos`)
+    .pipe(
+      map((response: any) => {
+        return response.data.map((item: PinturaResponse) => {
+          return {
+            id: item.id,
+            name: item.attributes.name,
+          }
+      })
+    })
+  )}
+
 }

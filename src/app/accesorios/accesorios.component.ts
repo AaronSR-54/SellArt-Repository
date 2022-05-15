@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Accesorios } from '../models/interfaces';
+import { Accesorios, AccesorioTipos } from '../models/interfaces';
 import { AccesoriosService } from '../services/accesorios.service';
 
 @Component({
@@ -10,11 +10,19 @@ import { AccesoriosService } from '../services/accesorios.service';
 export class AccesoriosComponent implements OnInit {
 
   accesorios: Accesorios = [];
+  accesoriosFiltrados: Accesorios = [];
+  accesorioTipos: AccesorioTipos = [];
+
+  tipoId: any = null;
+  nombre: string = "";
+   
+  filtrado: boolean = false;
 
   constructor(private accesoriosService : AccesoriosService) { }
 
   ngOnInit(): void {
-    this.getAccesorios();
+    this.getAccesorios().then((value)=> this.accesoriosFiltrados=this.accesorios);
+    this.getAccesorioTipos();
   }
 
   getAccesorios(){
@@ -33,5 +41,44 @@ export class AccesoriosComponent implements OnInit {
         (error) => reject(error)
       )
     })
+  }
+
+  getAccesorioTipos(){
+    return new Promise((resolve, reject) => {
+      this.accesoriosService.getAccesorioTipos().subscribe(
+        (res: AccesorioTipos) => {
+          console.log(res);
+          this.accesorioTipos = res;
+          resolve("resolved");
+        },
+        (error) => reject(error)
+      )
+    })
+  }
+
+  filtrar(){
+    this.filtrado = true;
+    this.accesoriosFiltrados = [];
+    this.accesorios.forEach((accesorio) => {
+      if(this.tipoId==="" && this.nombre===""){
+        this.filtrado = false;
+      }else{
+        if((this.tipoId==="" && accesorio.name.toLowerCase().trim().includes(this.nombre.toLowerCase().trim())) || 
+           (accesorio.accesorio_tipo.id===this.tipoId && this.nombre==="") || 
+           (accesorio.accesorio_tipo.id===this.tipoId && accesorio.name.toLowerCase().trim().includes(this.nombre.toLowerCase().trim()))){
+          
+            this.accesoriosFiltrados.push(accesorio);
+        }
+      }
+    })
+
+    if(!this.filtrado){
+      this.accesoriosFiltrados = this.accesorios
+    }
+  }
+
+  limpiarFiltros(){
+    this.tipoId="";
+    this.nombre="";
   }
 }
