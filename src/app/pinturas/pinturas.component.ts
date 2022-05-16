@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pinturas, PinturaTipos } from '../models/interfaces';
+import { Pintura, Pinturas, PinturaTipos } from '../models/interfaces';
 import { PinturasService } from '../services/pinturas.service';
 
 @Component({
@@ -18,10 +18,15 @@ export class PinturasComponent implements OnInit {
    
   filtrado: boolean = false;
 
+  selectedPintura!: Pintura;
+
   constructor(private pinturasService : PinturasService) { }
 
   ngOnInit(): void {
-    this.getPinturas().then((value)=> this.pinturasFiltradas=this.pinturas);
+    this.getPinturas().then((value)=> {
+      this.pinturasFiltradas = this.pinturas,
+      this.selectedPintura = this.pinturas[0];
+    });
     this.getPinturaTipos();
   }
 
@@ -80,5 +85,10 @@ export class PinturasComponent implements OnInit {
   limpiarFiltros(){
     this.tipoId="";
     this.nombre="";
+  }
+
+  selectPintura(pintura:any){
+    this.selectedPintura = pintura;
+    console.log(this.selectedPintura);
   }
 }

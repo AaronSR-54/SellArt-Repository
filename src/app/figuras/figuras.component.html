@@ -1,19 +1,19 @@
 <div class="contenedor">
-        <div class="encabezado">
-          <h1>Figuras</h1><p class="separator">|</p>
-          <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="!filtrado">Filtrar...</p>
-          <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="filtrado">Modificar filtros...</p>
-        </div>
-        
-        <div class="figuras">
-            <div class="card" *ngFor="let figura of figurasFiltradas">
-                <img src="http://localhost:1337{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
-                <div class="card-body">
-                  <p class="card-text"><b>{{figura.name}}</b></p>
-                  <h2 class="card-text">{{figura.price_int}}<span class="dec">, {{figura.price_dec}} €</span> </h2>
-                </div>
-              </div>
-        </div>   
+  <div class="encabezado">
+    <h1>Figuras</h1><p class="separator">|</p>
+    <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="!filtrado">Filtrar...</p>
+    <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="filtrado">Modificar filtros...</p>
+  </div>
+  
+  <div class="figuras">
+    <div class="card" *ngFor="let figura of figurasFiltradas" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectFigura(figura)">
+      <img src="http://localhost:1337{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
+      <div class="card-body" >
+        <p class="card-text"><b>{{figura.name}}</b></p>
+        <h2 class="card-text">{{figura.price_int}}<span class="dec">, {{figura.price_dec}} €</span> </h2>
+      </div>
+    </div>        
+  </div>   
 </div>
 
 <div class="modal fade" id="modalFilters">
@@ -26,7 +26,7 @@
         <div class="inputs">
           <div class="input">
             <p>Tipo: </p>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="tipoId">
+            <select class="form-select" [(ngModel)]="tipoId">
               <option selected></option>
               <option [ngValue]="tipo.id" *ngFor="let tipo of figuraTipos"><p>{{tipo.name}}</p></option>
             </select>
@@ -47,6 +47,28 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalDetails">
+  <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contentModal">
+          <img src="http://localhost:1337{{selectedFigura.image.url}}" class="card-img-top" alt="{{selectedFigura.image.name}}">
+          <div class="rightContent">
+            <div>
+              <p class="modal-text"><b>{{selectedFigura.name}}</b></p>
+              <p class="description">{{selectedFigura.description}}</p>           
+            </div>
+            <div class="bottomContent">
+              <h2>{{selectedFigura.price_int}}<span class="dec">, {{selectedFigura.price_dec}} €</span> </h2>
+              <button type="button" class="anadirCarrito" data-bs-dismiss="modal" ><p>Añadir al carrito</p></button>
+            </div>
+          </div>        
+        </div>
+      </div>
     </div>
   </div>
 </div>

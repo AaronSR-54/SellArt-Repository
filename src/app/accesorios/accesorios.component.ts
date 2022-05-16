@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Accesorios, AccesorioTipos } from '../models/interfaces';
+import { Accesorio, Accesorios, AccesorioTipos } from '../models/interfaces';
 import { AccesoriosService } from '../services/accesorios.service';
 
 @Component({
@@ -18,10 +18,15 @@ export class AccesoriosComponent implements OnInit {
    
   filtrado: boolean = false;
 
+  selectedAccesorio!: Accesorio;
+
   constructor(private accesoriosService : AccesoriosService) { }
 
   ngOnInit(): void {
-    this.getAccesorios().then((value)=> this.accesoriosFiltrados=this.accesorios);
+    this.getAccesorios().then((value)=> {
+      this.accesoriosFiltrados = this.accesorios,
+      this.selectedAccesorio = this.accesorios[0];
+    });
     this.getAccesorioTipos();
   }
 
@@ -80,5 +85,10 @@ export class AccesoriosComponent implements OnInit {
   limpiarFiltros(){
     this.tipoId="";
     this.nombre="";
+  }
+
+  selectAccesorio(accesorio:any){
+    this.selectedAccesorio = accesorio;
+    console.log(this.selectedAccesorio);
   }
 }

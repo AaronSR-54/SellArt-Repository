@@ -3,6 +3,7 @@ export interface AccesorioResponse {
     attributes: {
         name: string;
         price: number;
+        description: string;
         image: {
             data: {
                 attributes: {

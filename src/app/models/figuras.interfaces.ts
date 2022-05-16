@@ -3,6 +3,7 @@ export interface FiguraResponse {
     attributes: {
         name: string;
         price: number;
+        description: string;
         image: {
             data: {
                 attributes: {

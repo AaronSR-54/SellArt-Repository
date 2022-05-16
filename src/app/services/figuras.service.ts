@@ -24,6 +24,7 @@ export class FigurasService {
             name: item.attributes.name.toLocaleUpperCase(),
             price_int: Math.trunc(item.attributes.price),
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
+            description: item.attributes.description,
             image: {
               name: item.attributes.image.data.attributes.name,
               url: item.attributes.image.data.attributes.url,

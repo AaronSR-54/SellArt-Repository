@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { ArtistasComponent } from './artistas/artistas.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,13 +24,13 @@ import { FormsModule } from '@angular/forms';
     AccesoriosComponent,
     PinturasComponent,
     HomeComponent,
-    ArtistasComponent
+    ArtistasComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

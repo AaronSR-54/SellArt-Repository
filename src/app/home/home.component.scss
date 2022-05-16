@@ -1,0 +1,51 @@
+header{
+    padding: 0.5rem 1rem; 
+    box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.2);
+    margin-bottom: 2rem;
+
+    img{
+        height: 25rem;
+        width: auto;
+    }
+    
+    nav{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    ul{
+        font-size: 1.5rem;
+    }
+    
+    .separator{
+        font-size: 1.5rem;
+        vertical-align: center;
+        color: rgba(26, 26, 26, 0.5);
+        user-select: none;
+        padding: 0.5rem;
+        margin: 0;
+    }
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(26,26,26);
+    padding: 1rem;
+
+    p{
+        color: rgb(246,246,246);
+        margin: 0.5rem;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.contenedor{
+    padding: 0 15rem;
+    min-height: calc(100vh - 112px - 494px - 32px);
+}

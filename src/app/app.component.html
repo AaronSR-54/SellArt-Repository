@@ -1,9 +1,9 @@
-<header>
+<header *ngIf="router.url !== '/home'">
     <app-header></app-header>
 </header>
 
 <router-outlet></router-outlet>
 
-<footer>
+<footer *ngIf="router.url !== '/home'">
     <app-footer></app-footer>
 </footer>

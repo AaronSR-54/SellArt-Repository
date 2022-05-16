@@ -3,6 +3,7 @@ export interface Figura {
     name: string;
     price_int: number;
     price_dec: string;
+    description: string;
     image: {
         name: string;
         url: string;
@@ -23,6 +24,7 @@ export interface Pintura {
     name: string;
     price_int: number;
     price_dec: string;
+    description: string;
     image: {
         name: string;
         url: string;
@@ -44,6 +46,7 @@ export interface Accesorio {
     name: string;
     price_int: number;
     price_dec: string;
+    description: string;
     image: {
         name: string;
         url: string;

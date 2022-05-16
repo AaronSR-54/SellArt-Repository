@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Figuras, FiguraTipos } from '../models/interfaces';
+import { Figura, Figuras, FiguraTipos } from '../models/interfaces';
 import { FigurasService } from '../services/figuras.service';
 
 @Component({
@@ -18,18 +18,25 @@ export class FigurasComponent implements OnInit {
    
   filtrado: boolean = false;
 
+  selectedFigura!: Figura;
+
+  gettingFiguras = false;
+
   constructor(private figurasService : FigurasService) { }
 
   ngOnInit(): void {
-    this.getFiguras().then((value)=> this.figurasFiltradas=this.figuras);
+    this.getFiguras().then((value)=> {
+      this.figurasFiltradas = this.figuras,
+      this.selectedFigura = this.figuras[0];
+    });
     this.getFiguraTipos();
   }
 
   getFiguras(){
+    this.gettingFiguras=true;
     return new Promise((resolve, reject) => {
       this.figurasService.getFiguras().subscribe(
         (res: Figuras) => {
-          console.log(res);
           this.figuras = res;
           this.figuras.forEach((figura)=>{
             if(figura.price_dec=="0"){
@@ -37,6 +44,7 @@ export class FigurasComponent implements OnInit {
             }
           })
           resolve("resolved");
+          this.gettingFiguras=false;
         },
         (error) => reject(error)
       )
@@ -82,4 +90,8 @@ export class FigurasComponent implements OnInit {
     this.nombre="";
   }
 
+  selectFigura(figura:any){
+    this.selectedFigura = figura;
+    console.log(this.selectedFigura);
+  }
 }
