@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Figura, Figuras, FiguraTipos } from '../models/interfaces';
-import { FigurasService } from '../services/figuras.service';
+import { FiguraTipos, Producto, Productos } from '../models/interfaces';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-figuras',
@@ -9,8 +9,8 @@ import { FigurasService } from '../services/figuras.service';
 })
 export class FigurasComponent implements OnInit {
 
-  figuras: Figuras = [];
-  figurasFiltradas: Figuras = [];
+  figuras: Productos = [];
+  figurasFiltradas: Productos = [];
   figuraTipos: FiguraTipos = [];
 
   tipoId: any = null;
@@ -18,7 +18,7 @@ export class FigurasComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedFigura: Figura= {
+  selectedFigura: Producto = {
     id: 0,
     name: "",
     price_int: 0,
@@ -28,15 +28,27 @@ export class FigurasComponent implements OnInit {
         name: "",
         url: "../../assets/images/avatar.svg",
     },
+    accesorio_tipo: {
+      id: 0,
+      name: "",
+    },
     figura_tipo: {
-        id: 0,
-        name: "",
+      id: 0,
+      name: "",
+    },
+    pintura_tipo: {
+      id: 0,
+      name: "",
+    },
+    producto_tipo: {
+      id: 2,
+      name: "Figura",
     }
   };
 
   gettingFiguras = false;
 
-  constructor(private figurasService : FigurasService) { }
+  constructor(private productosService:ProductosService) { }
 
   ngOnInit(): void {
     this.getFiguras().then((value)=> {
@@ -49,8 +61,8 @@ export class FigurasComponent implements OnInit {
   getFiguras(){
     this.gettingFiguras=true;
     return new Promise((resolve, reject) => {
-      this.figurasService.getFiguras().subscribe(
-        (res: Figuras) => {
+      this.productosService.getFiguras().subscribe(
+        (res: Productos) => {
           this.figuras = res;
           this.figuras.forEach((figura)=>{
             if(figura.price_dec=="0"){
@@ -67,7 +79,7 @@ export class FigurasComponent implements OnInit {
 
   getFiguraTipos(){
     return new Promise((resolve, reject) => {
-      this.figurasService.getFiguraTipos().subscribe(
+      this.productosService.getFiguraTipos().subscribe(
         (res: FiguraTipos) => {
           this.figuraTipos = res;
           resolve("resolved");

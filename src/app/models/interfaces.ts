@@ -1,4 +1,4 @@
-export interface Figura {
+export interface Producto {
     id: number;
     name: string;
     price_int: number;
@@ -12,6 +12,18 @@ export interface Figura {
         id: number;
         name: string;
     }
+    pintura_tipo: {
+        id: number;
+        name: string;
+    }
+    accesorio_tipo: {
+        id: number;
+        name: string;
+    }
+    producto_tipo: {
+        id: number;
+        name: string;
+    }
 }
 
 export interface FiguraTipo {
@@ -19,42 +31,9 @@ export interface FiguraTipo {
     name: string;
 }
 
-export interface Pintura {
-    id: number;
-    name: string;
-    price_int: number;
-    price_dec: string;
-    description: string;
-    image: {
-        name: string;
-        url: string;
-    }
-    pintura_tipo: {
-        id: number;
-        name: string;
-    }
-}
-
 export interface PinturaTipo {
     id: number;
     name: string;
-}
-
-
-export interface Accesorio {
-    id: number;
-    name: string;
-    price_int: number;
-    price_dec: string;
-    description: string;
-    image: {
-        name: string;
-        url: string;
-    }
-    accesorio_tipo: {
-        id: number;
-        name: string;
-    }
 }
 
 export interface AccesorioTipo {
@@ -71,15 +50,11 @@ export interface User {
         name: string | null;
         url: string | null;
     }
-    accesorios: number[];
-    pinturas: number[];
-    figuras: number[];
+    productos: any;
 }
 
-export type Figuras = Figura[];
+export type Productos = Producto[];
 export type FiguraTipos = FiguraTipo[];
-export type Pinturas = Pintura[];
 export type PinturaTipos = PinturaTipo[];
-export type Accesorios = Accesorio[];
 export type AccesorioTipos = AccesorioTipo[];
 export type Users = User[];

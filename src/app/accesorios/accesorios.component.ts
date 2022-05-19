@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Accesorio, Accesorios, AccesorioTipos } from '../models/interfaces';
-import { AccesoriosService } from '../services/accesorios.service';
+import { Producto, Productos, AccesorioTipos, } from '../models/interfaces';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-accesorios',
@@ -9,8 +9,8 @@ import { AccesoriosService } from '../services/accesorios.service';
 })
 export class AccesoriosComponent implements OnInit {
 
-  accesorios: Accesorios = [];
-  accesoriosFiltrados: Accesorios = [];
+  accesorios: Productos = [];
+  accesoriosFiltrados: Productos = [];
   accesorioTipos: AccesorioTipos = [];
 
   tipoId: any = null;
@@ -18,7 +18,7 @@ export class AccesoriosComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedAccesorio: Accesorio = {
+  selectedAccesorio: Producto = {
     id: 0,
     name: "",
     price_int: 0,
@@ -29,12 +29,24 @@ export class AccesoriosComponent implements OnInit {
         url: "../../assets/images/avatar.svg",
     },
     accesorio_tipo: {
-        id: 0,
-        name: "",
+      id: 0,
+      name: "",
+    },
+    figura_tipo: {
+      id: 0,
+      name: "",
+    },
+    pintura_tipo: {
+      id: 0,
+      name: "",
+    },
+    producto_tipo: {
+      id: 1,
+      name: "Accesorio",
     }
   };
 
-  constructor(private accesoriosService : AccesoriosService) { }
+  constructor(private productosService : ProductosService) { }
 
   ngOnInit(): void {
     this.getAccesorios().then((value)=> {
@@ -46,8 +58,8 @@ export class AccesoriosComponent implements OnInit {
 
   getAccesorios(){
     return new Promise((resolve, reject) => {
-      this.accesoriosService.getAccesorios().subscribe(
-        (res: Accesorios) => {
+      this.productosService.getAccesorios().subscribe(
+        (res: Productos) => {
           this.accesorios = res;
           this.accesorios.forEach((accesorio)=>{
             if(accesorio.price_dec=="0"){
@@ -63,7 +75,7 @@ export class AccesoriosComponent implements OnInit {
 
   getAccesorioTipos(){
     return new Promise((resolve, reject) => {
-      this.accesoriosService.getAccesorioTipos().subscribe(
+      this.productosService.getAccesorioTipos().subscribe(
         (res: AccesorioTipos) => {
           this.accesorioTipos = res;
           resolve("resolved");

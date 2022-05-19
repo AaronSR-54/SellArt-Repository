@@ -1,1 +1,80 @@
-PRODUCTOS
+<div class="contenedor">
+    <div class="encabezado">
+      <h1>Artículos de {{artista!.username}}</h1>
+      <p class="separator">|</p>
+      <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="!filtrado">Filtrar...</p>
+      <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="filtrado">Modificar filtros...</p>
+    </div>
+  
+    <div class="productos">
+      <div class="card" *ngFor="let producto of productosFiltrados" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectProducto(producto)">
+        <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+        <div class="card-body">
+          <p class="card-text"><b>{{producto.name}}</b></p>
+          <h2 class="card-text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span> </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="modal fade" id="modalFilters">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1 class="modal-title">Filtrar por...</h1>
+          <div class="inputs">
+            <div class="input">
+              <p>Tipo: </p>
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="tipoId">
+                <option selected></option>
+                <option [ngValue]="tipo.id" *ngFor="let tipo of producto_Tipos">
+                  <p>{{tipo.name}}</p>
+                </option>
+              </select>
+            </div>
+            <div class="input">
+              <p>Nombre: </p>
+              <input type="text" class="form-control" [(ngModel)]="nombre" aria-label="Nombre"
+                aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" id="buttons">
+          <button type="button" class="limpiar" (click)="limpiarFiltros()">
+            <p>Limpiar</p>
+          </button>
+          <div>
+            <button type="button" class="cerrar" data-bs-dismiss="modal">
+              <p>Cancelar</p>
+            </button>
+            <button type="button" class="filtrar" data-bs-dismiss="modal" (click)="filtrar()">
+              <p>Filtrar</p>
+            </button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div> -->
+  
+  <div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="contentModal">
+            <img src="{{selectedProducto.image.url}}" class="card-img-top" alt="{{selectedProducto.image.name}}">
+            <div class="rightContent">
+              <div>
+                <p class="modal-text"><b>{{selectedProducto.name}}</b></p>
+                <p class="description">{{selectedProducto.description}}</p>           
+              </div>
+              <div class="bottomContent">
+                <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
+                <button type="button" class="anadirCarrito" data-bs-dismiss="modal"><p>Añadir al carrito</p></button>
+              </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

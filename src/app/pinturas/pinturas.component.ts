@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pintura, Pinturas, PinturaTipos } from '../models/interfaces';
-import { PinturasService } from '../services/pinturas.service';
+import { PinturaTipos, Producto, Productos } from '../models/interfaces';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-pinturas',
@@ -9,8 +9,8 @@ import { PinturasService } from '../services/pinturas.service';
 })
 export class PinturasComponent implements OnInit {
 
-  pinturas : Pinturas = [];
-  pinturasFiltradas: Pinturas = [];
+  pinturas : Productos = [];
+  pinturasFiltradas: Productos = [];
   pinturaTipos: PinturaTipos = [];
 
   tipoId: any = null;
@@ -18,7 +18,7 @@ export class PinturasComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedPintura: Pintura = {
+  selectedPintura: Producto = {
     id: 0,
     name: "",
     price_int: 0,
@@ -28,13 +28,25 @@ export class PinturasComponent implements OnInit {
         name: "",
         url: "../../assets/images/avatar.svg",
     },
+    accesorio_tipo: {
+      id: 0,
+      name: "",
+    },
+    figura_tipo: {
+      id: 0,
+      name: "",
+    },
     pintura_tipo: {
-        id: 0,
-        name: "",
+      id: 0,
+      name: "",
+    },
+    producto_tipo: {
+      id: 3,
+      name: "Pintura",
     }
   };
 
-  constructor(private pinturasService : PinturasService) { }
+  constructor(private productosService : ProductosService) { }
 
   ngOnInit(): void {
     this.getPinturas().then((value)=> {
@@ -46,8 +58,8 @@ export class PinturasComponent implements OnInit {
 
   getPinturas(){
     return new Promise((resolve, reject) => {
-      this.pinturasService.getPinturas().subscribe(
-        (res: Pinturas) => {
+      this.productosService.getPinturas().subscribe(
+        (res: Productos) => {
           this.pinturas = res
           this.pinturas.forEach((pintura)=>{
             if(pintura.price_dec=="0"){
@@ -63,7 +75,7 @@ export class PinturasComponent implements OnInit {
 
   getPinturaTipos(){
     return new Promise((resolve, reject) => {
-      this.pinturasService.getPinturaTipos().subscribe(
+      this.productosService.getPinturaTipos().subscribe(
         (res: PinturaTipos) => {
           this.pinturaTipos = res;
           resolve("resolved");

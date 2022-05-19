@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserResponse } from '../models/users.interfaces.';
-import { User, Users } from '../models/interfaces';
-import { Router } from '@angular/router';
+import { Productos, User, Users } from '../models/interfaces';
 
 
 @Injectable({
@@ -13,12 +12,13 @@ import { Router } from '@angular/router';
 export class ArtistasService {
 
   public artista: User | null = null;
+
   private url = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
   getArtistas(): Observable<Users> {
-    return this.http.get<any>(`${this.url}/users?populate=*&[role.name]=Artista`)
+    return this.http.get<any>(`${this.url}/users?populate=*&filters[role]=3`)
     .pipe(
       map((response: any) => {
         return response.map((item: UserResponse) => {
@@ -31,12 +31,11 @@ export class ArtistasService {
                 name: item.avatar?.name,
                 url: "http://localhost:1337" + item.avatar?.url,
             },
-            accesorios: item.accesorios,
-            pinturas: item.pinturas,
-            figuras: item.figuras,
+            productos: item.productos,
           }
         })
       })
     )
   }
+
 }

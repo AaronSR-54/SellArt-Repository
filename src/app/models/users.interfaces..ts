@@ -1,3 +1,5 @@
+import { Productos } from "./interfaces";
+
 export interface UserResponse {
     id: number;
     username: string;
@@ -7,8 +9,6 @@ export interface UserResponse {
         name: string | null;
         url: string | null;
     }
-    accesorios: number[];
-    pinturas: number[];
-    figuras: number[];
+    productos: any;
 }
 
