@@ -27,7 +27,7 @@ export class PinturasService {
             description: item.attributes.description,
             image: {
               name: item.attributes.image.data.attributes.name,
-              url: item.attributes.image.data.attributes.url,
+              url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
             pintura_tipo: {
               id: item.attributes.pintura_tipo.data.id,

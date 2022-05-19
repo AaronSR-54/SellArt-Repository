@@ -18,7 +18,21 @@ export class PinturasComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedPintura!: Pintura;
+  selectedPintura: Pintura = {
+    id: 0,
+    name: "",
+    price_int: 0,
+    price_dec: "",
+    description: "",
+    image: {
+        name: "",
+        url: "../../assets/images/avatar.svg",
+    },
+    pintura_tipo: {
+        id: 0,
+        name: "",
+    }
+  };
 
   constructor(private pinturasService : PinturasService) { }
 
@@ -34,7 +48,6 @@ export class PinturasComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.pinturasService.getPinturas().subscribe(
         (res: Pinturas) => {
-          console.log(res);
           this.pinturas = res
           this.pinturas.forEach((pintura)=>{
             if(pintura.price_dec=="0"){
@@ -52,7 +65,6 @@ export class PinturasComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.pinturasService.getPinturaTipos().subscribe(
         (res: PinturaTipos) => {
-          console.log(res);
           this.pinturaTipos = res;
           resolve("resolved");
         },
@@ -89,6 +101,5 @@ export class PinturasComponent implements OnInit {
 
   selectPintura(pintura:any){
     this.selectedPintura = pintura;
-    console.log(this.selectedPintura);
   }
 }

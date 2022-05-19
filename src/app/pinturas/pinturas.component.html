@@ -8,7 +8,7 @@
 
   <div class="pinturas">
     <div class="card" *ngFor="let pintura of pinturasFiltradas" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectPintura(pintura)">
-      <img src="http://localhost:1337{{pintura.image.url}}" class="card-img-top" alt="{{pintura.image.name}}">
+      <img src="{{pintura.image.url}}" class="card-img-top" alt="{{pintura.image.name}}">
       <div class="card-body" >
         <p class="card-text"><b>{{pintura.name}}</b></p>
         <h2 class="card-text">{{pintura.price_int}}<span class="dec">, {{pintura.price_dec}} €</span> </h2>
@@ -66,7 +66,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="contentModal">
-          <img src="http://localhost:1337{{selectedPintura.image.url}}" class="card-img-top"
+          <img src="{{selectedPintura.image.url}}" class="card-img-top"
             alt="{{selectedPintura.image.name}}">
           <div class="rightContent">
             <div>

@@ -27,7 +27,7 @@ export class FigurasService {
             description: item.attributes.description,
             image: {
               name: item.attributes.image.data.attributes.name,
-              url: item.attributes.image.data.attributes.url,
+              url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
             figura_tipo: {
               id: item.attributes.figura_tipo.data.id,

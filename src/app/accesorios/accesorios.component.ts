@@ -18,14 +18,28 @@ export class AccesoriosComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedAccesorio!: Accesorio;
+  selectedAccesorio: Accesorio = {
+    id: 0,
+    name: "",
+    price_int: 0,
+    price_dec: "",
+    description: "",
+    image: {
+        name: "",
+        url: "../../assets/images/avatar.svg",
+    },
+    accesorio_tipo: {
+        id: 0,
+        name: "",
+    }
+  };
 
   constructor(private accesoriosService : AccesoriosService) { }
 
   ngOnInit(): void {
     this.getAccesorios().then((value)=> {
       this.accesoriosFiltrados = this.accesorios,
-      this.selectedAccesorio = this.accesorios[0];
+      this.selectedAccesorio! = this.accesorios[0];
     });
     this.getAccesorioTipos();
   }
@@ -34,7 +48,6 @@ export class AccesoriosComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.accesoriosService.getAccesorios().subscribe(
         (res: Accesorios) => {
-          console.log(res);
           this.accesorios = res;
           this.accesorios.forEach((accesorio)=>{
             if(accesorio.price_dec=="0"){
@@ -52,7 +65,6 @@ export class AccesoriosComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.accesoriosService.getAccesorioTipos().subscribe(
         (res: AccesorioTipos) => {
-          console.log(res);
           this.accesorioTipos = res;
           resolve("resolved");
         },
@@ -89,6 +101,5 @@ export class AccesoriosComponent implements OnInit {
 
   selectAccesorio(accesorio:any){
     this.selectedAccesorio = accesorio;
-    console.log(this.selectedAccesorio);
   }
 }

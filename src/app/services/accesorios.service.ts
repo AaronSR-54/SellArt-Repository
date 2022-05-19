@@ -27,7 +27,7 @@ export class AccesoriosService {
             description: item.attributes.description,
             image: {
               name: item.attributes.image.data.attributes.name,
-              url: item.attributes.image.data.attributes.url,
+              url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
             accesorio_tipo: {
               id: item.attributes.accesorio_tipo.data.id,

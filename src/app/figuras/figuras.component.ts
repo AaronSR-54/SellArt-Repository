@@ -18,7 +18,21 @@ export class FigurasComponent implements OnInit {
    
   filtrado: boolean = false;
 
-  selectedFigura!: Figura;
+  selectedFigura: Figura= {
+    id: 0,
+    name: "",
+    price_int: 0,
+    price_dec: "",
+    description: "",
+    image: {
+        name: "",
+        url: "../../assets/images/avatar.svg",
+    },
+    figura_tipo: {
+        id: 0,
+        name: "",
+    }
+  };
 
   gettingFiguras = false;
 
@@ -55,7 +69,6 @@ export class FigurasComponent implements OnInit {
     return new Promise((resolve, reject) => {
       this.figurasService.getFiguraTipos().subscribe(
         (res: FiguraTipos) => {
-          console.log(res);
           this.figuraTipos = res;
           resolve("resolved");
         },
@@ -92,6 +105,5 @@ export class FigurasComponent implements OnInit {
 
   selectFigura(figura:any){
     this.selectedFigura = figura;
-    console.log(this.selectedFigura);
   }
 }

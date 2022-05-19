@@ -7,7 +7,7 @@
   
   <div class="figuras">
     <div class="card" *ngFor="let figura of figurasFiltradas" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectFigura(figura)">
-      <img src="http://localhost:1337{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
+      <img src="{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
       <div class="card-body" >
         <p class="card-text"><b>{{figura.name}}</b></p>
         <h2 class="card-text">{{figura.price_int}}<span class="dec">, {{figura.price_dec}} €</span> </h2>
@@ -56,7 +56,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="contentModal">
-          <img src="http://localhost:1337{{selectedFigura.image.url}}" class="card-img-top" alt="{{selectedFigura.image.name}}">
+          <img src="{{selectedFigura.image.url}}" class="card-img-top" alt="{{selectedFigura.image.name}}">
           <div class="rightContent">
             <div>
               <p class="modal-text"><b>{{selectedFigura.name}}</b></p>

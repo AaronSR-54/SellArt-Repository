@@ -8,7 +8,7 @@
 
   <div class="accesorios">
     <div class="card" *ngFor="let accesorio of accesoriosFiltrados" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectAccesorio(accesorio)">
-      <img src="http://localhost:1337{{accesorio.image.url}}" class="card-img-top" alt="{{accesorio.image.name}}">
+      <img src="{{accesorio.image.url}}" class="card-img-top" alt="{{accesorio.image.name}}">
       <div class="card-body">
         <p class="card-text"><b>{{accesorio.name}}</b></p>
         <h2 class="card-text">{{accesorio.price_int}}<span class="dec">, {{accesorio.price_dec}} €</span> </h2>
@@ -66,7 +66,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="contentModal">
-          <img src="http://localhost:1337{{selectedAccesorio.image.url}}" class="card-img-top" alt="{{selectedAccesorio.image.name}}">
+          <img src="{{selectedAccesorio.image.url}}" class="card-img-top" alt="{{selectedAccesorio.image.name}}">
           <div class="rightContent">
             <div>
               <p class="modal-text"><b>{{selectedAccesorio.name}}</b></p>

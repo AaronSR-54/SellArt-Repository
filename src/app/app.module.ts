@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ArtistasComponent } from './artistas/artistas.component';
 import { FormsModule } from '@angular/forms';
+import { ProductsArtistasComponent } from './artistas/products-artistas/products-artistas.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     PinturasComponent,
     HomeComponent,
     ArtistasComponent,
+    ProductsArtistasComponent,
   ],
   imports: [
     BrowserModule,

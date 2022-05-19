@@ -18,3 +18,54 @@ header{
     padding: 0rem 0.3rem;
     margin: 0;
 }
+
+.collapse{
+    justify-content: space-between;
+    
+    
+    
+    .right-items{
+        display: flex;
+        align-items: center;
+       
+        .user{
+            display: flex;
+            align-items: center;
+            padding: 0.3rem;
+            border-radius: 0.2rem;
+            margin-right:0.5rem;
+            .avatar{
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            p{
+                margin: 0 0 0 0.5rem;
+            }
+        }
+        .user:hover{
+            transition: 0.3s;
+            background-color: rgb(242,242,242);
+            box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.1);
+            cursor: pointer;
+        }
+        
+        .bi{
+
+            color: rgba(26, 26, 26, 0.7);
+            font-size: 1.5rem;
+            padding: 0.1rem 0.4rem 0.25rem 0.4rem;
+            border-radius: 0.2rem;
+        }
+        .bi:hover{
+            transition: 0.3s;
+            background-color: rgb(242,242,242);
+            box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.1);
+            cursor: pointer;
+        }
+
+    }
+    
+    
+}
