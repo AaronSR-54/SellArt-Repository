@@ -10,5 +10,6 @@ export interface UserResponse {
         url: string | null;
     }
     productos: any;
+    role: any;
 }
 
