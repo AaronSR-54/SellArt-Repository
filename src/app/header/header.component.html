@@ -1,9 +1,9 @@
 <header style="background-color: white">
-  <nav class="navbar navbar-expand-lg navbar-light" >
+  <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" routerLink="home">
       <img src="../../assets/images/Imagotipo-V.-Horizontal-Red.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
     </a>
-   
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -23,18 +23,27 @@
         </li>
       </ul>
       <div class="right-items">
-        <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin">
+        <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="!user">
           <img class="avatar" src="../../assets/images/avatar.svg">
           <p>Iniciar Sesión</p>
         </div>
-        <!-- <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin">
-          <img class="avatar" src="../../assets/images/avatar.svg">
-          <p>Hola <b>Vigita</b></p>
-        </div> -->
-        <i class="bi bi-bag"></i>
+        <div class="dropdown" *ngIf="user">
+          <div class="user" data-bs-toggle="dropdown">
+            <img class="avatar" src="{{user.avatar.url}}" alt="{{user.avatar.name}}">
+            <p>{{user.username}}</p>
+          </div>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
+          </div>
+        </div>
+        <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito" (click)="openCarrito()"></i>
       </div>
     </div>
-  </nav>  
+  </nav>
 </header>
 
 <div class="modal fade" id="modalLogin">
@@ -42,38 +51,50 @@
     <div class="modal-content">
 
       <!-- Modal body -->
-        <div class="modal-body">
-          <h1 class="modal-title">Iniciar sesión</h1>
-          <div class="inputs">
-            <div class="input">
-              <p>Usuario: </p>
-              <div>
-                <input type="text" class="form-control" id="username" [(ngModel)]="username" (ngModelChange)="usernameChange()">
-                  <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
-              </div>
-              
+      <div class="modal-body">
+        <h1 class="modal-title">Iniciar sesión</h1>
+        <div class="inputs">
+          <div class="input">
+            <p>Usuario: </p>
+            <div>
+              <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                (ngModelChange)="usernameChange()">
+              <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
             </div>
-            
-            
-            <div class="input">
-              <p>Contraseña: </p>
-              <div>
-                <input type="password" class="form-control" id="password" [(ngModel)]="password" (ngModelChange)="passwordChange()">
-                  <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
-              </div>
+
+          </div>
+
+
+          <div class="input">
+            <p>Contraseña: </p>
+            <div>
+              <input type="password" class="form-control" id="password" [(ngModel)]="password"
+                (ngModelChange)="passwordChange()">
+              <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
             </div>
-            <div id="buttons" class="input signup">
-              <p>¿No tienes cuenta?</p>
-              <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()"><p>Registrarse</p></button>
-            </div>
-          </div> 
+          </div>
+          <div class="input" *ngIf="invalidLogin">
+            <p class="invalid">{{messageLogin}}</p>
+          </div>
+          <div id="buttons" class="input signup">
+            <p>¿No tienes cuenta?</p>
+            <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()">
+              <p>Registrarse</p>
+            </button>
+          </div>
         </div>
+      </div>
 
       <!-- Modal footer -->
       <div class="modal-footer" id="buttons">
+
         <div>
-          <button type="button" class="cancelar" data-bs-dismiss="modal"><p>Cancelar</p></button>
-          <button type="button" class="login" data-bs-dismiss="modal" (click)="login()"><p>Entrar</p></button>
+          <button type="button" class="cancelar" data-bs-dismiss="modal">
+            <p>Cancelar</p>
+          </button>
+          <button type="button" class="login" (click)="login()">
+            <p>Entrar</p>
+          </button>
         </div>
       </div>
 
@@ -81,3 +102,35 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalCarrito">
+  <div class="modal-dialog modal-top-right">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h1 class="modal-title">Bolsita</h1>
+        <div class="productos">
+          <div class="producto" *ngFor="let producto of carrito">
+            <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+            <div class="info-producto">
+              <p class="text"><b>{{producto.name}}</b></p>
+              <h2 class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer" id="buttons">
+        <div>
+          <!-- <button type="button" class="cancelar" data-bs-dismiss="modal">
+            <p>Cancelar</p>
+          </button> -->
+          <button type="button" class="login">
+            <p>Procesar pedido</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

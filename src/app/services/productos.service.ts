@@ -129,31 +129,6 @@ export class ProductosService {
     })
   )}
 
-  getProductoId(id: number): Observable<Productos> {
-    return this.http.get<any>(`${this.url}/users/${id}?populate=*`)
-    .pipe(
-      map((response: any) => {
-        return response.data.map((item: ProductoResponse) => {
-          return {
-            id: item.id,
-            name: item.attributes.name.toLocaleUpperCase(),
-            price_int: Math.trunc(item.attributes.price),
-            price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
-            description: item.attributes.description,
-            image: {
-              name: item.attributes.image.data.attributes.name,
-              url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
-            },
-            pintura_tipo: {
-              id: item.attributes.pintura_tipo.data.id,
-              name: item.attributes.pintura_tipo.data.attributes.name,
-            }
-          }
-        })
-      })
-    )
-  }
-
   getAllProductos(): Observable<Productos> {
     return this.http.get<any>(`${this.url}/productos?populate=*`)
     .pipe(

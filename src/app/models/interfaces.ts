@@ -26,6 +26,18 @@ export interface Producto {
     }
 }
 
+export interface ProductoCarrito {
+    id: number;
+    name: string;
+    price_int: number;
+    price_dec: string;
+    image: {
+        name: string;
+        url: string;
+    }
+    cantidad: number;
+}
+
 export interface FiguraTipo {
     id: number;
     name: string;
@@ -54,6 +66,7 @@ export interface User {
 }
 
 export type Productos = Producto[];
+export type Carrito = ProductoCarrito[];
 export type FiguraTipos = FiguraTipo[];
 export type PinturaTipos = PinturaTipo[];
 export type AccesorioTipos = AccesorioTipo[];

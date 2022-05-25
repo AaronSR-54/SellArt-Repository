@@ -22,8 +22,6 @@ header{
 .collapse{
     justify-content: space-between;
     
-    
-    
     .right-items{
         display: flex;
         align-items: center;
@@ -52,10 +50,10 @@ header{
         }
         
         .bi{
-
             color: rgba(26, 26, 26, 0.7);
             font-size: 1.5rem;
-            padding: 0.1rem 0.4rem 0.25rem 0.4rem;
+            padding: 0.1rem 0.4rem 0.3rem 0.4rem;
+            margin-bottom: 0.15rem;
             border-radius: 0.2rem;
         }
         .bi:hover{
@@ -63,6 +61,15 @@ header{
             background-color: rgb(242,242,242);
             box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.1);
             cursor: pointer;
+        }
+
+        .dropdown{
+            .dropdown-menu{
+                a{
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
         }
 
     }
@@ -78,14 +85,38 @@ h2{
 }
 
 .modal{
+    .modal-top-right{
+        position: absolute;
+        
+        right: 1.5rem;
+    }
     .modal-content{
         background-color: rgb(242, 242, 242);
         border: none;
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 
+        .productos{
+            display: flex;
+            flex-direction: column;
+            padding: 0.3rem;
+            border-radius: 0.2rem;
+            margin:0.5rem;
+            .producto{
+                display: flex;
+                align-items: center;
+            }
+            img{
+                width: 4rem;
+                height: 5rem;
+                border-radius: 5px;
+                object-fit: cover;
+                margin-right: 1rem;
+            }
+        }
+
         .inputs{
             margin-top: 1rem;
-            margin-left: 2rem;
+            margin-left: 2.5rem;
             width: 80%;                
             .input{
                 display: flex;
@@ -94,6 +125,12 @@ h2{
                 p{
                     text-align: right;
                     min-width: 6rem;
+                    
+                }
+                .invalid{
+                    margin: 0.5rem;
+                    color: red;
+                    font-weight: bold;
                 }
                 select,div{
                     margin: 0.5rem;

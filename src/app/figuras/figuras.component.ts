@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FiguraTipos, Producto, Productos } from '../models/interfaces';
+import { CarritoService } from '../services/carrito.service';
 import { ProductosService } from '../services/productos.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class FigurasComponent implements OnInit {
   nombre: string = "";
    
   filtrado: boolean = false;
-
+  
   selectedFigura: Producto = {
     id: 0,
     name: "",
@@ -48,7 +49,10 @@ export class FigurasComponent implements OnInit {
 
   gettingFiguras = false;
 
-  constructor(private productosService:ProductosService) { }
+  constructor(
+    private productosService:ProductosService,
+    private carritoService:CarritoService
+    ) {  }
 
   ngOnInit(): void {
     this.getFiguras().then((value)=> {
@@ -117,5 +121,10 @@ export class FigurasComponent implements OnInit {
 
   selectFigura(figura:any){
     this.selectedFigura = figura;
+  }
+
+  anadirACarrito(){
+    this.carritoService.anadirProducto(this.selectedFigura);
+    
   }
 }
