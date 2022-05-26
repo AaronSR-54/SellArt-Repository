@@ -17,46 +17,6 @@
     </div>
   </div>
   
-  <!-- <div class="modal fade" id="modalFilters">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h1 class="modal-title">Filtrar por...</h1>
-          <div class="inputs">
-            <div class="input">
-              <p>Tipo: </p>
-              <select class="form-select" aria-label="Default select example" [(ngModel)]="tipoId">
-                <option selected></option>
-                <option [ngValue]="tipo.id" *ngFor="let tipo of producto_Tipos">
-                  <p>{{tipo.name}}</p>
-                </option>
-              </select>
-            </div>
-            <div class="input">
-              <p>Nombre: </p>
-              <input type="text" class="form-control" [(ngModel)]="nombre" aria-label="Nombre"
-                aria-describedby="basic-addon1">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer" id="buttons">
-          <button type="button" class="limpiar" (click)="limpiarFiltros()">
-            <p>Limpiar</p>
-          </button>
-          <div>
-            <button type="button" class="cerrar" data-bs-dismiss="modal">
-              <p>Cancelar</p>
-            </button>
-            <button type="button" class="filtrar" data-bs-dismiss="modal" (click)="filtrar()">
-              <p>Filtrar</p>
-            </button>
-          </div>
-        </div>
-  
-      </div>
-    </div>
-  </div> -->
-  
   <div class="modal fade" id="modalDetails">
     <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
       <div class="modal-content">
@@ -66,13 +26,13 @@
             <div class="rightContent">
               <div>
                 <p class="modal-text"><b>{{selectedProducto.name}}</b></p>
-                <p class="description">{{selectedProducto.description}}</p>           
+                <p class="description">{{selectedProducto.description}}</p>
               </div>
               <div class="bottomContent">
                 <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
-                <button type="button" class="anadirCarrito" data-bs-dismiss="modal"><p>Añadir al carrito</p></button>
-              </div>
-            </div>        
+                <button type="button" class="anadirCarrito" data-bs-dismiss="modal" (click)="anadirACarrito()"><p>Añadir a la bolsita</p></button>
+              </div>        
+            </div>
           </div>
         </div>
       </div>

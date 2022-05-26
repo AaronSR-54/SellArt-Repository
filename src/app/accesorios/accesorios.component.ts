@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto, Productos, AccesorioTipos, } from '../models/interfaces';
+import { CarritoService } from '../services/carrito.service';
 import { ProductosService } from '../services/productos.service';
 
 @Component({
@@ -46,7 +47,10 @@ export class AccesoriosComponent implements OnInit {
     }
   };
 
-  constructor(private productosService : ProductosService) { }
+  constructor(
+    private productosService:ProductosService,
+    private carritoService:CarritoService
+    ) {  }
 
   ngOnInit(): void {
     this.getAccesorios().then((value)=> {
@@ -113,5 +117,10 @@ export class AccesoriosComponent implements OnInit {
 
   selectAccesorio(accesorio:any){
     this.selectedAccesorio = accesorio;
+  }
+
+  anadirACarrito(){
+    this.carritoService.anadirProducto(this.selectedAccesorio);
+    window.location.reload();
   }
 }

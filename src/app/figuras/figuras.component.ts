@@ -125,6 +125,6 @@ export class FigurasComponent implements OnInit {
 
   anadirACarrito(){
     this.carritoService.anadirProducto(this.selectedFigura);
-    
+    window.location.reload();
   }
 }

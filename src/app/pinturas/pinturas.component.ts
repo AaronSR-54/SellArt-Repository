@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PinturaTipos, Producto, Productos } from '../models/interfaces';
+import { CarritoService } from '../services/carrito.service';
 import { ProductosService } from '../services/productos.service';
 
 @Component({
@@ -46,7 +47,10 @@ export class PinturasComponent implements OnInit {
     }
   };
 
-  constructor(private productosService : ProductosService) { }
+  constructor(
+    private productosService:ProductosService,
+    private carritoService:CarritoService
+    ) {  }
 
   ngOnInit(): void {
     this.getPinturas().then((value)=> {
@@ -113,5 +117,10 @@ export class PinturasComponent implements OnInit {
 
   selectPintura(pintura:any){
     this.selectedPintura = pintura;
+  }
+
+  anadirACarrito(){
+    this.carritoService.anadirProducto(this.selectedPintura);
+    window.location.reload();
   }
 }

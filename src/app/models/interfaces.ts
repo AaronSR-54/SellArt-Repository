@@ -61,7 +61,7 @@ export interface User {
     avatar: {
         name: string | null;
         url: string | null;
-    }
+    } | null;
     productos: any;
 }
 

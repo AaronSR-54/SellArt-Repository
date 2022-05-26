@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Carrito, User } from '../models/interfaces';
+import { Carrito, Producto, User } from '../models/interfaces';
 import { CarritoService } from '../services/carrito.service';
 import { LoginService } from '../services/login.service';
 
@@ -25,16 +24,21 @@ export class HeaderComponent implements OnInit {
   user: User = this.loginService.currentUserValue;
   carrito: Carrito = this.carritoService.carritoValue;
 
+  total: number = 0;
+
   constructor(
     private loginService: LoginService, 
-    private router:Router,
     private carritoService : CarritoService) { }
 
   ngOnInit(): void { 
-    if(this.user.avatar.name == null || this.user.avatar.name == null){
-      this.user.avatar.url = "../../assets/images/avatar.svg";
-      this.user.avatar.name = "Avatar.svg"
+    if(this.user){
+      if(this.user.avatar?.name == null){
+        this.user.avatar!.url = "../../assets/images/avatar.svg";
+        this.user.avatar!.name = "Avatar.svg"
+      }
     }
+    this.carrito = this.carritoService.carritoValue;
+    this.total = this.carritoService.totalCarrito;
   }
 
   login(){
@@ -44,7 +48,6 @@ export class HeaderComponent implements OnInit {
         this.user = this.loginService.currentUserValue;
         this.invalidLogin = false;
         window.location.reload();
-        
       })
       .catch((error)=>{
         this.invalidLogin = true;
@@ -84,7 +87,15 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
-  openCarrito(){
-    console.log(this.carrito);
+  sumarProducto(producto:any){
+    this.carritoService.anadirProducto(producto);
+    this.carrito = this.carritoService.carritoValue;
+    this.total = this.carritoService.totalCarrito;
+  }
+
+  restarProducto(producto:any){
+    this.carritoService.quitarProducto(producto);
+    this.carrito = this.carritoService.carritoValue;
+    this.total = this.carritoService.totalCarrito;
   }
 }

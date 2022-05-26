@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserResponse } from '../models/users.interfaces.';
 import { Productos, User, Users } from '../models/interfaces';
@@ -11,11 +11,18 @@ import { Productos, User, Users } from '../models/interfaces';
 })
 export class ArtistasService {
 
-  public artista: User | null = null;
-
+  public artista: Observable<User>;;
+  private artistaSubject: BehaviorSubject<User>;
   private url = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.artistaSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('artista')!));
+    this.artista = this.artistaSubject.asObservable();
+  }
+
+  public get artistaValue(): User {
+    return this.artistaSubject.value;
+  }
 
   getArtistas(): Observable<Users> {
     return this.http.get<any>(`${this.url}/users?populate=*&filters[role]=3`)
@@ -36,6 +43,12 @@ export class ArtistasService {
         })
       })
     )
+  }
+
+  setArtista(artista:User){
+    localStorage.setItem('artista', JSON.stringify(artista));
+    this.artistaSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('artista')!));
+    this.artista = this.artistaSubject.asObservable();
   }
 
 }

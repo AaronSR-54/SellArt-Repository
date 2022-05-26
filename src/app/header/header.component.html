@@ -29,7 +29,7 @@
         </div>
         <div class="dropdown" *ngIf="user">
           <div class="user" data-bs-toggle="dropdown">
-            <img class="avatar" src="{{user.avatar.url}}" alt="{{user.avatar.name}}">
+            <img class="avatar" src="{{user.avatar!.url}}" alt="{{user.avatar!.name}}">
             <p>{{user.username}}</p>
           </div>
           <div class="dropdown-menu dropdown-menu-end">
@@ -40,7 +40,7 @@
             <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
           </div>
         </div>
-        <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito" (click)="openCarrito()"></i>
+        <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"></i>
       </div>
     </div>
   </nav>
@@ -108,28 +108,40 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <h1 class="modal-title">Bolsita</h1>
-        <div class="productos">
+        <h2 class="modal-title">Bolsita</h2>
+        <div class="productos" *ngIf="carrito!=null">
           <div class="producto" *ngFor="let producto of carrito">
             <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
             <div class="info-producto">
               <p class="text"><b>{{producto.name}}</b></p>
-              <h2 class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></h2>
+              <p class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></p>
+              <div class="acciones-producto">
+                <p class="accion" (click)="restarProducto(producto)">-</p> 
+                <p><b>{{producto.cantidad}}</b></p> 
+                <p class="accion" (click)="sumarProducto(producto)">+</p>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="bolsa-vacia" *ngIf="carrito==null">
+            <p class="info"><b>Bolsita vacía :(</b></p>
+            <p class="tip">Añade productos a la bolsa para hacer un pedido :)</p>
         </div>
       </div>
 
       <!-- Modal footer -->
-      <div class="modal-footer" id="buttons">
-        <div>
-          <!-- <button type="button" class="cancelar" data-bs-dismiss="modal">
-            <p>Cancelar</p>
-          </button> -->
-          <button type="button" class="login">
-            <p>Procesar pedido</p>
-          </button>
+      <div class="modal-footer" id="buttons" *ngIf="carrito!=null">
+        <div class="footer-content">
+          <div class="total">
+            <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
+          </div>
+          <div class="boton">
+            <button type="button" class="login">
+              <p>Procesar pedido</p>
+            </button>
+          </div>
         </div>
+        
       </div>
     </div>
   </div>

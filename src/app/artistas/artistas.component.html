@@ -5,7 +5,7 @@
     
     <div class="artistas">
       <div class="card" *ngFor="let artista of artistas" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectArtista(artista)">
-        <img src="{{artista.avatar.url}}" class="card-img-top" alt="{{artista.avatar.name}}">
+        <img src="{{artista.avatar!.url}}" class="card-img-top" alt="{{artista.avatar!.name}}">
         <div class="card-body" >
           <p class="card-text"><b>{{artista.username}}</b></p>
         </div>
@@ -18,7 +18,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="contentModal">
-            <img src="{{selectedArtista.avatar.url}}" class="card-img-top" alt="{{selectedArtista.avatar.name}}">
+            <img src="{{selectedArtista.avatar!.url}}" class="card-img-top" alt="{{selectedArtista.avatar!.name}}">
             <div class="rightContent">
               <div>
                 <p class="modal-text"><b>{{selectedArtista.username}}</b></p>

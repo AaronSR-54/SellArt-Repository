@@ -98,19 +98,68 @@ h2{
         .productos{
             display: flex;
             flex-direction: column;
-            padding: 0.3rem;
             border-radius: 0.2rem;
-            margin:0.5rem;
+
             .producto{
                 display: flex;
-                align-items: center;
+                align-content: space-between;
+                width: 14rem;
+
+                margin:0.5rem 0;
+                
+                img{
+                    width: 4rem;
+                    height: 5rem;
+                    border-radius: 5px;
+                    object-fit: cover;
+                    margin-right: 1rem;
+                    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
+                }
+                .info-producto{
+                    width: 11rem;
+                    .text{
+                        width: 9rem;
+                        margin-bottom: 0.1rem;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                    .acciones-producto{
+                        display: flex;
+                        justify-content: flex-end;
+                        p{
+                            margin: 0.2rem;
+                            padding: 0.2rem 0.4rem;
+                            border-radius: 0.2rem;
+                            user-select: none;
+                        }
+                        .accion:hover{
+                            transition: 0.3s;
+                            background-color: white;
+                            box-shadow: 0px 0px 5px rgba(26, 26, 26, 0.1);
+                            cursor: pointer;                    
+                        }
+                    }
+                }
+                
             }
-            img{
-                width: 4rem;
-                height: 5rem;
-                border-radius: 5px;
-                object-fit: cover;
-                margin-right: 1rem;
+            
+        }
+
+        .bolsa-vacia{
+            width: 14rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            p{
+                margin: 0.2rem;
+                text-align: justify;
+            }
+            .info{
+                margin-top: 1rem;
+            }
+            .tip{
+                font-size: small;
             }
         }
 
@@ -154,6 +203,20 @@ h2{
         }
        
         #buttons{
+            .footer-content{
+                display: flex;
+                flex-direction: column;
+                width: 14rem;
+                .total{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .boton{
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+            
             button{
                 border: none;
                 border-radius: 4px;

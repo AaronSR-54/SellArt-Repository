@@ -29,16 +29,11 @@ export class ArtistasComponent implements OnInit {
     productos: [],
   };
 
-  productosId: any = [];
-
-  productosArtista: Productos = [];
-
   constructor(private artistasService : ArtistasService, private router: Router, private productosService : ProductosService) { }
 
   ngOnInit(): void {
     this.getArtistas().then((value)=> {
       this.selectedArtista = this.artistas[0];
-      console.log("Artistas: ", this.artistas)
     });
   }
 
@@ -48,9 +43,9 @@ export class ArtistasComponent implements OnInit {
         (res: Users) => {
           this.artistas = res;
           this.artistas.forEach((artista)=>{
-            if(artista.avatar.name == null || artista.avatar.name == null){
-              artista.avatar.url = "../../assets/images/avatar.svg";
-              artista.avatar.name = "Avatar.svg"
+            if(artista.avatar == null){
+              artista.avatar!.url = "../../assets/images/avatar.svg";
+              artista.avatar!.name = "Avatar.svg"
             }
           })
           resolve("resolved");
@@ -62,28 +57,10 @@ export class ArtistasComponent implements OnInit {
 
   selectArtista(artista:any){
     this.selectedArtista = artista;
-    console.log("Productos artista: ", this.productosId);
-  }
-
-  getProductosArtista(){
-    this.selectedArtista.productos.forEach((producto:any)=>this.productosId.push(producto.id));
-    this.productosId.forEach((id: number)=>{
-    this.productosService.getAllProductos().subscribe(
-      (res: Productos) => {
-        res.forEach((producto)=>{
-          if(producto.id === id){
-            this.productosArtista.push(producto);
-          }
-        })
-      }
-    )
-    this.productosService.productosArtista = this.productosArtista;
-   })
   }
 
   goToProductosArtista(){
-    this.artistasService.artista = this.selectedArtista;
-    this.getProductosArtista();
+    this.artistasService.setArtista(this.selectedArtista);
     this.router.navigate(['/artistas/productos-artista']);
   }
 }

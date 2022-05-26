@@ -11,7 +11,6 @@ import { ProductoResponse } from '../models/productos.interfaces';
 export class ProductosService {
 
   private url = environment.apiBaseUrl;
-  public productosArtista : Productos = [];
 
   constructor(private http: HttpClient) { }
 
@@ -153,13 +152,4 @@ export class ProductosService {
       })
     )
   }
-
-  // getProductosArtista(artista: User): Observable<Productos>{
-  //   artista.productos.forEach((producto)=>{
-  //     return this.http.get<any>(`${this.url}/productos/${producto.id}`)
-  //   })
-
-
-
-  // }
 }
