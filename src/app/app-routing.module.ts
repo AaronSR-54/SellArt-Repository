@@ -6,6 +6,7 @@ import { AccesoriosComponent } from './accesorios/accesorios.component';
 import { HomeComponent } from './home/home.component';
 import { PinturasComponent } from './pinturas/pinturas.component';
 import { ProductsArtistasComponent } from './artistas/products-artistas/products-artistas.component';
+import { PedidoComponent } from './pedido/pedido.component';
 
 const routes: Routes = [
   { path: 'artistas', component: ArtistasComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'pinturas', component: PinturasComponent },
   { path: 'home', component: HomeComponent },
   { path: 'artistas/productos-artista', component: ProductsArtistasComponent},
+  { path: 'procesar-pedido', component: PedidoComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
 

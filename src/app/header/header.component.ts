@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Carrito, Producto, User } from '../models/interfaces';
 import { CarritoService } from '../services/carrito.service';
 import { LoginService } from '../services/login.service';
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private loginService: LoginService, 
-    private carritoService : CarritoService) { }
+    private carritoService : CarritoService,
+    private router : Router) { }
 
   ngOnInit(): void { 
     if(this.user){
@@ -97,5 +99,9 @@ export class HeaderComponent implements OnInit {
     this.carritoService.quitarProducto(producto);
     this.carrito = this.carritoService.carritoValue;
     this.total = this.carritoService.totalCarrito;
+  }
+
+  procesarPedido(carrito:Carrito){
+    this.router.navigate(['/artistas/productos-artista']);
   }
 }

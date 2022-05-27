@@ -11,7 +11,7 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./products-artistas.component.scss']
 })
 export class ProductsArtistasComponent implements OnInit {
-
+  
   artista: User = this.artistasService.artistaValue;
 
   productosId: any = [];
