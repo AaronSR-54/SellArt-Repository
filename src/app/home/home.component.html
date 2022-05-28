@@ -1,34 +1,122 @@
 <header style="background-color: white">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand">
-                <img src="../../assets/images/Imagotipo V.-Vertical.svg" class="img-fluid"
-                    alt="Imagotipo V. Vertical">
+                <img src="../../assets/images/Imagotipo V. Horizontal.svg" class="img-fluid" alt="Imagotipo V. Vertical">
             </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" routerLink="../pinturas">Pinturas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" routerLink="../figuras">Figuras</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" routerLink="../accesorios">Accesorios</a>
-                    </li>
-                    <li class="nav-item active">
-                        <p class="separator">|</p>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" routerLink="../artistas">Artistas</a>
-                    </li>
-                </ul>
+            <div class="navContent">
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="../pinturas">Pinturas</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="../figuras">Figuras</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="../accesorios">Accesorios</a>
+                        </li>
+                        <li class="nav-item active">
+                            <p class="separator">|</p>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" routerLink="../artistas">Artistas</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="right-items">
+                    <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="!user">
+                        <img class="avatar" src="../../assets/images/avatar.svg">
+                        <p>Iniciar Sesión</p>
+                    </div>
+                    <div class="dropdown" *ngIf="user">
+                        <div class="user" data-bs-toggle="dropdown">
+                        <img class="avatar" src="{{user.avatar!.url}}" alt="{{user.avatar!.name}}">
+                        <p>{{user.username}}</p>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                    <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"><p class="cantidadCarrito"*ngIf="carrito!=null">{{carrito.length}}</p></i>
+                </div>
+
             </div>
-            <i class="bi bi-box-arrow-in-right" style="font-size: 2rem; color: rgb(26, 26, 26);"></i>
+
         </nav>
 </header>
 
 <div class="contenedor">
-    <p>//añadir carrousel ultimos productos</p>
+    <div class="sub-contenedor">
+        <h1>Novedades</h1>
+        <div class="productos">
+            <div>
+                <h2>Pinturas</h2>
+                <div id="carouselPinturas" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item card" *ngFor="let pintura of pinturas;let index = index;let isFirst = first" [ngClass]="{active:isFirst}" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectProducto(pintura)">
+                            <img src="{{pintura.image.url}}" class="card-img-top" alt="{{pintura.image.name}}">
+                            <div class="card-body">
+                                <p class="card-text"><b>{{pintura.name}}</b></p>
+                                <h2 class="card-text">{{pintura.price_int}}<span class="dec">, {{pintura.price_dec}} €</span> </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPinturas" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPinturas" data-bs-slide="next">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h2>Figuras</h2>
+                <div id="carouselFiguras" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item card" *ngFor="let figura of figuras;let index = index;let isFirst = first" [ngClass]="{active:isFirst}" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectProducto(figura)">
+                            <img src="{{figura.image.url}}" class="card-img-top" alt="{{figura.image.name}}">
+                            <div class="card-body">
+                                <p class="card-text"><b>{{figura.name}}</b></p>
+                                <h2 class="card-text">{{figura.price_int}}<span class="dec">, {{figura.price_dec}} €</span> </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselFiguras" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselFiguras" data-bs-slide="next">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h2>Accesorios</h2>
+                <div id="carouselAccesorios" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item card" *ngFor="let accesorio of accesorios;let index = index;let isFirst = first" [ngClass]="{active:isFirst}" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectProducto(accesorio)">
+                            <img src="{{accesorio.image.url}}" class="card-img-top" alt="{{accesorio.image.name}}">
+                            <div class="card-body">
+                                <p class="card-text"><b>{{accesorio.name}}</b></p>
+                                <h2 class="card-text">{{accesorio.price_int}}<span class="dec">, {{accesorio.price_dec}} €</span> </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselAccesorios" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselAccesorios" data-bs-slide="next">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer>
@@ -37,3 +125,176 @@
         <p>Creado y diseñado por Aarón Sanz Roca</p>
     </div>
 </footer>
+
+<div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="contentModal">
+            <img src="{{selectedProducto.image.url}}" class="card-img-top" alt="{{selectedProducto.image.name}}">
+            <div class="rightContent">
+              <div>
+                <p class="modal-text"><b>{{selectedProducto.name}}</b></p>
+                <p class="description">{{selectedProducto.description}}</p>           
+              </div>
+              <div class="bottomContent">
+                <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
+                <button type="button" class="anadirCarrito" data-bs-dismiss="modal" (click)="anadirACarrito()"><p>Añadir a la bolsita</p></button>
+              </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="modalLogin">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+    <!-- Modal body -->
+    <div class="modal-body">
+        <h1 class="modal-title">Iniciar sesión</h1>
+        <div class="inputs">
+        <div class="input">
+            <p>Usuario: </p>
+            <div>
+            <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                (ngModelChange)="usernameChange()">
+            <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+            </div>
+
+        </div>
+
+
+        <div class="input">
+            <p>Contraseña: </p>
+            <div>
+            <input type="password" class="form-control" id="password" [(ngModel)]="password"
+                (ngModelChange)="passwordChange()">
+            <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+            </div>
+        </div>
+        <div class="input" *ngIf="invalidLogin">
+            <p class="invalid">{{messageLogin}}</p>
+        </div>
+        <div id="buttons" class="input signup">
+            <p>¿No tienes cuenta?</p>
+            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalRegister">
+            <p>Registrarse</p>
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer" id="buttons">
+
+        <div>
+        <button type="button" class="cancelar" data-bs-dismiss="modal">
+            <p>Cancelar</p>
+        </button>
+        <button type="button" class="login" (click)="login()">
+            <p>Entrar</p>
+        </button>
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="modalRegister">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+        <h1 class="modal-title">Registrarse</h1>
+        <div class="inputs">
+            <div class="input">
+            <p>Usuario: </p>
+            <div>
+                <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                (ngModelChange)="usernameChange()">
+                <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+            </div>
+            </div>
+
+            <div class="input">
+            <p>Contraseña: </p>
+            <div>
+                <input type="password" class="form-control" id="password" [(ngModel)]="password"
+                (ngModelChange)="passwordChange()">
+                <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+            </div>
+            </div>
+            <div class="input" *ngIf="invalidLogin">
+            <p class="invalid">{{messageLogin}}</p>
+            </div>
+
+            <input type="file" name="files" />
+        </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer" id="buttons">
+
+        <div>
+            <button type="button" class="cancelar" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">
+            <p>Cancelar</p>
+            </button>
+            <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()">
+            <p>Registrarme</p>
+            </button>
+        </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="modalCarrito">
+<div class="modal-dialog modal-top-right">
+    <div class="modal-content">
+
+    <!-- Modal body -->
+    <div class="modal-body">
+        <h2 class="modal-title">Bolsita</h2>
+        <div class="productos" *ngIf="carrito!=null">
+        <div class="producto" *ngFor="let producto of carrito">
+            <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+            <div class="info-producto">
+            <p class="text"><b>{{producto.name}}</b></p>
+            <p class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></p>
+            <div class="acciones-producto">
+                <p class="accion" (click)="restarProducto(producto)">-</p> 
+                <p><b>{{producto.cantidad}}</b></p> 
+                <p class="accion" (click)="sumarProducto(producto)">+</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="bolsa-vacia" *ngIf="carrito==null">
+            <p class="info"><b>Bolsita vacía :(</b></p>
+            <p class="tip">Añade productos a la bolsa para hacer un pedido :)</p>
+        </div>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer" id="buttons" *ngIf="carrito!=null">
+        <div class="footer-content">
+        <div class="total">
+            <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
+        </div>
+        <div class="boton">
+            <button type="button" class="login">
+            <p>Procesar pedido</p>
+            </button>
+        </div>
+        </div>
+        
+    </div>
+    </div>
+</div>
+</div>

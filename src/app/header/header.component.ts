@@ -81,7 +81,21 @@ export class HeaderComponent implements OnInit {
   }
 
   signup(){
-
+    // const form = document.querySelector('form');
+    // let image:any;
+    // form!.addEventListener('submit', async (e:any) => {
+    //   e.preventDefault();
+    //   await fetch('http://localhost:1337/api/upload', {
+    //     method: 'post',
+    //     body: new FormData(e.target)
+    //   }).then(()=>{
+    //     this.loginService.getUploads().subscribe((res)=>{
+    //       console.log(res.item.pop());
+    //       image = res.item.pop();
+    //     })
+    //   })
+    //   this.loginService.signUp(image).then(res=>console.log(res));
+    // });
   }
 
   logout(){

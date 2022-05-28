@@ -1,7 +1,7 @@
 <header style="background-color: white">
   <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" routerLink="home">
-      <img src="../../assets/images/Imagotipo-V.-Horizontal-Red.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
+      <img src="../../assets/images/Imagotipo V. Horizontal Red_.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
     </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,7 +40,7 @@
             <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
           </div>
         </div>
-        <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"></i>
+        <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"><p class="cantidadCarrito"*ngIf="carrito!=null">{{carrito.length}}</p></i>
       </div>
     </div>
   </nav>
@@ -78,7 +78,7 @@
           </div>
           <div id="buttons" class="input signup">
             <p>¿No tienes cuenta?</p>
-            <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()">
+            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalRegister">
               <p>Registrarse</p>
             </button>
           </div>
@@ -97,6 +97,56 @@
           </button>
         </div>
       </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalRegister">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h1 class="modal-title">Registrarse</h1>
+          <div class="inputs">
+            <div class="input">
+              <p>Usuario: </p>
+              <div>
+                <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                  (ngModelChange)="usernameChange()">
+                <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+              </div>
+            </div>
+
+            <div class="input">
+              <p>Contraseña: </p>
+              <div>
+                <input type="password" class="form-control" id="password" [(ngModel)]="password"
+                  (ngModelChange)="passwordChange()">
+                <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+              </div>
+            </div>
+            <div class="input" *ngIf="invalidLogin">
+              <p class="invalid">{{messageLogin}}</p>
+            </div>
+
+            <input type="file" name="files" />
+          </div>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer" id="buttons">
+
+          <div>
+            <button type="button" class="cancelar" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">
+              <p>Cancelar</p>
+            </button>
+            <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()">
+              <p>Registrarme</p>
+            </button>
+          </div>
+        </div>
 
     </div>
   </div>

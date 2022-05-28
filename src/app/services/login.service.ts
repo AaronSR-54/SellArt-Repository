@@ -29,6 +29,7 @@ export class LoginService {
     return this.http.get<any>(`${this.url}/users/${idUser}?populate=*`)
     .pipe(
       map((item: UserResponse) => {
+        console.log(this.url + item.avatar?.url)
           return {
             id: item.id,
             username: item.username,
@@ -64,7 +65,40 @@ export class LoginService {
   }
 
   loginAuth(identifier:string, password:string){
-    return this.http.post('http://localhost:1337/api/auth/local', {identifier, password}).pipe(
+    return this.http.post(`${this.url}/api/auth/local`, {identifier, password}).pipe(
+      map((item:any)=>{
+        return{
+          id: item.user.id,
+          username: item.user.username,
+          email: item.user.email,
+          biography: item.user.biography,
+          avatar: {
+              name: item.user.avatar?.name,
+              url: "http://localhost:1337" + item.user.avatar?.url,
+          },
+          productos: item.user.productos,
+          role: item.user.role,
+        }
+      })
+    ) 
+  }
+
+  getUploads(){
+    return this.http.get(`${this.url}/upload/files`).pipe(map((item:any)=>{
+      return{
+        item
+      }
+    }))
+  }
+
+  async signUp(image:any){
+    return this.http.post('http://localhost:1337/api/auth/local/register', {
+      username: "prueba",
+      email: "prueba@email.com",
+      password: "12345678",
+      biography: "Hola amihos",
+      avatar: image
+    }).pipe(
       map((item:any)=>{
         return{
           id: item.user.id,

@@ -5,7 +5,6 @@
 .img-fluid{
     width: 10rem;
     height: 4rem;
-    object-fit: cover;
 }
 
 header{
@@ -59,6 +58,20 @@ header{
             padding: 0.1rem 0.4rem 0.3rem 0.4rem;
             margin-bottom: 0.15rem;
             border-radius: 0.2rem;
+
+            .cantidadCarrito{
+                position: absolute;
+                bottom: 30%;
+                left: 99.1%;
+                background-color: rgba(26, 26, 26);
+                border-radius: 5px;
+                margin: 0;
+                padding: 1px 4px;
+                color: rgb(242, 242, 242);
+                font-style: normal;
+                text-align: center;
+                font-size: 10px
+            }
         }
         .bi:hover{
             transition: 0.3s;

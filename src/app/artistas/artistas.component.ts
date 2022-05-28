@@ -43,7 +43,7 @@ export class ArtistasComponent implements OnInit {
         (res: Users) => {
           this.artistas = res;
           this.artistas.forEach((artista)=>{
-            if(artista.avatar == null){
+            if(artista.avatar?.name == null){
               artista.avatar!.url = "../../assets/images/avatar.svg";
               artista.avatar!.name = "Avatar.svg"
             }
