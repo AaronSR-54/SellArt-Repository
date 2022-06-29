@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Carrito, Producto, User } from '../models/interfaces';
 import { CarritoService } from '../services/carrito.service';
@@ -13,6 +14,8 @@ export class HeaderComponent implements OnInit {
 
   username: string = '';
   password: string = '';
+  
+  fileForm: FormGroup;  
 
   messageUser: string = 'Por favor, rellena el usuario';
   messagePassword: string = 'Por favor, rellena la contraseña';
@@ -30,8 +33,14 @@ export class HeaderComponent implements OnInit {
   constructor(
     private loginService: LoginService, 
     private carritoService : CarritoService,
-    private router : Router) { }
+    private router : Router,
+    private formBuilder: FormBuilder) { 
+      this.fileForm = this.formBuilder.group({
+        profile: [""]
+      });
+    }
 
+    
   ngOnInit(): void { 
     if(this.user){
       if(this.user.avatar?.name == null){
@@ -79,24 +88,46 @@ export class HeaderComponent implements OnInit {
       inputPassword?.classList.remove("is-invalid");
     }
   }
-
-  signup(){
-    // const form = document.querySelector('form');
-    // let image:any;
-    // form!.addEventListener('submit', async (e:any) => {
-    //   e.preventDefault();
-    //   await fetch('http://localhost:1337/api/upload', {
-    //     method: 'post',
-    //     body: new FormData(e.target)
-    //   }).then(()=>{
-    //     this.loginService.getUploads().subscribe((res)=>{
-    //       console.log(res.item.pop());
-    //       image = res.item.pop();
+  
+  // QUEDA POR HACER
+  
+    signup(){
+    //   console.log("patata")
+      
+    //   const form = document.querySelector('form');
+    //   console.log("🚀 ~ file: header.component.ts ~ line 90 ~ HeaderComponent ~ signup ~ form", form)
+    //   form?.addEventListener('submit', async (e) => {
+    //     e.preventDefault();
+    //     console.log("🚀 ~ file: header.component.ts ~ line 93 ~ HeaderComponent ~ form?.addEventListener ~ e", e)
+    //     this.loginService.uploadImage(e.target).subscribe(res=>{
+    //     console.log("🚀 ~ file: header.component.ts ~ line 92 ~ HeaderComponent ~ this.loginService.uploadImage ~ res", res)
+          
     //     })
-    //   })
-    //   this.loginService.signUp(image).then(res=>console.log(res));
-    // });
-  }
+    //   });
+      
+    //   // this.loginService.uploadImage(this.file!).subscribe(res=>{
+    //   //   console.log("🚀 ~ file: header.component.ts ~ line 91 ~ HeaderComponent ~ this.loginService.uploadImage ~ res", res)
+    //   // })
+    }
+
+  // QUEDA POR HACER
+
+    onSubmit(){
+    //   const formData = new FormData();
+    //   formData.append('file', this.fileForm.get('profile')!.value);
+                  
+    //   this.loginService.uploadImage(formData).subscribe(
+    //     (res) => console.log(res),
+    //     (err) => console.log(err)
+    //   );
+    }
+
+    onFileSelect(event:any) {
+    //   if (event.target.files.length > 0) {
+    //     const file = event.target.files[0];
+    //     this.fileForm.get('profile')!.setValue(file);
+    //   }
+    }
 
   logout(){
     this.loginService.logout();
@@ -115,7 +146,7 @@ export class HeaderComponent implements OnInit {
     this.total = this.carritoService.totalCarrito;
   }
 
-  procesarPedido(carrito:Carrito){
-    this.router.navigate(['/artistas/productos-artista']);
+  procesarPedido(){
+    this.router.navigate(['/pedido']);
   }
 }

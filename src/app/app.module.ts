@@ -12,7 +12,7 @@ import { PinturasComponent } from './pinturas/pinturas.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ArtistasComponent } from './artistas/artistas.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsArtistasComponent } from './artistas/products-artistas/products-artistas.component';
 import { PedidoComponent } from './pedido/pedido.component';
 
@@ -35,6 +35,7 @@ import { PedidoComponent } from './pedido/pedido.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

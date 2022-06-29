@@ -65,6 +65,21 @@ export interface User {
     productos: any;
 }
 
+export interface Direccion {
+    calle: string,
+    piso: string,
+    pais: string,
+    cp: string,
+    poblacion: string,
+    provincia: string
+}
+
+export interface Tarjeta {
+    numero: any,
+    fecha: any,
+    cvv: any
+}
+
 export type Productos = Producto[];
 export type Carrito = ProductoCarrito[];
 export type FiguraTipos = FiguraTipo[];

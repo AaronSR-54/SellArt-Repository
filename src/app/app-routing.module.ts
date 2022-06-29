@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'pinturas', component: PinturasComponent },
   { path: 'home', component: HomeComponent },
   { path: 'artistas/productos-artista', component: ProductsArtistasComponent},
-  { path: 'procesar-pedido', component: PedidoComponent},
+  { path: 'pedido', component: PedidoComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
 

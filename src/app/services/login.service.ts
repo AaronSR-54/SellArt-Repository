@@ -65,7 +65,7 @@ export class LoginService {
   }
 
   loginAuth(identifier:string, password:string){
-    return this.http.post(`${this.url}/api/auth/local`, {identifier, password}).pipe(
+    return this.http.post(`${this.url}/auth/local`, {identifier, password}).pipe(
       map((item:any)=>{
         return{
           id: item.user.id,
@@ -91,8 +91,8 @@ export class LoginService {
     }))
   }
 
-  async signUp(image:any){
-    return this.http.post('http://localhost:1337/api/auth/local/register', {
+  signUp(image:any){
+    return this.http.post(`${this.url}/auth/local/register`, {
       username: "prueba",
       email: "prueba@email.com",
       password: "12345678",
@@ -114,6 +114,10 @@ export class LoginService {
         }
       })
     ) 
+  }
+
+  uploadImage(formData:FormData):Observable<any>{
+    return this.http.post(`${this.url}/upload`, formData)
   }
 
   logout() {

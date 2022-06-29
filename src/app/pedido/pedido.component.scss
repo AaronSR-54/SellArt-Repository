@@ -1,0 +1,191 @@
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+
+.steps{
+    display:flex;
+    flex-direction: column;
+    width: 60%;
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1rem;
+        
+        .numeroStep{
+            background-color: rgba(26, 26, 26);
+            border-radius: 5px;
+            margin: 0;
+            padding: 2px 6px;
+            color: rgb(242, 242, 242);
+            font-style: normal;
+            text-align: center;
+            font-size: 15px
+        }
+    }
+    
+    .card{
+        margin:0.5rem 0;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+        
+        .productos{
+            margin: 0 2rem 2rem 2rem;
+        }
+   
+        .invalid{
+            margin: 0.5rem;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+    
+    hr{
+        margin-bottom: 0;
+    }
+    i{
+        display: flex;
+        justify-content: center;
+    }
+    
+}
+
+.producto{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    
+    .contentProd{
+        display: flex;
+        img{
+            width: 6rem;
+            height: 8rem;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 1rem;
+            box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+        }
+        .info-producto{
+            display: flex;
+            align-items: center;
+            .title{
+                width: 15rem;
+                font-size: large;
+                white-space: wrap;
+            }
+            .text{
+                font-size: 1.3rem;
+                .dec{
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    .acciones-producto{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        p{
+            font-size: 1.3rem;
+            margin: 0;
+            user-select: none;
+        }
+        .accion{
+            padding: 0 0.2rem;
+            margin: 0 0.2rem;
+            border-radius: 0.2rem;
+            font-size: 1.5rem;
+        }
+        .accion:hover{
+            transition: 0.3s;
+            background-color: rgb(242, 242, 242);
+            box-shadow: 0px 0px 5px rgba(26, 26, 26, 0.1);
+            cursor: pointer;                    
+        }
+    }
+}
+
+.total{
+    display: flex;
+    justify-content: flex-end;
+    p{
+        margin-right: 1rem;
+        font-size: 1.2rem;
+    }
+}
+
+.formEnvio{   
+    margin: 0 2rem 2rem 2rem;        
+    .inputs{
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+
+        p{
+            text-align: right;
+            min-width: 6rem;
+        }
+    
+        .calle{
+            width: 70%;
+        }
+
+        .piso{
+            width: 30%
+        }
+        
+        input{
+            margin: 0.5rem;
+        }
+    }
+}
+
+.metodoPago{
+    margin: 0 2rem;
+    display: flex;
+    div{
+        margin-right: 1rem;
+    }
+}
+
+.formPago{
+    margin: 0 2rem 2rem 2rem;
+    .inputs{
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        p{
+            text-align: right;
+            min-width: 6rem;
+        }
+    
+        .numero{
+            width: 50%;
+        }
+
+        .fecha{
+            width: 50%
+        }
+
+        .cvv{
+            width: 20%
+        }
+        
+        input{
+            margin: 0.5rem;
+        }
+    }
+}
+
+.flechaStep{
+    font-size: 1.5rem;  
+}
+
+.flechaStep:hover{
+    transition: 0.3s;
+    text-shadow: 0px 0px 5px rgba(26, 26, 26, 0.3);
+    cursor: pointer;          
+}

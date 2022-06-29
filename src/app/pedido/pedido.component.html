@@ -1,1 +1,100 @@
-<p>pedido works!</p>
+<div class="contenedor">
+    <div class="steps">
+        <!-- STEP 1 -->
+        <div class="card">
+            <div class="title">
+                <h2>Bolsita</h2>
+                <p class="numeroStep">1</p>
+            </div>
+            <div class="productos" *ngIf="step==1">
+                <div class="producto" *ngFor="let producto of carrito">
+                    <div class="contentProd">
+                        <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+                        <div class="info-producto">
+                            <div>
+                                <p class="title"><b>{{producto.name}}</b></p>
+                                <p class="text">{{producto.price_int}}<span class="dec">. {{producto.price_dec}} €</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acciones-producto">
+                        <p class="accion" (click)="restarProducto(producto)">-</p> 
+                        <p><b>{{producto.cantidad}}</b></p> 
+                        <p class="accion" (click)="sumarProducto(producto)">+</p>
+                    </div> 
+                </div>
+
+            </div>
+            <div class="total" *ngIf="step==1">
+                <p><b>TOTAL </b> </p> <p><b>{{total}} €</b></p>
+            </div>
+        </div>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==1"></i>
+
+        <!-- STEP 2 -->
+        <div class="card">
+            <div class="title">
+                <h2>Dirección de envío</h2>
+                <p class="numeroStep">2</p>
+            </div>
+            <div class="formEnvio" *ngIf="step==2">
+                <div class="inputs">
+                    <input type="text" class="form-control calle" [(ngModel)]="direccion.calle" placeholder="Calle">
+                    <input type="text" class="form-control piso" [(ngModel)]="direccion.piso" placeholder="Piso, puerta">
+                </div>
+                <div class="inputs">
+                    <input type="text" class="form-control" [(ngModel)]="direccion.pais" placeholder="País">
+                    <input type="text" class="form-control" [(ngModel)]="direccion.cp" placeholder="Código postal">
+                </div>
+                <div class="inputs">
+                    <input type="text" class="form-control" [(ngModel)]="direccion.poblacion" placeholder="Población">
+                    <input type="text" class="form-control" [(ngModel)]="direccion.provincia" placeholder="Provincia">
+                </div>
+                <p class="invalid" *ngIf="message!=''">{{message}}</p>
+            </div>
+        </div>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==2"></i>
+
+        <!-- STEP 3 -->
+        <div class="card">
+            <div class="title">
+                <h2>Método de pago</h2>
+                <p class="numeroStep">3</p>
+            </div>
+            <div *ngIf="step==3">
+                <form class="metodoPago">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pago" id="efectivo" value="efectivo" [(ngModel)]="pago" checked>
+                        <label class="form-check-label" for="efectivo"><p>Efectivo</p></label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pago" id="tarjeta" value="tarjeta" [(ngModel)]="pago">
+                        <label class="form-check-label" for="tarjeta"><p>Tarjeta</p></label>
+                    </div>
+                </form>
+                <div class="formPago" *ngIf="pago=='tarjeta'">
+                    <div class="inputs">
+                        <input type="number" class="form-control numero" [(ngModel)]="tarjeta.numero" placeholder="XXXX - XXXX - XXXX - XXXX">
+                        <input type="month" class="form-control fecha" [(ngModel)]="tarjeta.fecha" placeholder="MM/YY">
+                    </div>
+                    <div class="inputs">
+                        <input type="number" class="form-control cvv" [(ngModel)]="tarjeta.cvv" placeholder="CVV">
+                    </div>
+                    <p class="invalid" *ngIf="message!=''">{{message}}</p>
+                </div>
+            </div>
+        </div>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==3"></i>
+
+        <!-- STEP 4 -->
+        <div class="card">
+            <div class="title">
+                <h2>Resumen del pedido</h2>
+                <p class="numeroStep">4</p>
+            </div>
+            <div *ngIf="step==4">Resumen pedido</div>
+        </div>
+    </div>
+</div>
+
+

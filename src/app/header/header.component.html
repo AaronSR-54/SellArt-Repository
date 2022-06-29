@@ -131,8 +131,17 @@
               <p class="invalid">{{messageLogin}}</p>
             </div>
 
-            <input type="file" name="files" />
+            <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">      
+              <div>
+                <input type="file" name="profile" (change)="onFileSelect($event)" />
+              </div>
+              <div>
+                <button type="submit">Upload</button>
+              </div>
+            </form>
           </div>
+
+             <!-- <input type="file" name="files" [formData]="file" (ngModelChange)="signup()"/> -->
         </div>
 
         <!-- Modal footer -->
@@ -146,11 +155,12 @@
               <p>Registrarme</p>
             </button>
           </div>
-        </div>
 
+        </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="modalCarrito">
   <div class="modal-dialog modal-top-right">
@@ -186,7 +196,7 @@
             <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
           </div>
           <div class="boton">
-            <button type="button" class="login">
+            <button type="button" class="login" (click)="procesarPedido()">
               <p>Procesar pedido</p>
             </button>
           </div>

@@ -184,8 +184,8 @@ export class HomeComponent implements OnInit {
     this.total = this.carritoService.totalCarrito;
   }
 
-  procesarPedido(carrito:Carrito){
-    this.router.navigate(['/artistas/productos-artista']);
+  procesarPedido(){
+    this.router.navigate(['/pedido']);
   }
 
   
