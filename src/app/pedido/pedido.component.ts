@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Carrito, Direccion, Tarjeta } from '../models/interfaces';
 import { CarritoService } from '../services/carrito.service';
+import { LoginService } from '../services/login.service';
 import { PedidoService } from '../services/pedido.service';
 
 @Component({
@@ -17,20 +19,6 @@ export class PedidoComponent implements OnInit {
   step: number = 1;
   
   message: string = "";
-  // direccion : Direccion = {
-  //   calle: "",
-  //   piso: "",
-  //   pais: "",
-  //   cp: "",
-  //   poblacion: "",
-  //   provincia: ""
-  // };
-  
-  // tarjeta : Tarjeta | any = {
-  //   numero:"",
-  //   fecha:"",
-  //   cvv:""
-  // };
 
   direccion : Direccion = {
     calle: "Francisco Valldecabres",
@@ -49,8 +37,12 @@ export class PedidoComponent implements OnInit {
 
   pago: string = "efectivo";
 
+  idProductos : number[] = [];
+
   constructor(private carritoService : CarritoService, 
-    private pedidoService : PedidoService) { }  
+    private pedidoService : PedidoService,
+    private loginService : LoginService,
+    private router: Router) { }  
 
   ngOnInit(): void {
     this.carrito = this.carritoService.carritoValue;
@@ -112,11 +104,55 @@ export class PedidoComponent implements OnInit {
   }
 
   tramitarPedido(){
-    this.pago == "efectivo" ? this.tarjeta = null : {};
-    this.pedidoService.tramitarPedido(this.carrito, this.direccion, this.tarjeta!).subscribe(
-      (res:any) => {console.log(res)},
-      (error:any) => {console.log(error)}
-      )
+    
+    this.anadirProductos().then(()=>{
+      let pedidoRequest;
+
+      if(this.pago == "efectivo"){
+        pedidoRequest = {
+          data : {
+            user : this.loginService.currentUserValue.id,
+            Direccion : this.direccion.calle + ", " + this.direccion.piso,
+            Localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
+            MetodoPago : "efectivo",
+            pedido_productos : this.idProductos
+          }
+        }
+      }else{
+        pedidoRequest = {
+          data : {
+            user : this.loginService.currentUserValue.id,
+            Direccion : this.direccion.calle + ", " + this.direccion.piso,
+            Localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
+            MetodoPago : "tarjeta",
+            NumTarjeta : this.tarjeta.numero,
+            CadTarjeta : this.tarjeta.fecha,
+            pedido_productos : this.idProductos
+          }
+        }
+      }
+
+      this.pedidoService.tramitarPedido(pedidoRequest).subscribe(
+        (res:any) => {
+
+          this.carritoService.vaciarCarrito();
+          this.router.navigate(['/pedido-completado']);
+        },
+        (error:any) => {console.log(error)}
+        )
+    })
+ 
+  }
+
+  anadirProductos(){
+    return new Promise((resolve)=>{   
+      this.carrito.forEach((producto)=>{
+        this.pedidoService.setPedidoProducto(producto).subscribe((res:any)=>{
+          this.idProductos.push(res.data.id)
+          this.idProductos.length == this.carrito.length ? resolve('completed') : {}
+        })
+      })
+    })
   }
 
   onlyNumberKey(evt:any) {

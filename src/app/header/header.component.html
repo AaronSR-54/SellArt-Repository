@@ -161,6 +161,60 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalLogin">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h1 class="modal-title">Iniciar sesión</h1>
+        <div class="inputs">
+          <div class="input">
+            <p>Usuario: </p>
+            <div>
+              <input type="text" class="form-control" id="username" [(ngModel)]="username"
+                (ngModelChange)="usernameChange()">
+              <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+            </div>
+          </div>
+
+          <div class="input">
+            <p>Contraseña: </p>
+            <div>
+              <input type="password" class="form-control" id="password" [(ngModel)]="password"
+                (ngModelChange)="passwordChange()">
+              <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+            </div>
+          </div>
+          <div class="input" *ngIf="invalidLogin">
+            <p class="invalid">{{messageLogin}}</p>
+          </div>
+          <div id="buttons" class="input signup">
+            <p>¿No tienes cuenta?</p>
+            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalRegister">
+              <p>Registrarse</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer" id="buttons">
+
+        <div>
+          <button type="button" class="cancelar" data-bs-dismiss="modal">
+            <p>Cancelar</p>
+          </button>
+          <button type="button" class="login" (click)="login()">
+            <p>Entrar</p>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="modalCarrito">
   <div class="modal-dialog modal-top-right">
@@ -196,7 +250,10 @@
             <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
           </div>
           <div class="boton">
-            <button type="button" class="login" (click)="procesarPedido()">
+            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="user==null">
+              <p>Procesar pedido</p>
+            </button>
+            <button type="button" class="login" data-bs-dismiss="modal" (click)="procesarPedido()" *ngIf="user!=null">
               <p>Procesar pedido</p>
             </button>
           </div>

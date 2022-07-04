@@ -288,9 +288,12 @@
             <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
         </div>
         <div class="boton">
-            <button type="button" class="login" (click)="procesarPedido()">
-            <p>Procesar pedido</p>
-            </button>
+            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="user==null">
+                <p>Procesar pedido</p>
+              </button>
+              <button type="button" class="login" data-bs-dismiss="modal" (click)="procesarPedido()" *ngIf="user!=null">
+                <p>Procesar pedido</p>
+              </button>
         </div>
         </div>
         

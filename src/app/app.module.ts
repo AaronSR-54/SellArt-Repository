@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,7 +18,6 @@ import { ProductsArtistasComponent } from './artistas/products-artistas/products
 import { PedidoComponent } from './pedido/pedido.component';
 import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-completado.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-com
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

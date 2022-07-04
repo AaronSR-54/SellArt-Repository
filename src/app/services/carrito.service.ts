@@ -100,6 +100,11 @@ export class CarritoService {
     this.totalCarrito = this.calculateTotal();
   }
 
+  vaciarCarrito(){
+    localStorage.removeItem('carrito');
+    this.carritoSubject.next(null!);
+  }
+
   calculateTotal() : number{
     let total:number = 0;
 

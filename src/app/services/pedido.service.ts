@@ -12,43 +12,10 @@ import { LoginService } from './login.service';
 export class PedidoService {
   
   private url = environment.apiBaseUrl;
-  constructor(private loginService : LoginService, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  tramitarPedido(carrito:Carrito, direccion:Direccion, tarjeta:Tarjeta){
-    let idProductos : number[] = [];
-    let pedidoRequest : PedidoRequest;
-
-    carrito.forEach((producto)=>{
-      this.setPedidoProducto(producto).subscribe((res)=>{idProductos.push(res.data.id)})
-    })
-
-    if(tarjeta==null){
-      pedidoRequest = {
-        data : {
-          user : this.loginService.currentUserValue.id,
-          Direccion : direccion.calle + ", " + direccion.piso,
-          Localidad : direccion.poblacion + " - " + direccion.cp + ", " + direccion.provincia + ", " + direccion.pais,
-          MetodoPago : "efectivo",
-          NumTarjeta : "",
-          CadTarjeta : "",
-          pedido_productos : idProductos
-        }
-      }
-    }else{
-      pedidoRequest = {
-        data : {
-          user : this.loginService.currentUserValue.id,
-          Direccion : direccion.calle + ", " + direccion.piso,
-          Localidad : direccion.poblacion + " - " + direccion.cp + ", " + direccion.provincia + ", " + direccion.pais,
-          MetodoPago : "tarjeta",
-          NumTarjeta : tarjeta.numero,
-          CadTarjeta : tarjeta.fecha,
-          pedido_productos : idProductos
-        }
-      }
-    }
-
-    return this.http.post(`${this.url}/pedidos`, pedidoRequest)
+  tramitarPedido(request:any){
+    return this.http.post(`${this.url}/pedidos`, request)
   }
   
   setPedidoProducto(producto:any):Observable<any>{
@@ -61,7 +28,6 @@ export class PedidoService {
         cantidad: producto.cantidad,
       },
     };
-    console.log("🚀 ~ file: pedido.service.ts ~ line 64 ~ PedidoService ~ setPedidoProducto ~ productoRequest", productoRequest)
     return this.http.post(`${this.url}/pedido-productos`, productoRequest)
   }
 }

@@ -6,7 +6,8 @@ import { ProductosService } from '../services/productos.service';
 @Component({
   selector: 'app-figuras',
   templateUrl: './figuras.component.html',
-  styleUrls: ['./figuras.component.scss']
+  styleUrls: ['./figuras.component.scss'],
+
 })
 export class FigurasComponent implements OnInit {
 

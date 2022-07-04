@@ -188,6 +188,4 @@ export class HomeComponent implements OnInit {
   procesarPedido(){
     this.router.navigate(['/pedido']);
   }
-
-  
 }

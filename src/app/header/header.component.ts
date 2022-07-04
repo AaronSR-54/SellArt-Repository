@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Carrito, Producto, User } from '../models/interfaces';
@@ -62,6 +62,7 @@ export class HeaderComponent implements OnInit {
       })
       .catch((error)=>{
         this.invalidLogin = true;
+        this.password = "";
         console.log(error)
       });
     }
@@ -147,6 +148,6 @@ export class HeaderComponent implements OnInit {
   }
 
   procesarPedido(){
-    this.router.navigate(['/pedido']);
+    this.router.navigate(['/pedido'])
   }
 }
