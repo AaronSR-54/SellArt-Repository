@@ -29,7 +29,7 @@
                 <p><b>TOTAL </b> </p> <p><b>{{total}} €</b></p>
             </div>
         </div>
-        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==1"></i>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="passStep()" *ngIf="step==1"></i>
 
         <!-- STEP 2 -->
         <div class="card">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="inputs">
                     <input type="text" class="form-control" [(ngModel)]="direccion.pais" placeholder="País">
-                    <input type="text" class="form-control" [(ngModel)]="direccion.cp" placeholder="Código postal">
+                    <input type="text" class="form-control" [(ngModel)]="direccion.cp" placeholder="Código postal" (keypress)="onlyNumberKey($event)">
                 </div>
                 <div class="inputs">
                     <input type="text" class="form-control" [(ngModel)]="direccion.poblacion" placeholder="Población">
@@ -53,7 +53,7 @@
                 <p class="invalid" *ngIf="message!=''">{{message}}</p>
             </div>
         </div>
-        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==2"></i>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="passStep()" *ngIf="step==2"></i>
 
         <!-- STEP 3 -->
         <div class="card">
@@ -74,17 +74,17 @@
                 </form>
                 <div class="formPago" *ngIf="pago=='tarjeta'">
                     <div class="inputs">
-                        <input type="number" class="form-control numero" [(ngModel)]="tarjeta.numero" placeholder="XXXX - XXXX - XXXX - XXXX">
+                        <input type="text" class="form-control numero" [(ngModel)]="tarjeta.numero" maxlength="12" placeholder="XXXX - XXXX - XXXX - XXXX" (keypress)="onlyNumberKey($event)">
                         <input type="month" class="form-control fecha" [(ngModel)]="tarjeta.fecha" placeholder="MM/YY">
                     </div>
                     <div class="inputs">
-                        <input type="number" class="form-control cvv" [(ngModel)]="tarjeta.cvv" placeholder="CVV">
+                        <input type="text" class="form-control cvv" [(ngModel)]="tarjeta.cvv" maxlength="3" placeholder="CVV" (keypress)="onlyNumberKey($event)">
                     </div>
                     <p class="invalid" *ngIf="message!=''">{{message}}</p>
                 </div>
             </div>
         </div>
-        <i class="bi bi-caret-down-square-fill flechaStep" (click)="changeStep()" *ngIf="step==3"></i>
+        <i class="bi bi-caret-down-square-fill flechaStep" (click)="passStep()" *ngIf="step==3"></i>
 
         <!-- STEP 4 -->
         <div class="card">
@@ -92,9 +92,46 @@
                 <h2>Resumen del pedido</h2>
                 <p class="numeroStep">4</p>
             </div>
-            <div *ngIf="step==4">Resumen pedido</div>
+            <div *ngIf="step==4">
+                <div class="step">
+                    <p class="titleStep"><b>Productos</b> &nbsp;<span class="bi bi-pencil-square editStep" (click)="returnStep(1)">&nbsp;Editar</span></p>
+                    <div class="producto">
+                        <p class="title"><b>Nombre</b></p>
+                        <p class="price"><b>Precio</b></p>
+                        <p class="cant"><b>Cantidad</b></p>
+                    </div>
+                    <div class="producto" *ngFor="let producto of carrito">
+                        <p class="title">{{producto.name}}</p>
+                        <p class="price">{{producto.price_int}}<span class="dec">. {{producto.price_dec}} €</span></p>
+                        <p class="cant">{{producto.cantidad}} <span *ngIf="producto.cantidad==1">ud.</span> <span *ngIf="producto.cantidad!=1">uds.</span></p>
+                    </div>
+                    <p class="total"><b>Total: &nbsp;</b> <span> {{total}} €</span></p>
+                </div>
+                <div class="step">
+                    <p class="titleStep"><b>Dirección de envío</b> &nbsp;<span class="bi bi-pencil-square editStep" (click)="returnStep(2)">&nbsp;Editar</span></p>
+                    <div class="envio">
+                        <p><b>Dirección: </b>{{direccion.calle}}, {{direccion.piso}}</p>
+                        <p><b>Localidad: </b>{{direccion.poblacion}} - {{direccion.cp}}, {{direccion.provincia}}, {{direccion.pais}}  </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <p class="titleStep"><b>Método de pago</b> &nbsp;<span class="bi bi-pencil-square editStep" (click)="returnStep(3)">&nbsp;Editar</span></p>
+                    <div class="pago" *ngIf="pago=='efectivo'">
+                        <p>Pago en efectivo</p>
+                    </div>
+                    <div class="pago" *ngIf="pago=='tarjeta'">
+                        <p>Pago con tarjeta</p>
+                        <p><b>Numero de tarjeta: </b>{{tarjeta.numero}}</p>
+                        <p><b>Fecha de caducidad: </b>{{tarjeta.fecha}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="tramitarPedido" *ngIf="step==4" (click)="tramitarPedido()">
+            <button type="button">
+                <p>Tramitar pedido</p>
+            </button>
+        </div>
+        
     </div>
 </div>
-
-

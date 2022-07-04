@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Carrito, Direccion, Tarjeta } from '../models/interfaces';
 import { CarritoService } from '../services/carrito.service';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-pedido',
@@ -13,27 +14,43 @@ export class PedidoComponent implements OnInit {
   carrito: Carrito = this.carritoService.carritoValue;
   total: number = 0;
   
-  step: number = 3;
+  step: number = 1;
   
   message: string = "";
+  // direccion : Direccion = {
+  //   calle: "",
+  //   piso: "",
+  //   pais: "",
+  //   cp: "",
+  //   poblacion: "",
+  //   provincia: ""
+  // };
+  
+  // tarjeta : Tarjeta | any = {
+  //   numero:"",
+  //   fecha:"",
+  //   cvv:""
+  // };
+
   direccion : Direccion = {
-    calle: "",
-    piso: "",
-    pais: "",
-    cp: "",
-    poblacion: "",
-    provincia: ""
+    calle: "Francisco Valldecabres",
+    piso: "61 - 1",
+    pais: "España",
+    cp: "46940",
+    poblacion: "Manises",
+    provincia: "Valencia"
   };
   
-  tarjeta : Tarjeta = {
-    numero:"",
-    fecha:"",
-    cvv:""
+  tarjeta : Tarjeta | any = {
+    numero:"874656158516",
+    fecha:"2022-07",
+    cvv:"126"
   };
 
   pago: string = "efectivo";
 
-  constructor(private carritoService : CarritoService) { }  
+  constructor(private carritoService : CarritoService, 
+    private pedidoService : PedidoService) { }  
 
   ngOnInit(): void {
     this.carrito = this.carritoService.carritoValue;
@@ -52,35 +69,60 @@ export class PedidoComponent implements OnInit {
     this.total = this.carritoService.totalCarrito;
   }
 
-  changeStep(){
-    let invalid = false;
-    
+  passStep(){
+    let invalid2 = false;
+    let invalid3 = false;
+
     if (this.direccion.calle=="" || 
-    this.direccion.piso=="" || 
-    this.direccion.pais=="" || 
-    this.direccion.cp=="" || 
-    this.direccion.poblacion=="" || 
-    this.direccion.provincia==""){
-      invalid = true;
+      this.direccion.piso=="" || 
+      this.direccion.pais=="" || 
+      this.direccion.cp=="" || 
+      this.direccion.poblacion=="" || 
+      this.direccion.provincia==""
+    ){
+      invalid2 = true;
     }
 
-    if(this.step==2 && invalid){
+    if(this.step==2 && invalid2){
       this.message="No pueden haber campos vacíos"
       this.step--;
+    }else if(this.step==2){
+      this.message=""
     }
+
+    if (this.tarjeta.numero=="" || 
+      this.tarjeta.fecha=="" || 
+      this.tarjeta.cvv==""
+    ){
+      invalid3 = true;
+    }
+
+    if(this.step==3 && invalid3 && this.pago=="tarjeta"){
+      this.message="No pueden haber campos vacíos"
+      this.step--;
+    }else if(this.step==3){
+      this.message=""
+    }
+
     this.step++;
   }
 
-  onChange(){
-    console.log(this.tarjeta)
+  returnStep(numberStep:number){
+    this.step = numberStep;
+  }
+
+  tramitarPedido(){
+    this.pago == "efectivo" ? this.tarjeta = null : {};
+    this.pedidoService.tramitarPedido(this.carrito, this.direccion, this.tarjeta!).subscribe(
+      (res:any) => {console.log(res)},
+      (error:any) => {console.log(error)}
+      )
   }
 
   onlyNumberKey(evt:any) {
-          
-    // Only ASCII character in that range allowed
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
         return false;
     return true;
-}
+  }
 }

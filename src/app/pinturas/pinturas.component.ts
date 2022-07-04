@@ -26,6 +26,7 @@ export class PinturasComponent implements OnInit {
     price_dec: "",
     description: "",
     image: {
+        id:0,
         name: "",
         url: "../../assets/images/avatar.svg",
     },

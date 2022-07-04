@@ -6,6 +6,7 @@ export interface ProductoResponse{
         description: string;
         image: {
             data: {
+                id:number
                 attributes: {
                     name: string;
                     url: string;

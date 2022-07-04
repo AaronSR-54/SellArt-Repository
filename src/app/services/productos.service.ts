@@ -26,6 +26,7 @@ export class ProductosService {
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
             description: item.attributes.description,
             image: {
+              id: item.attributes.image.data.id,
               name: item.attributes.image.data.attributes.name,
               url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
@@ -64,6 +65,7 @@ export class ProductosService {
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
             description: item.attributes.description,
             image: {
+              id: item.attributes.image.data.id,
               name: item.attributes.image.data.attributes.name,
               url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
@@ -102,6 +104,7 @@ export class ProductosService {
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
             description: item.attributes.description,
             image: {
+              id: item.attributes.image.data.id,
               name: item.attributes.image.data.attributes.name,
               url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
@@ -140,6 +143,7 @@ export class ProductosService {
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
             description: item.attributes.description,
             image: {
+              id: item.id,
               name: item.attributes.image.data.attributes.name,
               url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },

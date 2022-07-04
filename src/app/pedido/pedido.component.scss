@@ -23,6 +23,10 @@
             text-align: center;
             font-size: 15px
         }
+
+        h2{
+            margin: 0;
+        }
     }
     
     .card{
@@ -180,6 +184,74 @@
     }
 }
 
+.step{
+    margin: 0 2rem 2rem 2rem;
+    
+    .titleStep{
+        font-size: 1.1rem;
+    }
+    .editStep{
+        font-size: 0.8rem;
+    }
+    .editStep:hover{
+        cursor: pointer;
+        user-select: none;
+        text-shadow: 0 0 2px rgba(0,0,0,0.3);
+
+    }
+
+    .producto{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1rem;
+
+        p{
+            margin: 0;
+            text-align: right;
+        }
+
+        .title{
+            width: 60%;
+        }
+
+        .price{
+            width: 20%;
+        }
+
+        .cant{
+            width: 20%;
+        }
+
+    }
+    .total{
+        margin-bottom: 0;
+    }
+
+    .envio{   
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 1rem;
+
+        p{
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    .pago{   
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 1rem;
+
+        p{
+            margin: 0;
+            text-align: center;
+        }
+    }
+}
+
 .flechaStep{
     font-size: 1.5rem;  
 }
@@ -188,4 +260,25 @@
     transition: 0.3s;
     text-shadow: 0px 0px 5px rgba(26, 26, 26, 0.3);
     cursor: pointer;          
+}
+
+.tramitarPedido{
+    margin-bottom: 2rem;
+    text-align: center;
+    button{
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(26, 26, 26);
+        color: rgb(242, 242, 242); 
+       
+        p{
+            margin: 0;
+            text-align: center;
+        }
+    }
+    button:hover{
+        transition: 0.3s;
+        box-shadow: 0px 0px 5px rgba(26, 26, 26, 0.3);
+        cursor: pointer;          
+    }
 }

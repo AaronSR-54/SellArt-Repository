@@ -5,6 +5,7 @@ export interface Producto {
     price_dec: string;
     description: string;
     image: {
+        id:number;
         name: string;
         url: string;
     }
