@@ -115,7 +115,8 @@ export class PedidoComponent implements OnInit {
             Direccion : this.direccion.calle + ", " + this.direccion.piso,
             Localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
             MetodoPago : "efectivo",
-            pedido_productos : this.idProductos
+            pedido_productos : this.idProductos,
+            estado : "Procesando"
           }
         }
       }else{
@@ -127,7 +128,8 @@ export class PedidoComponent implements OnInit {
             MetodoPago : "tarjeta",
             NumTarjeta : this.tarjeta.numero,
             CadTarjeta : this.tarjeta.fecha,
-            pedido_productos : this.idProductos
+            pedido_productos : this.idProductos,
+            estado : "Procesando"
           }
         }
       }

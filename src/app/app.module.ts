@@ -17,6 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsArtistasComponent } from './artistas/products-artistas/products-artistas.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-completado.component';
+import { UserPedidosComponent } from './user/user-pedidos/user-pedidos.component';
+import { UserArtistaComponent } from './user/user-artista/user-artista.component';
+import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-com
     ProductsArtistasComponent,
     PedidoComponent,
     PedidoCompletadoComponent,
+    UserPedidosComponent,
+    UserArtistaComponent,
+    UserPerfilComponent,
   ],
   imports: [
     BrowserModule,

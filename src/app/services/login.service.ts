@@ -29,20 +29,19 @@ export class LoginService {
     return this.http.get<any>(`${this.url}/users/${idUser}?populate=*`)
     .pipe(
       map((item: UserResponse) => {
-        console.log(this.url + item.avatar?.url)
-          return {
-            id: item.id,
-            username: item.username,
-            email: item.email,
-            biography: item.biography,
-            avatar: {
-                name: item.avatar?.name,
-                url: "http://localhost:1337" + item.avatar?.url,
-            },
-            productos: item.productos,
-            role: item.role,
-          }
-        })
+        return {
+          id: item.id,
+          username: item.username,
+          email: item.email,
+          biography: item.biography,
+          avatar: {
+              name: item.avatar?.name,
+              url: "http://localhost:1337" + item.avatar?.url,
+          },
+          productos: item.productos,
+          role: item.role,
+        }
+      })
     )
   }
 

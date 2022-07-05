@@ -81,9 +81,36 @@ export interface Tarjeta {
     cvv: any
 }
 
+export interface PedidoProducto {
+    id:number;
+    name : string;
+    price_int : number;
+    price_dec : number;
+    image : {
+        id: number,
+        name: string,
+        url: string
+    };
+    cantidad : number;
+}
+export interface Pedido {
+    id:number;
+    direccion : string;
+    localidad : string;
+    metodoPago : string;
+    numTarjeta : string;
+    cadTarjeta : string;
+    fecha : Date;
+    total : number;
+    estado : string;
+    pedidoProductos : PedidoProductos;
+}
+
 export type Productos = Producto[];
 export type Carrito = ProductoCarrito[];
 export type FiguraTipos = FiguraTipo[];
 export type PinturaTipos = PinturaTipo[];
 export type AccesorioTipos = AccesorioTipo[];
 export type Users = User[];
+export type PedidoProductos = PedidoProducto[];
+export type Pedidos = Pedido[];

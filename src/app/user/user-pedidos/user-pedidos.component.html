@@ -1,0 +1,74 @@
+<div class="contenedor">
+    <div class="encabezado">
+        <h1>Mis pedidos</h1>
+    </div>
+
+    <table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col"><p><b>Resumen</b></p></th>
+            <td scope="col"><p><b>Fecha</b></p></td>
+            <td scope="col"><p><b>Total</b></p></td>
+            <td scope="col"><p><b>Estado</b></p></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedido of pedidos" class="pedido" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectPedido(pedido)">
+            <th scope="row"><p class="resumen"><span *ngFor="let producto of pedido.pedidoProductos">{{producto.name}}, </span></p></th>
+            <td><p>{{pedido.fecha}}</p></td>
+            <td><p>{{pedido.total}} €</p></td>
+            <td><p>{{pedido.estado}}
+                <span *ngIf="pedido.estado=='Procesando' || pedido.estado=='Enviado'">
+                    <button type="button" class="cancelar" (click)="cancelarPedido(pedido)"><p>Cancelar</p></button>
+                </span>
+            </p></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="contentModal">
+            <div class="title">
+                <h2>Detalles del pedido</h2>
+                <div class="step">
+                    <p class="titleStep"><b>Productos</b></p>
+                    <div class="producto">
+                        <p class="title"><b>Nombre</b></p>
+                        <p class="price"><b>Precio</b></p>
+                        <p class="cant"><b>Cantidad</b></p>
+                    </div>
+                    <div class="producto" *ngFor="let producto of selectedPedido?.pedidoProductos">
+                        <p class="title">{{producto.name}}</p>
+                        <p class="price">{{producto.price_int}}<span class="dec">. {{producto.price_dec}} €</span></p>
+                        <p class="cant">{{producto.cantidad}} <span *ngIf="producto.cantidad==1">ud.</span> <span *ngIf="producto.cantidad!=1">uds.</span></p>
+                    </div>
+                    <p class="total"><b>Total: &nbsp;</b> <span> {{selectedPedido?.total}} €</span></p>
+                </div>
+                <div class="step">
+                    <p class="titleStep"><b>Dirección de envío</b></p>
+                    <div class="envio">
+                        <p><b>Dirección: </b>{{selectedPedido?.direccion}}</p>
+                        <p><b>Localidad: </b>{{selectedPedido?.localidad}}  </p>
+                    </div>
+                </div>
+                <div class="step">
+                    <p class="titleStep"><b>Método de pago</b></p>
+                    <div class="pago" *ngIf="selectedPedido?.metodoPago=='efectivo'">
+                        <p>Pago en efectivo</p>
+                    </div>
+                    <div class="pago" *ngIf="selectedPedido?.metodoPago=='tarjeta'">
+                        <p>Pago con tarjeta</p>
+                        <p><b>Numero de tarjeta: </b>{{selectedPedido?.numTarjeta}}</p>
+                        <p><b>Fecha de caducidad: </b>{{selectedPedido?.cadTarjeta}}</p>
+                    </div>
+                </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

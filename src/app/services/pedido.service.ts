@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Carrito, Direccion, Tarjeta } from '../models/interfaces';
-import { PedidoRequest, ProductoRequest } from '../models/pedido.interfaces';
+import { PedidoProductoResponse, PedidoResponse} from '../models/pedido.interfaces';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -17,6 +17,10 @@ export class PedidoService {
   tramitarPedido(request:any){
     return this.http.post(`${this.url}/pedidos`, request)
   }
+
+  updatePedido(idPedido:number, request:any){
+    return this.http.put(`${this.url}/pedidos/${idPedido}`, request)
+  }
   
   setPedidoProducto(producto:any):Observable<any>{
     let productoRequest : any = {
@@ -26,8 +30,55 @@ export class PedidoService {
         price_dec: producto.price_dec,
         image: producto.image.id,
         cantidad: producto.cantidad,
-      },
+      }
     };
     return this.http.post(`${this.url}/pedido-productos`, productoRequest)
   }
+
+  getUserPedidos(userId:number){
+    return this.http.get<any>(`${this.url}/pedidos?populate=*&filters[user]=${userId}`)
+    .pipe(
+      map((response: any) => {
+        return response.data.map((item: PedidoResponse) => {
+          return {
+            id : item.id,
+            direccion : item.attributes.Direccion,
+            localidad : item.attributes.Localidad,
+            metodoPago : item.attributes.MetodoPago,
+            numTarjeta : item.attributes.NumTarjeta,
+            cadTarjeta : item.attributes.CadTarjeta,
+            fecha : item.attributes.createdAt,
+            estado: item.attributes.estado,
+            pedidoProductos : item.attributes.pedido_productos.data.map(
+              (producto : any) => {
+                return {
+                  id : producto.id
+                }
+            })
+          }
+        })
+      })
+    )
+  }
+
+  getPedidoProducto(productoId:number){
+    return this.http.get<any>(`${this.url}/pedido-productos/${productoId}?populate=*`)
+    .pipe(
+      map((item: PedidoProductoResponse) => {
+          return {
+            id: item.data.id,
+            name : item.data.attributes.name,
+            price_int : item.data.attributes.price_int,
+            price_dec : item.data.attributes.price_dec,
+            image : {
+                id: item.data.attributes.image.data.id,
+                name: item.data.attributes.image.data.attributes.name,
+                url: item.data.attributes.image.data.attributes.url,
+            },
+            cantidad : item.data.attributes.cantidad,
+          }
+      })
+    )
+  }
+
 }

@@ -8,6 +8,9 @@ import { PinturasComponent } from './pinturas/pinturas.component';
 import { ProductsArtistasComponent } from './artistas/products-artistas/products-artistas.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-completado.component';
+import { UserPedidosComponent } from './user/user-pedidos/user-pedidos.component';
+import { UserArtistaComponent } from './user/user-artista/user-artista.component';
+import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
 
 const routes: Routes = [
   { path: 'artistas', component: ArtistasComponent },
@@ -18,6 +21,9 @@ const routes: Routes = [
   { path: 'artistas/productos-artista', component: ProductsArtistasComponent},
   { path: 'pedido', component: PedidoComponent},
   { path: 'pedido-completado', component: PedidoCompletadoComponent},
+  { path: 'user', component: UserPerfilComponent},
+  { path: 'user-artista', component: UserArtistaComponent},
+  { path: 'user-pedidos', component: UserPedidosComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
 
