@@ -58,19 +58,18 @@
             <p>Usuario: </p>
             <div>
               <input type="text" class="form-control" id="usernameLogin" [(ngModel)]="username">
-              <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
             </div>
-
           </div>
-
+          <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
 
           <div class="input">
             <p>Contraseña: </p>
             <div>
               <input type="password" class="form-control" id="passwordLogin" [(ngModel)]="password">
-              <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
             </div>
           </div>
+          <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+
           <div class="input" *ngIf="invalidLogin">
             <p class="invalid">{{messageLogin}}</p>
           </div>
@@ -116,30 +115,35 @@
               <p>Usuario: </p>
               <div>
                 <input type="text" class="form-control" id="username" [(ngModel)]="username">
-                <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
               </div>
             </div>
+            <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+
             <div class="input">
               <p>Email: </p>
               <div>
                 <input type="email" class="form-control" id="email" [(ngModel)]="email">
-                <p class="invalid" *ngIf="invalidEmail">{{messageEmail}}</p>
               </div>
             </div>
+            <p class="invalid" *ngIf="invalidEmail">{{messageEmail}}</p>
+
             <div class="input">
               <p>Contraseña: </p>
               <div>
                 <input type="password" class="form-control" id="password" [(ngModel)]="password">
-                <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
               </div>
             </div>
+            <p class="info" *ngIf="!invalidPassword">*La contraseña debe tener como mínimo 8 carácteres</p>
+            <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+
             <div class="input">
               <p>Confirmar contraseña: </p>
               <div>
                 <input type="password" class="form-control" id="passwordConf" [(ngModel)]="passwordConf">
-                <p class="invalid" *ngIf="invalidPasswordConf">{{messagePasswordConf}}</p>
               </div>
             </div>
+            <p class="invalid" *ngIf="invalidPasswordConf">{{messagePasswordConf}}</p>
+
             <div class="input" *ngIf="invalidLogin">
               <p class="invalid">{{messageLogin}}</p>
             </div>

@@ -83,7 +83,11 @@ export class HeaderComponent implements OnInit {
           email: this.email,
           password: this.password
       }
-      this.loginService.signUp(userRequest).subscribe((res)=>{console.log(res)})
+      this.loginService.signUp(userRequest).subscribe((res:any)=>{
+        this.loginService.setCurrentUser(res).then(()=>{
+          window.location.reload();
+        });
+      })
       // .then( () => {
         //   this.user = this.loginService.currentUserValue;
         //   this.invalidLogin = false;
@@ -108,6 +112,7 @@ export class HeaderComponent implements OnInit {
       inputUser?.classList.remove("is-invalid");
     }
   }
+
   checkPasswordLogin(){
     let inputPassword = document.getElementById('passwordLogin');
     if(this.password==''){
@@ -157,7 +162,7 @@ export class HeaderComponent implements OnInit {
     }else if(this.password.length<8){
       this.invalidPassword = true;
       inputPassword?.classList.add("is-invalid");
-      this.messagePassword = 'La contraseña debe tener un minimo de 8 ';
+      this.messagePassword = 'Le faltan carácteres a la contraseña';
     }else{
       this.invalidPassword = false;
       inputPassword?.classList.remove("is-invalid");

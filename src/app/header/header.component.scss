@@ -227,20 +227,27 @@ h2{
                 }
                 .invalid{
                     width: auto;
+                    font-size:medium;
                     margin: 0.5rem;
-                    color: red;
-                    font-weight: bold;
                 }
                 select,div{
                     margin: 0.5rem;
                     width: 15rem;
-                    .invalid{
-                        color: red;
-                        font-size: small;
-                        margin: 0;
-                    }
                 }
-             
+            }
+            .invalid{
+                text-align: right;
+                color: red;
+                font-weight: bold;
+                font-size: small;
+                margin: 0 2.9rem 0.2rem 0;
+            }
+            .info{
+                text-align: right;
+                width: 16rem;
+                color: rgba(26, 26, 26, 0.7);
+                font-size: smaller;
+                margin: 0 0 0.2rem 7.5rem;
             }
         }
 
