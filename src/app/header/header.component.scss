@@ -181,20 +181,52 @@ h2{
             }
         }
 
+        // .inputs{
+        //     margin-top: 1rem;
+        //     margin-left: 2.5rem;
+        //     width: 80%;                
+        //     .input{
+        //         display: flex;
+        //         align-items: baseline;
+        //         justify-content: center;
+        //         p{
+        //             text-align: right;
+        //             min-width: 6rem;
+        //             overflow: hidden;
+        //         }
+        //         .invalid{
+        //             margin: 0.5rem;
+        //             color: red;
+        //             font-weight: bold;
+        //         }
+        //         select,div{
+        //             margin: 0.5rem;
+        //             width: 15rem;
+        //             .invalid{
+        //                 color: red;
+        //                 font-size: small;
+        //                 margin: 0;
+        //             }
+        //         }
+             
+        //     }
+        // }
+
         .inputs{
             margin-top: 1rem;
-            margin-left: 2.5rem;
-            width: 80%;                
+            margin-left: 1rem;
+            width: 90%;                
             .input{
                 display: flex;
-                align-items: baseline;
                 justify-content: center;
+                align-items: center;
                 p{
                     text-align: right;
-                    min-width: 6rem;
-                    
+                    width: 6rem;
+                    margin: 0;
                 }
                 .invalid{
+                    width: auto;
                     margin: 0.5rem;
                     color: red;
                     font-weight: bold;
@@ -208,18 +240,10 @@ h2{
                         margin: 0;
                     }
                 }
-                
-                
-            }
-            
-            .signup{
-                margin-top: 1rem;
-                p{
-                    min-width: auto;
-                }                
+             
             }
         }
-       
+
         #buttons{
             .footer-content{
                 display: flex;
@@ -250,8 +274,13 @@ h2{
             .cancelar{
                 color: rgba(26, 26, 26);  
             }
+
+            .signup{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 1rem;               
+            }   
         }
-        
-    }
-     
+    }   
 }

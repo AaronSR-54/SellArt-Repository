@@ -90,29 +90,24 @@ export class LoginService {
     }))
   }
 
-  signUp(image:any){
-    return this.http.post(`${this.url}/auth/local/register`, {
-      username: "prueba",
-      email: "prueba@email.com",
-      password: "12345678",
-      biography: "Hola amihos",
-      avatar: image
-    }).pipe(
-      map((item:any)=>{
-        return{
-          id: item.user.id,
-          username: item.user.username,
-          email: item.user.email,
-          biography: item.user.biography,
-          avatar: {
-              name: item.user.avatar?.name,
-              url: "http://localhost:1337" + item.user.avatar?.url,
-          },
-          productos: item.user.productos,
-          role: item.user.role,
-        }
-      })
-    ) 
+  signUp(request:any){
+    return this.http.post(`${this.url}/auth/local/register`, request)
+    // .pipe(
+    //   map((item:any)=>{
+    //     return{
+    //       id: item.user.id,
+    //       username: item.user.username,
+    //       email: item.user.email,
+    //       biography: item.user.biography,
+    //       avatar: {
+    //           name: item.user.avatar?.name,
+    //           url: "http://localhost:1337" + item.user.avatar?.url,
+    //       },
+    //       productos: item.user.productos,
+    //       role: item.user.role,
+    //     }
+    //   })
+    // ) 
   }
 
   uploadImage(formData:FormData):Observable<any>{

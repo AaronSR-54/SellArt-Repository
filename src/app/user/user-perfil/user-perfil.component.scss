@@ -1,0 +1,19 @@
+       
+        .contenidoRegister{
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            .avatar{
+                margin-left: 1rem;
+                padding:6rem 5rem;
+                border: 3px solid rgba(26, 26, 26);
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+                i{
+                    font-size: 2rem;
+                }
+            }
+
+        }
+        
