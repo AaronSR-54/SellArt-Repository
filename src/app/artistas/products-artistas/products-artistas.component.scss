@@ -1,24 +1,10 @@
 .encabezado{
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     margin-bottom: 1rem;
-
-    h1,p{
+    h1{
         margin: 0;
     }
-
-    p{
-        color: rgba(26, 26, 26, 0.7);
-        user-select: none;
-        cursor: pointer;
-    }
-
-    p:hover{
-        transition: 0.3s;
-        color:rgba(26, 26, 26, 0.8)
-    }
-
     .separator{
         font-size: 1.5rem;
         vertical-align: center;
@@ -26,6 +12,15 @@
         user-select: none;
         padding: 0rem 0.3rem;
         margin: 0;
+    }
+    .avatar{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    p{
+        margin: 0 0 0 0.5rem;
     }
 }
 

@@ -1,1 +1,46 @@
-<p>user-artista works!</p>
+<div class="contenedor">
+    <div class="encabezado">
+      <h1>Artículos</h1>
+      <p class="separator">|</p>
+      <img class="avatar" src="{{user.avatar!.url}}" alt="{{user.avatar!.name}}">
+      <p>{{user.username}}</p>
+    </div>
+  
+    <div class="productos">
+      <div class="card" *ngFor="let producto of productos" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectProducto(producto)">
+        <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+        <div class="card-body">
+          <p class="card-text"><b>{{producto.name}}</b></p>
+          <h2 class="card-text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span> </h2>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+            <i class="bi bi-plus-square-fill"></i>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="contentModal">
+            <img src="{{selectedProducto.image.url}}" class="card-img-top" alt="{{selectedProducto.image.name}}">
+            <div class="rightContent">
+              <div>
+                <p class="modal-text"><b>{{selectedProducto.name}}</b></p>
+                <p class="description">{{selectedProducto.description}}</p>           
+              </div>
+              <div class="bottomContent">
+                <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
+                <button type="button" class="anadirCarrito" data-bs-dismiss="modal"><p>Editar producto</p></button>
+              </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

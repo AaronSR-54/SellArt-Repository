@@ -1,9 +1,9 @@
 <div class="contenedor">
     <div class="encabezado">
-      <h1>Artículos de {{artista!.username}}</h1>
+      <h1>Artículos</h1>
       <p class="separator">|</p>
-      <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="!filtrado">Filtrar...</p>
-      <p class="filtrar" data-bs-toggle="modal" data-bs-target="#modalFilters" *ngIf="filtrado">Modificar filtros...</p>
+      <img class="avatar" src="{{artista.avatar!.url}}" alt="{{artista.avatar!.name}}">
+      <p>{{artista.username}}</p>
     </div>
   
     <div class="productos">
