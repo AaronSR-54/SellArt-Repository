@@ -88,14 +88,6 @@ export class LoginService {
     ) 
   }
 
-  getUploads(){
-    return this.http.get(`${this.url}/upload/files`).pipe(map((item:any)=>{
-      return{
-        item
-      }
-    }))
-  }
-
   signUp(request:any){
     return this.http.post(`${this.url}/auth/local/register`, request)
     .pipe(
@@ -114,6 +106,19 @@ export class LoginService {
       })
     ) 
   }
+
+  editUser(request:any, idUser:number){
+    return this.http.put(`${this.url}/users/${idUser}`, request)
+  }
+
+  getUploads(){
+    return this.http.get(`${this.url}/upload/files`).pipe(map((item:any)=>{
+      return{
+        item
+      }
+    }))
+  }
+
 
   uploadImage(formData:FormData):Observable<any>{
     return this.http.post(`${this.url}/upload`, formData)

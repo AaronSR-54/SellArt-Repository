@@ -88,17 +88,7 @@ export class HeaderComponent implements OnInit {
           window.location.reload();
         });
       })
-      // .then( () => {
-        //   this.user = this.loginService.currentUserValue;
-        //   this.invalidLogin = false;
-        //   window.location.reload();
-        // })
-        // .catch((error)=>{
-          //   this.invalidLogin = true;
-          //   this.password = "";
-          //   console.log(error)
-          // });
-      }
+    }
   }
 
   checkUsernameLogin(){
@@ -204,6 +194,7 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.loginService.logout();
+    this.router.navigate(['/']);
     window.location.reload();
   }
 

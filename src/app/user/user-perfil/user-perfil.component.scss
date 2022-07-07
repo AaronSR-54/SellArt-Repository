@@ -1,19 +1,145 @@
-       
-        .contenidoRegister{
-            display: flex;
-            align-items: center;
-            margin-top: 1rem;
-            .avatar{
-                margin-left: 1rem;
-                padding:6rem 5rem;
-                border: 3px solid rgba(26, 26, 26);
-                border-radius: 5px;
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+.contenedor{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.encabezado{
+    margin-bottom: 0.6rem;
+    h1{
+        margin: 0 43rem 0 0;
+    }
+}
+
+.inputsUser{
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 57.8rem;
+
+    .inputs{
+        margin:0 1rem 0 1rem;     
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .avatar{
+            border: 2px solid rgba(26, 26, 26, 0.1);
+            border-radius: 5px;
+            margin-top: 0.4rem;
+            .no-image{
+                padding: 6.9rem 5rem;
+                border-radius: 5px;
                 i{
-                    font-size: 2rem;
+                    color: rgba(26, 26, 26);
+                    font-size: 1.5rem;
+                }
+            }
+            img{
+                width: 11.4rem;
+                height: 16rem;
+                border-radius: 5px;
+                object-fit: cover;
+            }        
+        }
+        .edit{
+            width: fit-content;
+            border: none;
+            border-radius: 4px;
+            margin: 0.2rem;
+            background-color: rgba(26, 26, 26);
+            color: rgb(242, 242, 242);  
+            p{
+                margin: 0;
+            }
+        }
+    
+        .edit:hover{
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .input{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: fit-content;
+            .contentInput{
+                display: flex;
+                align-items: center;
+                p{
+                    text-align: right;
+                    width: 6rem;
+                    margin: 0;
+                }
+                select,div{
+                    margin: 0.5rem;
+                    width: 15rem;
                 }
             }
 
+            .contentBio{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                p{
+                    margin: 0;
+                }
+                textarea{
+                    height: 14.5rem;
+                    width: 20rem;
+                }
+            }
+
+            .invalid{
+                text-align: right;
+                font-weight: bold;
+                color: red;
+                font-size: small;
+                margin: 0 0 0.5rem 9.5rem;
+            }
         }
+        .info{
+            text-align: right;
+            width: 16rem;
+            color: rgba(26, 26, 26, 0.7);
+            font-size: smaller;
+            margin: 0 0 0.5rem 4.8rem;
+        }
+        
+    }
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    width: 57.8rem;
+    button{
+        width: fit-content;
+        border: none;
+        border-radius: 4px;
+        p{
+            margin: 0;
+        }
+        margin: 0 0.2rem;
+    }
+    .edit{
+        background-color: rgba(26, 26, 26);
+        color: rgb(242, 242, 242);  
+    }
+    .edit:hover{
+        transition: 0.3s;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+    .cancelar{
+        color: rgba(26, 26, 26);  
+    }
+    .cancelar:hover{
+        color: black;  
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
         

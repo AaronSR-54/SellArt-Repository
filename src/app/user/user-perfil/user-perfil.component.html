@@ -1,29 +1,84 @@
-<p>user-perfil works!</p>
-<div class="contenidoRegister">
-  <!-- <div class="avatar">
-    <i class="bi bi-plus-square-fill"></i>
+<div class="contenedor">
+  <div class="encabezado">
+    <h1>Editar perfil</h1>
   </div>
 
-  <div class="inputs">
-    <div class="input">
-      <p>Usuario: </p>
-      <div>
-        <input type="text" class="form-control" id="username" [(ngModel)]="username"
-          (ngModelChange)="usernameChange()">
-        <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+  <div class="inputsUser">
+    <div class="inputs">
+      <div class="avatar">
+        <img src="{{userEdit.avatar!.url}}" alt="{{userEdit.avatar!.name}}" *ngIf="userEdit.avatar.name!='Avatar.svg'">
+        <div class="no-image" *ngIf="userEdit.avatar.name=='Avatar.svg'">
+          <i class="bi bi-plus-square-fill"></i>
+        </div>
       </div>
+      <button type="button" class="edit"><p>Editar avatar</p></button>
     </div>
 
-    <div class="input">
-      <p>Contraseña: </p>
-      <div>
-        <input type="password" class="form-control" id="password" [(ngModel)]="password"
-          (ngModelChange)="passwordChange()">
+    <div class="inputs">
+      <div class="input">
+        <div class="contentInput">
+          <p>Usuario: </p>
+          <div>
+            <input type="text" class="form-control" id="username" [(ngModel)]="userEdit.username">
+          </div>
+        </div>
+        <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+      </div>
+  
+      <div class="input">
+        <div class="contentInput">
+          <p>Email: </p>
+          <div>
+            <input type="email" class="form-control" id="email" [(ngModel)]="userEdit.email" readonly>
+          </div>
+        </div>
+        <p class="invalid" *ngIf="invalidEmail">{{messageEmail}}</p>
+      </div>
+  
+      <div class="input">
+        <div class="contentInput">
+          <p>Contraseña: </p>
+          <div>
+            <input type="password" class="form-control" id="password" [(ngModel)]="userEdit.password">
+          </div>
+        </div>
+        <p class="info" *ngIf="!invalidPassword">*La contraseña debe tener como mínimo 8 carácteres</p>
         <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
       </div>
+  
+      <div class="input">
+        <div class="contentInput">
+          <p>Confirmar contraseña: </p>
+          <div>
+            <input type="password" class="form-control" id="passwordConf" [(ngModel)]="userEdit.passwordConf">
+          </div>
+        </div>
+        <p class="invalid" *ngIf="invalidPasswordConf">{{messagePasswordConf}}</p>
+      </div>
+  
+      <div class="input" *ngIf="invalidLogin">
+        <p class="invalid">{{messageLogin}}</p>
+      </div>
     </div>
-    <div class="input" *ngIf="invalidLogin">
-      <p class="invalid">{{messageLogin}}</p>
+    <div class="inputs">
+      <div class="input">
+        <div class="contentBio">
+          <p>Biografía: </p>
+          <div>
+            <textarea class="form-control" id="biography" [(ngModel)]="userEdit.biography"></textarea>
+          </div>
+        </div>
+      </div>
     </div>
-  </div> -->
+  </div>
+  
+  <div class="buttons">
+    <button type="button" class="cancelar" (click)="limpiarChecks()">
+      <p>Cancelar</p>
+    </button>
+    <button type="button" class="edit" (click)="editUser()">
+      <p>Aceptar cambios</p>
+    </button>
+  </div>
+
 </div>
