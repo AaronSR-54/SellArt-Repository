@@ -51,4 +51,11 @@ export class ArtistasService {
     this.artista = this.artistaSubject.asObservable();
   }
 
+  solicitarArtista(request:any){
+    return this.http.post<any>(`${this.url}/solicitudes-artista`, request)
+  }
+
+  getSolicitudes(){
+    return this.http.get<any>(`${this.url}/solicitudes-artista?populate=*`)
+  }
 }

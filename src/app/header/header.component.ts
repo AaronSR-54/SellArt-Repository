@@ -195,7 +195,6 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.loginService.logout();
     this.router.navigate(['/']);
-    window.location.reload();
   }
 
   sumarProducto(producto:any){

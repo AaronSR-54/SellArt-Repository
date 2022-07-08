@@ -20,6 +20,7 @@ import { PedidoCompletadoComponent } from './pedido/pedido-completado/pedido-com
 import { UserPedidosComponent } from './user/user-pedidos/user-pedidos.component';
 import { UserArtistaComponent } from './user/user-artista/user-artista.component';
 import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
+import { ArtistaSolicitadoComponent } from './user/user-artista/artista-solicitado/artista-solicitado.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
     UserPedidosComponent,
     UserArtistaComponent,
     UserPerfilComponent,
+    ArtistaSolicitadoComponent,
   ],
   imports: [
     BrowserModule,

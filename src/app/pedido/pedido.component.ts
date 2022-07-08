@@ -136,7 +136,6 @@ export class PedidoComponent implements OnInit {
 
       this.pedidoService.tramitarPedido(pedidoRequest).subscribe(
         (res:any) => {
-
           this.carritoService.vaciarCarrito();
           this.router.navigate(['/pedido-completado']);
         },

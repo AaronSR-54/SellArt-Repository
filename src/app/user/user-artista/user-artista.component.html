@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" *ngIf="user.role.name=='Artista' || user.role.name=='Administrator'">
     <div class="encabezado">
       <h1>Artículos</h1>
       <p class="separator">|</p>
@@ -23,24 +23,76 @@
 
 </div>
 
+<div class="contenedor notArtist" *ngIf="user.role.name!='Artista'">
+  <p><b>Todavía no dispones de los permisos para ser Artista :(</b></p>
+  <p>Puedes solicitarlos clickando aquí: &nbsp;<span>
+    <button type="button" (click)="solicitarArtista()" *ngIf="!solicitado">
+        <p>Solicitar Artista</p>
+    </button>
+    <button type="button" class="disabled" *ngIf="solicitado" disabled>
+      <p>Solicitado</p>
+  </button>
+  </span></p>
+</div>
+
 <div class="modal fade" id="modalDetails">
-    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="contentModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contentModal">
+          <div class="image">
             <img src="{{selectedProducto.image.url}}" class="card-img-top" alt="{{selectedProducto.image.name}}">
-            <div class="rightContent">
-              <div>
-                <p class="modal-text"><b>{{selectedProducto.name}}</b></p>
-                <p class="description">{{selectedProducto.description}}</p>           
+            <button type="button" class="edit"><p>Editar foto</p></button>
+          </div>
+          <div class="rightContent">
+            <div>
+              <div class="toEdit" *ngIf="!editingName">
+                <p class="modal-text"><b>{{name}}</b></p>
+                <p class="separator">|</p>
+                <p class="editar" (click)="changeEditing('name')">Editar</p>
               </div>
-              <div class="bottomContent">
-                <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
-                <button type="button" class="anadirCarrito" data-bs-dismiss="modal"><p>Editar producto</p></button>
+
+              <div class="editing" *ngIf="editingName">
+                <input type="text" class="form-control name" [(ngModel)]="name" *ngIf="editingName" (keyup.enter)="changeEditing('name')">
+                <i class="bi bi-check" (click)="changeEditing('name')"></i>
+              </div>
+
+              <div class="toEdit" *ngIf="!editingBio">
+                <div class="bio">
+                  <p class="description">{{description}}</p>
+                  <p class="separator">|<span class="editar" (click)="changeEditing('bio')">Editar</span></p>
+                </div>
+              </div>
+
+              <div class="editing" *ngIf="editingBio">
+                <div class="bio">
+                  <textarea class="form-control description" [(ngModel)]="description" style="resize: none" *ngIf="editingBio" (keyup.enter)="changeEditing('bio')"></textarea>
+                  <i class="bi bi-check" (click)="changeEditing('bio')"></i>
+                </div>
+              </div>
+
+            </div>
+            <div class="bottomContent">
+              <div class="toEdit" *ngIf="!editingPrice">
+                <p class="editar" (click)="changeEditing('price')">Editar</p>
+                <p class="separator">|</p>
+                <h2 class="price">{{price}}<span class="dec">€</span></h2>
+              </div>
+              <div class="editing" *ngIf="editingPrice">
+                <i class="bi bi-check" (click)="changeEditing('price')"></i>
+                <input type="number" name="price" class="form-control priceEdit" [(ngModel)]="price" (keyup.enter)="changeEditing('price')"><p class="dec"><b> €</b></p>
               </div>
             </div>        
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <div class="buttons">
+          <button type="button" class="cancelar" data-bs-toggle="modal" data-bs-target="#modalDetails"><p>Cancelar</p></button>
+          <button type="button" class="disabled" (click)="editarProducto()" *ngIf="!changed" disabled><p>Aceptar cambios</p></button>
+          <button type="button" class="edit" (click)="editarProducto()" *ngIf="changed"><p>Aceptar cambios</p></button>
+        </div>
+      </div>
     </div>
   </div>
+</div>

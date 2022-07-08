@@ -156,4 +156,8 @@ export class ProductosService {
       })
     )
   }
+
+  editarProducto(request:any, productoId:number){
+    return this.http.put<any>(`${this.url}/productos/${productoId}`, request)
+  }
 }
