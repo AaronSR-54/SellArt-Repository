@@ -53,8 +53,9 @@
 
             .card-text{
                 width: 13rem;
-                overflow-wrap: anywhere;
-
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 .dec{
                     font-size: 1.2rem;
                 }
