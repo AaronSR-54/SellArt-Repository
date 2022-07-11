@@ -54,6 +54,11 @@ export interface AccesorioTipo {
     name: string;
 }
 
+export interface ProductoTipo {
+    id: number;
+    name: string;
+}
+
 export interface User {
     id: number;
     username: string;
@@ -111,6 +116,7 @@ export type Carrito = ProductoCarrito[];
 export type FiguraTipos = FiguraTipo[];
 export type PinturaTipos = PinturaTipo[];
 export type AccesorioTipos = AccesorioTipo[];
+export type ProductoTipos = ProductoTipo[];
 export type Users = User[];
 export type PedidoProductos = PedidoProducto[];
 export type Pedidos = Pedido[];

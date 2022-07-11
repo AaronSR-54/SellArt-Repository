@@ -143,7 +143,7 @@ export class ProductosService {
             price_dec: Math.round(100 * (item.attributes.price - Math.floor(item.attributes.price))),
             description: item.attributes.description,
             image: {
-              id: item.id,
+              id: item.attributes.image.data.id,
               name: item.attributes.image.data.attributes.name,
               url: "http://localhost:1337" + item.attributes.image.data.attributes.url,
             },
@@ -157,7 +157,58 @@ export class ProductosService {
     )
   }
 
+  getProductoTipos() {
+    return this.http.get<any>(`${this.url}/producto-tipos`)
+    .pipe(
+      map((response: any) => {
+        return response.data.map((item: ProductoResponse) => {
+          return {
+            id: item.id,
+            name: item.attributes.name,
+          }
+      })
+    })
+  )
+  }
+
   editarProducto(request:any, productoId:number){
     return this.http.put<any>(`${this.url}/productos/${productoId}`, request)
+  }
+
+  crearProducto(request:any){
+    return this.http.post<any>(`${this.url}/productos?populate=*`, request)
+    .pipe(
+      map((item: any) => {
+        console.log(item)
+          return {
+            id: item.data.id,
+            name: item.data.attributes.name.toLocaleUpperCase(),
+            price_int: Math.trunc(item.data.attributes.price),
+            price_dec: Math.round(100 * (item.data.attributes.price - Math.floor(item.data.attributes.price))),
+            description: item.data.attributes.description,
+            image: {
+              id: item.data.attributes.image.data.id,
+              name: item.data.attributes.image.data.attributes.name,
+              url: "http://localhost:1337" + item.data.attributes.image.data.attributes.url,
+            },
+            producto_tipo: {
+              id: item.data.attributes.producto_tipo.data.id,
+              name: item.data.attributes.producto_tipo.data.attributes.name,
+            },
+            accesorio_tipo: {
+              id: item.data.attributes.accesorio_tipo.data?.id,
+              name: item.data.attributes.accesorio_tipo.data?.attributes.name,
+            },
+            pintura_tipo: {
+              id: item.data.attributes.pintura_tipo.data?.id,
+              name: item.data.attributes.pintura_tipo.data?.attributes.name,
+            },
+            figura_tipo: {
+              id: item.data.attributes.figura_tipo.data?.id,
+              name: item.data.attributes.figura_tipo.data?.attributes.name,
+            },
+          }
+      })
+    )
   }
 }

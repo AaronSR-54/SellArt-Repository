@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Producto, Productos, User } from 'src/app/models/interfaces';
+import { AccesorioTipo, AccesorioTipos, FiguraTipo, FiguraTipos, PinturaTipo, PinturaTipos, Producto, Productos, ProductoTipo, ProductoTipos } from 'src/app/models/interfaces';
 import { ArtistasService } from 'src/app/services/artistas.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -16,6 +16,15 @@ export class UserArtistaComponent implements OnInit {
 
   productos: Productos = [];
   productosId: any = [];
+
+  accesorioTipos: AccesorioTipos = [];
+  accesorioTipo: any;
+  figuraTipos: FiguraTipos = [];
+  figuraTipo: any;
+  pinturaTipos: PinturaTipos = [];
+  pinturaTipo: any;
+  productoTipos: ProductoTipos = [];
+  productoTipo: any;
 
   selectedProducto: Producto = {
     id: 0,
@@ -49,7 +58,7 @@ export class UserArtistaComponent implements OnInit {
   name: string = "";
   description: string = "";
   price: number = 0;
-
+  
   editingName=false;
   editingBio=false;
   editingPrice=false;
@@ -65,6 +74,7 @@ export class UserArtistaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductosArtista();
+    this.getTipos();
     this.comprobarSolicitado();
   }
 
@@ -83,42 +93,66 @@ export class UserArtistaComponent implements OnInit {
    })
   }
 
+  getTipos(){
+    this.productosService.getAccesorioTipos().subscribe((res:any)=>this.accesorioTipos=res)
+    this.productosService.getFiguraTipos().subscribe((res:any)=>this.figuraTipos=res)
+    this.productosService.getPinturaTipos().subscribe((res:any)=>this.pinturaTipos=res)
+    this.productosService.getProductoTipos().subscribe((res:any)=>this.productoTipos=res)
+  }
+  
   selectProducto(producto:any){
     this.selectedProducto = producto;
     this.name = this.selectedProducto.name;
     this.description = this.selectedProducto.description;
     this.price = this.selectedProducto.price_int + parseInt(this.selectedProducto.price_dec)*0.01;
+    this.editing()
+  }
+
+  editing(){
+    this.editingName=false;
+    this.editingBio=false;
+    this.editingPrice=false;
   }
 
   changeEditing(editing:string){
-    this.changed=true;
     switch(editing) { 
-      case "name": { 
-         this.editingName = !this.editingName 
-         break; 
+      case "name": {
+        if(this.name!=""){
+          this.editingName = !this.editingName 
+        }
+        break; 
       } 
       case "bio": { 
          this.editingBio = !this.editingBio 
          break; 
       } 
       case "price": { 
-         this.editingPrice = !this.editingPrice 
+        if(this.price!=0){
+          this.editingPrice = !this.editingPrice 
+        }
          break; 
       } 
-    } 
+    }
+    if(this.name!="" && this.price!=0 && this.productoTipo){
+      this.changed=true;
+    }
   }
 
   limpiarInputs(){
-    this.name = this.selectedProducto.name;
-    this.description = this.selectedProducto.description;
-    this.price = this.selectedProducto.price_int + parseInt(this.selectedProducto.price_dec)*0.01;
+    this.name = "";
+    this.description = "";
+    this.price = 0;
     this.editingName=false;
     this.editingBio=false;
     this.editingPrice=false;
+    this.productoTipo = undefined;
+    this.accesorioTipo = undefined;
+    this.figuraTipo = undefined;
+    this.pinturaTipo = undefined;
   }
 
   editarProducto(){
-    if(this.name=="" || this.description=="" || this.price==null){   
+    if(this.name=="" || this.price==null){   
       this.limpiarInputs();
     }else{
       let productoRequest= {
@@ -129,6 +163,32 @@ export class UserArtistaComponent implements OnInit {
         }
       }    
       this.productosService.editarProducto(productoRequest,this.selectedProducto.id).subscribe(()=>window.location.reload())
+    }
+  }
+
+  crearProducto(){
+    if(this.name=="" || this.price==null){   
+      this.limpiarInputs();
+    }else{
+      let productoRequest= {
+        data: {
+          name : this.name,
+          description : this.description,
+          price: this.price,
+          user: this.user.id,
+          image: 26,
+          producto_tipo: this.productoTipo.id,
+          accesorio_tipo: this.accesorioTipo?.id,
+          pintura_tipo: this.pinturaTipo?.id,
+          figura_tipo: this.figuraTipo?.id
+        }
+      }    
+      this.productosService.crearProducto(productoRequest).subscribe((producto:any)=>{
+        this.user.productos.push(producto)
+        this.loginService.setCurrentUser(this.user)
+        this.artistasService.anadirProductoaArtista(producto.id, this.user).subscribe((res1)=>window.location.reload())
+        
+      })
     }
   }
 
@@ -150,5 +210,6 @@ export class UserArtistaComponent implements OnInit {
       })
     })
   }
+
 
 }

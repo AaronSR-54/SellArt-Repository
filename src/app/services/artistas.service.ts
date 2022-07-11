@@ -58,4 +58,16 @@ export class ArtistasService {
   getSolicitudes(){
     return this.http.get<any>(`${this.url}/solicitudes-artista?populate=*`)
   }
+
+  anadirProductoaArtista(idProducto:number, user:User) {
+
+    let productosId : number[] = []
+
+    user.productos.forEach((producto:any)=>productosId.push(producto.id))
+
+    let request = {
+      productos: [...productosId, idProducto]
+    }
+    return this.http.put<any>(`${this.url}/users/${user.id}?populate=*`,request)
+  }
 }

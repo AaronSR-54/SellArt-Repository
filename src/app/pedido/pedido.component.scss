@@ -74,7 +74,7 @@
             display: flex;
             align-items: center;
             .title{
-                width: 15rem;
+                width: 10rem;
                 font-size: large;
                 white-space: wrap;
                 margin-left: 0;
@@ -122,28 +122,32 @@
 }
 
 .formEnvio{   
-    margin: 0 2rem 2rem 2rem;        
+    margin: 0 2rem 2rem 2rem;
+    width: 90%;
     .inputs{
         display: flex;
         align-items: stretch;
         justify-content: center;
-
-        p{
-            text-align: right;
-            min-width: 6rem;
+        .input{
+            margin: 0.5rem;
+            width: 50%;
+            p{
+                margin: 0;
+                min-width: 6rem;
+                max-width: 10rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;   
+            }
         }
-    
         .calle{
-            width: 70%;
+            width:70%;
         }
 
         .piso{
-            width: 30%
+            width:30%;
         }
-        
-        input{
-            margin: 0.5rem;
-        }
+
     }
 }
 
@@ -161,27 +165,21 @@
         display: flex;
         align-items: stretch;
         justify-content: flex-start;
-
-        p{
-            text-align: right;
-            min-width: 6rem;
-        }
-    
-        .numero{
-            width: 50%;
-        }
-
-        .fecha{
-            width: 50%
-        }
-
-        .cvv{
-            width: 20%
-        }
         
-        input{
+        .input{
             margin: 0.5rem;
+            min-width: 6rem;
+            width: 50%;
+            p{
+                margin: 0;
+                min-width: 6rem;
+            }
+    
+            .cvv{
+                width: 30%;
+            }
         }
+
     }
 }
 

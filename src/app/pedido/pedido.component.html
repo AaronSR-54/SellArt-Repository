@@ -39,16 +39,34 @@
             </div>
             <div class="formEnvio" *ngIf="step==2">
                 <div class="inputs">
-                    <input type="text" class="form-control calle" [(ngModel)]="direccion.calle" placeholder="Calle">
-                    <input type="text" class="form-control piso" [(ngModel)]="direccion.piso" placeholder="Piso, puerta">
+                    <div class="input calle">
+                        <p>Calle: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.calle" placeholder="Calle">
+                    </div>
+                    <div class="input piso">
+                        <p>Piso, puerta: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.piso" placeholder="Piso, puerta">
+                    </div>
                 </div>
                 <div class="inputs">
-                    <input type="text" class="form-control" [(ngModel)]="direccion.pais" placeholder="País">
-                    <input type="text" class="form-control" [(ngModel)]="direccion.cp" placeholder="Código postal" (keypress)="onlyNumberKey($event)">
+                    <div class="input">
+                        <p>País: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.pais" placeholder="País">
+                    </div>
+                    <div class="input">
+                        <p>Código postal: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.cp" placeholder="Código postal" (keypress)="onlyNumberKey($event)">
+                    </div>
                 </div>
                 <div class="inputs">
-                    <input type="text" class="form-control" [(ngModel)]="direccion.poblacion" placeholder="Población">
-                    <input type="text" class="form-control" [(ngModel)]="direccion.provincia" placeholder="Provincia">
+                    <div class="input">
+                        <p>Población: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.poblacion" placeholder="Población">
+                    </div>
+                    <div class="input">
+                        <p>Provincia: </p>
+                        <input type="text" class="form-control" [(ngModel)]="direccion.provincia" placeholder="Provincia">
+                    </div>
                 </div>
                 <p class="invalid" *ngIf="message!=''">{{message}}</p>
             </div>
@@ -74,11 +92,20 @@
                 </form>
                 <div class="formPago" *ngIf="pago=='tarjeta'">
                     <div class="inputs">
-                        <input type="text" class="form-control numero" [(ngModel)]="tarjeta.numero" maxlength="12" placeholder="XXXX - XXXX - XXXX - XXXX" (keypress)="onlyNumberKey($event)">
-                        <input type="month" class="form-control fecha" [(ngModel)]="tarjeta.fecha" placeholder="MM/YY">
+                        <div class="input">
+                            <p>Nº Tarjeta: </p>
+                            <input type="text" class="form-control numero" [(ngModel)]="tarjeta.numero" maxlength="12" placeholder="XXXX - XXXX - XXXX - XXXX" (keypress)="onlyNumberKey($event)">
+                        </div>
+                        <div class="input">
+                            <p>Fecha Caducidad: </p>
+                            <input type="month" class="form-control fecha" [(ngModel)]="tarjeta.fecha" placeholder="MM/YY">
+                        </div>
                     </div>
                     <div class="inputs">
-                        <input type="text" class="form-control cvv" [(ngModel)]="tarjeta.cvv" maxlength="3" placeholder="CVV" (keypress)="onlyNumberKey($event)">
+                        <div class="input">
+                            <p>Código CVV: </p>
+                            <input type="text" class="form-control cvv" [(ngModel)]="tarjeta.cvv" maxlength="3" placeholder="---" (keypress)="onlyNumberKey($event)">
+                        </div>
                     </div>
                     <p class="invalid" *ngIf="message!=''">{{message}}</p>
                 </div>

@@ -98,8 +98,15 @@
     
 }
 
+
+#modalDetails{
+    .modal-dialog{
+        max-width: 55rem;
+    }
+}
+
 #modal-dialog{
-    max-width: 56rem;
+    max-width: 70rem;
     .modal-content{
         background-color: rgb(242, 242, 242);
         .modal-body{
@@ -146,12 +153,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-right: 2rem;
         img{
             width: 25rem;
             height: 30rem;
             object-fit: cover;
             border-radius: 5px;
-            margin-right: 2rem;
         }
         .edit{
             width: fit-content;
@@ -164,14 +171,23 @@
                 margin: 0;
             }
         }
+        .no-image{
+            border: 2px solid rgba(26, 26, 26, 0.1);
+            border-radius: 5px;
+            margin-top: 0.4rem;
+            padding: 13.75rem 11.625rem;
+            i{
+                color: rgba(26, 26, 26);
+                font-size: 1.5rem;
+            } 
+        }
     }
-    
     .rightContent{
         display:flex;
         flex-direction: column;
         justify-content: space-between;
         text-align: justify;
-        margin-top: 1rem;
+        margin: 0.5rem 2rem 0 0;
         
         .toEdit{
             display: flex;
@@ -194,7 +210,7 @@
             .bio{
                 display: flex;
                 flex-direction: column;
-                height: 26rem;
+                height: 30rem;
                 .description{
                     height: fit-content;
                     max-height: 24rem;
@@ -218,7 +234,7 @@
                 font-weight: 600;
             }
             .priceEdit{
-                margin: 0 0.5rem;
+                margin: 0 0.5rem 0.2rem 0.5rem;
                 width: 7rem;
                 font-size: x-large;
                 font-family: 'Montserrat', sans-serif;
@@ -242,9 +258,9 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                height: 26rem;
+                height: 30rem;
                 .description{
-                    height: 23rem;
+                    height: 27rem;
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 400;
                     text-align: justify;
@@ -258,16 +274,123 @@
         .description{
             margin-top: 0.5rem;
             width: 26rem;
-            height: 26rem;
+            height: 30rem;
             overflow: auto;
         }
-        
+
         .bottomContent{
             display: flex;
             align-items: baseline;
             justify-content: flex-end;
-            // margin-right: 4rem;
-            
+            .toEdit{
+                display: flex;
+                align-items: center;
+                .separator{
+                    margin: 0 0.5rem;
+                    color: rgba(26, 26, 26, 0.8);
+                }
+                .editar{
+                    color: rgba(26, 26, 26, 0.8);
+                }
+                .editar:hover{
+                    transition: 0.3s;
+                    text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    user-select: none;
+                    color: rgba(26, 26, 26);
+                }
+            }
+            .editing{
+                display: flex;
+                align-items: center;
+                .priceEdit{
+                    margin: 0 0.5rem 0.2rem 0.5rem;
+                    width: 9rem;
+                    font-size: x-large;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 600;
+                }
+                i{
+                    font-size: 1.4rem;
+                    padding: 0 2px;
+                }
+                i:hover{
+                    transition: 0.3s;
+                    background-color: rgb(242, 242, 242);
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+            .dec{
+                font-size: 1.2rem;
+            }
+        } 
+        
+    }
+    .tipos{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 15rem;
+        height: 27rem;
+        margin-top: 0.5rem;
+        select{
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+        
+        .tipoInterno{
+            margin-top: 1rem;
+        }
+        .bottomContent{
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            .toEdit{
+                display: flex;
+                align-items: center;
+                .separator{
+                    margin: 0 0.5rem;
+                    color: rgba(26, 26, 26, 0.8);
+                }
+                .editar{
+                    color: rgba(26, 26, 26, 0.8);
+                }
+                .editar:hover{
+                    transition: 0.3s;
+                    text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    user-select: none;
+                    color: rgba(26, 26, 26);
+                }
+            }
+            .editing{
+                display: flex;
+                align-items: center;
+                .priceEdit{
+                    margin: 0 0.5rem 0.2rem 0.5rem;
+                    width: 9rem;
+                    font-size: x-large;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 600;
+                }
+                i{
+                    font-size: 1.4rem;
+                    padding: 0 2px;
+                }
+                i:hover{
+                    transition: 0.3s;
+                    background-color: rgb(242, 242, 242);
+                    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
             .dec{
                 font-size: 1.2rem;
             }
@@ -276,5 +399,6 @@
     p,h2{
         margin: 0;
     }
+
 
 }
