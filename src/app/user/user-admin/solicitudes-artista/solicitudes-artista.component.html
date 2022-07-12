@@ -1,0 +1,46 @@
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col"><p><b>Usuario</b></p></th>
+            <th scope="col"><p><b>Email</b></p></th>
+            <td scope="col"></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let solicitud of solicitudes" class="solicitud" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectSolicitud(solicitud)">
+            <th scope="row" class="user"><img class="avatar" src="{{solicitud.avatar!.url}}" alt="{{solicitud.avatar!.name}}"><span><p>{{solicitud.username}}</p></span></th>
+            <th><p>{{solicitud.email}}</p></th>
+            <td><p>
+                <span>
+                    <button type="button" class="cancelar"><p>Rechazar</p></button>
+                </span>
+                <span>
+                    <button type="button" class="aprobar"><p>Aprobar</p></button>
+                </span>
+            </p></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="contentModal">
+                    <img src="{{selectedSolicitud?.avatar?.url}}" class="card-img-top" alt="{{selectedSolicitud?.avatar?.name}}">
+                    <div class="rightContent">
+                        <div>
+                            <p class="modal-text"><b>{{selectedSolicitud?.username}}</b></p>
+                            <p class="description" *ngIf="selectedSolicitud?.biography==null">(El usuario no tiene biografía)</p>
+                            <p class="description" *ngIf="selectedSolicitud?.biography!=null">{{selectedSolicitud?.biography}}</p>
+                        </div>
+                        <div class="bottomContent">
+                            <button type="button" class="cancelar"><p>Rechazar</p></button>
+                            <button type="button" class="aprobar"><p>Aprobar</p></button>
+                        </div>       
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

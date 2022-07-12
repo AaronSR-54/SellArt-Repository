@@ -69,6 +69,10 @@ export interface User {
         url: string | null;
     } | null;
     productos: any;
+    role:{
+        id: number;
+        name: string;
+    }
 }
 
 export interface Direccion {
@@ -109,6 +113,11 @@ export interface Pedido {
     total : number;
     estado : string;
     pedidoProductos : PedidoProductos;
+    user : {
+        id : number,
+        username : string,
+        email : string,
+    }
 }
 
 export type Productos = Producto[];

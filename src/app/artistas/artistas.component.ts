@@ -27,6 +27,10 @@ export class ArtistasComponent implements OnInit {
         url: "",
     },
     productos: [],
+    role: {
+      id: 0,
+      name: "",
+    }
   };
 
   constructor(private artistasService : ArtistasService, private router: Router, private productosService : ProductosService) { }

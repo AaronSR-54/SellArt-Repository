@@ -12,6 +12,7 @@ import { UserPedidosComponent } from './user/user-pedidos/user-pedidos.component
 import { UserArtistaComponent } from './user/user-artista/user-artista.component';
 import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
 import { ArtistaSolicitadoComponent } from './user/user-artista/artista-solicitado/artista-solicitado.component';
+import { UserAdminComponent } from './user/user-admin/user-admin.component';
 
 const routes: Routes = [
   { path: 'artistas', component: ArtistasComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'user-artista', component: UserArtistaComponent},
   { path: 'artista-solicitado', component: ArtistaSolicitadoComponent},
   { path: 'user-pedidos', component: UserPedidosComponent},
+  { path: 'user-admin', component: UserAdminComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' }
 ];
 

@@ -21,6 +21,10 @@ import { UserPedidosComponent } from './user/user-pedidos/user-pedidos.component
 import { UserArtistaComponent } from './user/user-artista/user-artista.component';
 import { UserPerfilComponent } from './user/user-perfil/user-perfil.component';
 import { ArtistaSolicitadoComponent } from './user/user-artista/artista-solicitado/artista-solicitado.component';
+import { UserAdminComponent } from './user/user-admin/user-admin.component';
+import { SolicitudesArtistaComponent } from './user/user-admin/solicitudes-artista/solicitudes-artista.component';
+import { PedidosAdminComponent } from './user/user-admin/pedidos/pedidos.component';
+import { UsuariosAdminComponent } from './user/user-admin/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { ArtistaSolicitadoComponent } from './user/user-artista/artista-solicita
     UserArtistaComponent,
     UserPerfilComponent,
     ArtistaSolicitadoComponent,
+    UserAdminComponent,
+    SolicitudesArtistaComponent,
+    PedidosAdminComponent,
+    UsuariosAdminComponent,
   ],
   imports: [
     BrowserModule,

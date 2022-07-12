@@ -1,0 +1,150 @@
+.table{
+    background-color: white;
+    color: rgb(26,26,26);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    justify-content: center;
+    .solicitud{
+        .user{
+            display: flex;
+            width: 10rem;
+            .avatar{
+                margin-right: 0.5rem;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+        button{
+            font-size: small;
+            color: rgba(26, 26, 26);
+            border-radius: 5px;
+            border:none;
+            p{
+                margin: 0;
+            }
+            margin: 0 0.2rem;
+            user-select: none;
+        }
+        .cancelar{
+            background-color: rgba(242, 242, 242); 
+        }
+        .cancelar:hover{
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .aprobar{
+            background-color: rgba(26, 26, 26);
+            color: rgb(242, 242, 242);  
+        }
+        .aprobar:hover{
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+    }
+    .solicitud:hover{
+        transition: 0.3s;
+        background-color: rgb(242,242,242);
+        cursor: pointer;
+        user-select: none;
+    }
+    td{
+        text-align: center;
+    }
+    th{
+       padding-left: 1rem;
+    }
+}
+
+.modal{
+    .modal-content{
+        background-color: rgb(242, 242, 242);
+        border: none;
+        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+
+        .inputs{
+            margin-top: 1rem;
+            margin-left: 2rem;
+            width: 80%;                
+            .input{
+                display: flex;
+                align-items: baseline;
+
+                p{
+                    text-align: right;
+                    min-width: 6rem;
+                }
+                input,select{
+                    margin: 0.5rem;
+                    width: 20rem;
+                }
+            }
+        }
+        
+    }
+     
+}
+
+#modal-dialog{
+    max-width: 60rem;
+}
+
+.contentModal{
+    display: flex;
+    align-items: center;
+    img{
+        width: 30rem;
+        height: 35rem;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 2rem;
+    }
+    .rightContent{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: justify;
+        margin-top: 1rem;
+
+        .description{
+            width: 26rem;
+            height: 26rem;
+            overflow: auto;
+        }
+
+        .bottomContent{
+            display: flex;
+            justify-content: flex-end;
+            button{
+                color: rgba(26, 26, 26);
+                border-radius: 5px;
+                border:none;
+                p{
+                    margin: 0;
+                }
+                margin: 0 0.2rem;
+                user-select: none;
+            }
+            .cancelar{
+                background-color: rgb(255, 255, 255); 
+            }
+            .cancelar:hover{
+                transition: 0.3s;
+                box-shadow: 0 0 5px rgba(0,0,0,0.1);
+                cursor: pointer;
+            }
+            .aprobar{
+                background-color: rgba(26, 26, 26);
+                color: rgb(242, 242, 242);  
+            }
+            .aprobar:hover{
+                transition: 0.3s;
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+                cursor: pointer;
+            }
+        }
+    }
+}

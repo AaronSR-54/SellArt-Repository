@@ -1,32 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido, Pedidos, User } from 'src/app/models/interfaces';
-import { LoginService } from 'src/app/services/login.service';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { __classPrivateFieldSet } from 'tslib';
 
 @Component({
-  selector: 'app-user-pedidos',
-  templateUrl: './user-pedidos.component.html',
-  styleUrls: ['./user-pedidos.component.scss']
+  selector: 'app-pedidos-admin',
+  templateUrl: './pedidos.component.html',
+  styleUrls: ['./pedidos.component.scss']
 })
-export class UserPedidosComponent implements OnInit {
-
-  user : User = this.loginService.currentUserValue
+export class PedidosAdminComponent implements OnInit {
 
   pedidos? : Pedidos;
 
   selectedPedido? : Pedido;
 
-  constructor(
-    private pedidosService : PedidoService,
-    private loginService : LoginService
-    ) { }
+  constructor(private pedidosService : PedidoService) { }
 
   ngOnInit(): void {
     this.getPedidos()
   }
 
   getPedidos(){
-    this.pedidosService.getUserPedidos(this.user.id).subscribe(res=>{
+    this.pedidosService.getPedidos().subscribe(res=>{
       this.pedidos = res;
       this.pedidos?.forEach((pedido:any) => {
         pedido.total = 0;
@@ -37,8 +32,6 @@ export class UserPedidosComponent implements OnInit {
             })
             pedido.fecha = this.formatDate(pedido.fecha)
           });
-
-
       });
     })
   }
@@ -64,4 +57,5 @@ export class UserPedidosComponent implements OnInit {
       this.pedidos?.forEach(pedido => pedido.id == selectedPedido.id ? pedido.estado = "Cancelado" : {});
     })
   }
+
 }

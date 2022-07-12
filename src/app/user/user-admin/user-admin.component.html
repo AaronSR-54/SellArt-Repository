@@ -1,0 +1,16 @@
+<div class="contenedor">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" id="usuarios" (click)="changeActive(1)">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="solicitudes" (click)="changeActive(2)">Solicitudes artista</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pedidos" (click)="changeActive(3)">Pedidos</a>
+        </li>
+    </ul>
+    <app-usuarios-admin *ngIf="previousActive=='usuarios'"></app-usuarios-admin>
+    <app-solicitudes-artista *ngIf="previousActive=='solicitudes'"></app-solicitudes-artista>
+    <app-pedidos-admin *ngIf="previousActive=='pedidos'"></app-pedidos-admin>
+</div>

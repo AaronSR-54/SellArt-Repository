@@ -61,6 +61,37 @@ export class PedidoService {
     )
   }
 
+  getPedidos(){
+    return this.http.get<any>(`${this.url}/pedidos?populate=*`)
+    .pipe(
+      map((response: any) => {
+        return response.data.map((item: PedidoResponse) => {
+          return {
+            id : item.id,
+            direccion : item.attributes.Direccion,
+            localidad : item.attributes.Localidad,
+            metodoPago : item.attributes.MetodoPago,
+            numTarjeta : item.attributes.NumTarjeta,
+            cadTarjeta : item.attributes.CadTarjeta,
+            fecha : item.attributes.createdAt,
+            estado: item.attributes.estado,
+            pedidoProductos : item.attributes.pedido_productos.data.map(
+              (producto : any) => {
+                return {
+                  id : producto.id
+                }
+            }),
+            user : {
+              id: item.attributes.user.data.id,
+              username : item.attributes.user.data.attributes.username,
+              email : item.attributes.user.data.attributes.email,
+            }
+          }
+        })
+      })
+    )
+  }
+
   getPedidoProducto(productoId:number){
     return this.http.get<any>(`${this.url}/pedido-productos/${productoId}?populate=*`)
     .pipe(

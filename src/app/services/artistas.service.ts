@@ -25,7 +25,7 @@ export class ArtistasService {
   }
 
   getArtistas(): Observable<Users> {
-    return this.http.get<any>(`${this.url}/users?populate=*&filters[role]=3`)
+    return this.http.get<any>(`${this.url}/users?populate=*&filters[role]=3&filters[role]=4`)
     .pipe(
       map((response: any) => {
         return response.map((item: UserResponse) => {

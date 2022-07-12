@@ -35,6 +35,15 @@ export interface PedidoResponse{
         pedido_productos : {
             data : any
         }
+        user : {
+            data: {
+                id: number,
+                attributes:{
+                    username : string,
+                    email : string,
+                }
+            }
+        }
     }
 }
 
