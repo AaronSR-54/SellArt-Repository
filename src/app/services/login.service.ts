@@ -45,6 +45,48 @@ export class LoginService {
     )
   }
 
+  getUsers(): Observable<Users> {
+    return this.http.get<any>(`${this.url}/users?populate=*&filters[role]=1&filters[role]=2&filters[role]=3&filters[blocked]=false`)
+    .pipe(
+      map((response: any) => {
+        return response.map((item: UserResponse) => {
+          return {
+            id: item.id,
+            username: item.username,
+            email: item.email,
+            biography: item.biography,
+            avatar: {
+                name: item.avatar?.name,
+                url: "http://localhost:1337" + item.avatar?.url,
+            },
+            productos: item.productos,
+          }
+        })
+      })
+    )
+  }
+
+  getBlockedUsers(): Observable<Users> {
+    return this.http.get<any>(`${this.url}/users?populate=*filters[blocked]=true`)
+    .pipe(
+      map((response: any) => {
+        return response.map((item: UserResponse) => {
+          return {
+            id: item.id,
+            username: item.username,
+            email: item.email,
+            biography: item.biography,
+            avatar: {
+                name: item.avatar?.name,
+                url: "http://localhost:1337" + item.avatar?.url,
+            },
+            productos: item.productos,
+          }
+        })
+      })
+    )
+  }
+
   setCurrentUser(user:User){
     return new Promise((resolve) => {
       localStorage.setItem('currentUser', JSON.stringify(user));
@@ -111,6 +153,10 @@ export class LoginService {
     return this.http.put(`${this.url}/users/${idUser}`, request)
   }
 
+  removeUser(idUser:number){
+    return this.http.delete(`${this.url}/users/${idUser}`)
+  }
+
   getUploads(){
     return this.http.get(`${this.url}/upload/files`).pipe(map((item:any)=>{
       return{
@@ -118,7 +164,6 @@ export class LoginService {
       }
     }))
   }
-
 
   uploadImage(formData:FormData):Observable<any>{
     return this.http.post(`${this.url}/upload`, formData)

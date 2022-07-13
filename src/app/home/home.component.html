@@ -149,156 +149,168 @@
     </div>
   </div>
 
-<div class="modal fade" id="modalLogin">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
-    <!-- Modal body -->
-    <div class="modal-body">
-        <h1 class="modal-title">Iniciar sesión</h1>
-        <div class="inputs">
-        <div class="input">
-            <p>Usuario: </p>
-            <div>
-            <input type="text" class="form-control" id="username" [(ngModel)]="username"
-                (ngModelChange)="usernameChange()">
-            <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
-            </div>
-
-        </div>
-
-
-        <div class="input">
-            <p>Contraseña: </p>
-            <div>
-            <input type="password" class="form-control" id="password" [(ngModel)]="password"
-                (ngModelChange)="passwordChange()">
-            <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
-            </div>
-        </div>
-        <div class="input" *ngIf="invalidLogin">
-            <p class="invalid">{{messageLogin}}</p>
-        </div>
-        <div id="buttons" class="input signup">
-            <p>¿No tienes cuenta?</p>
-            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalRegister">
-            <p>Registrarse</p>
-            </button>
-        </div>
-        </div>
-    </div>
-
-    <!-- Modal footer -->
-    <div class="modal-footer" id="buttons">
-
-        <div>
-        <button type="button" class="cancelar" data-bs-dismiss="modal">
-            <p>Cancelar</p>
-        </button>
-        <button type="button" class="login" (click)="login()">
-            <p>Entrar</p>
-        </button>
-        </div>
-    </div>
-
-    </div>
-</div>
-</div>
-
-<div class="modal fade" id="modalRegister">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-
+  <div class="modal fade" id="modalLogin">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
         <!-- Modal body -->
         <div class="modal-body">
-        <h1 class="modal-title">Registrarse</h1>
-        <div class="inputs">
+          <h1 class="modal-title">Iniciar sesión</h1>
+          <div class="inputs">
             <div class="input">
-            <p>Usuario: </p>
-            <div>
-                <input type="text" class="form-control" id="username" [(ngModel)]="username"
-                (ngModelChange)="usernameChange()">
-                <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+              <p>Usuario: </p>
+              <div>
+                <input type="text" class="form-control" id="usernameLogin" [(ngModel)]="username">
+              </div>
             </div>
-            </div>
-
+            <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+  
             <div class="input">
-            <p>Contraseña: </p>
-            <div>
-                <input type="password" class="form-control" id="password" [(ngModel)]="password"
-                (ngModelChange)="passwordChange()">
-                <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+              <p>Contraseña: </p>
+              <div>
+                <input type="password" class="form-control" id="passwordLogin" [(ngModel)]="password">
+              </div>
             </div>
-            </div>
+            <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+  
             <div class="input" *ngIf="invalidLogin">
-            <p class="invalid">{{messageLogin}}</p>
+              <p class="invalid">{{messageLogin}}</p>
             </div>
-
-            <input type="file" name="files" />
+            <div id="buttons">
+              <p class="signup">
+                ¿No tienes cuenta?
+                <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalRegister" (click)="limpiarChecks()">
+                  Registrarse
+                </button>
+              </p>
+            </div>
+          </div>
         </div>
-        </div>
-
+  
         <!-- Modal footer -->
         <div class="modal-footer" id="buttons">
-
-        <div>
-            <button type="button" class="cancelar" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin">
-            <p>Cancelar</p>
+  
+          <div>
+            <button type="button" class="cancelar" data-bs-dismiss="modal">
+              <p>Cancelar</p>
             </button>
-            <button type="button" class="login" data-bs-dismiss="modal" (click)="signup()">
-            <p>Registrarme</p>
+            <button type="button" class="login" (click)="login()">
+              <p>Entrar</p>
             </button>
+          </div>
         </div>
-        </div>
-
+  
+      </div>
     </div>
-</div>
-</div>
-
-<div class="modal fade" id="modalCarrito">
-<div class="modal-dialog modal-top-right">
-    <div class="modal-content">
-
-    <!-- Modal body -->
-    <div class="modal-body">
-        <h2 class="modal-title">Bolsita</h2>
-        <div class="productos" *ngIf="carrito!=null">
-        <div class="producto" *ngFor="let producto of carrito">
-            <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
-            <div class="info-producto">
-            <p class="text"><b>{{producto.name}}</b></p>
-            <p class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></p>
-            <div class="acciones-producto">
-                <p class="accion" (click)="restarProducto(producto)">-</p> 
-                <p><b>{{producto.cantidad}}</b></p> 
-                <p class="accion" (click)="sumarProducto(producto)">+</p>
+  </div>
+  
+  <div class="modal fade" id="modalRegister">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h1 class="modal-title">Registrarse</h1>
+  
+            <div class="inputs">
+              <div class="input">
+                <p>Usuario: </p>
+                <div>
+                  <input type="text" class="form-control" id="username" [(ngModel)]="username">
+                </div>
+              </div>
+              <p class="invalid" *ngIf="invalidUser">{{messageUser}}</p>
+  
+              <div class="input">
+                <p>Email: </p>
+                <div>
+                  <input type="email" class="form-control" id="email" [(ngModel)]="email">
+                </div>
+              </div>
+              <p class="invalid" *ngIf="invalidEmail">{{messageEmail}}</p>
+  
+              <div class="input">
+                <p>Contraseña: </p>
+                <div>
+                  <input type="password" class="form-control" id="password" [(ngModel)]="password">
+                </div>
+              </div>
+              <p class="info" *ngIf="!invalidPassword">*La contraseña debe tener como mínimo 8 carácteres</p>
+              <p class="invalid" *ngIf="invalidPassword">{{messagePassword}}</p>
+  
+              <div class="input">
+                <p>Confirmar contraseña: </p>
+                <div>
+                  <input type="password" class="form-control" id="passwordConf" [(ngModel)]="passwordConf">
+                </div>
+              </div>
+              <p class="invalid" *ngIf="invalidPasswordConf">{{messagePasswordConf}}</p>
+  
+              <div class="input" *ngIf="invalidLogin">
+                <p class="invalid">{{messageLogin}}</p>
+              </div>
             </div>
+          </div>
+  
+          <!-- Modal footer -->
+          <div class="modal-footer" id="buttons">
+            <div>
+              <button type="button" class="cancelar" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin" (click)="limpiarChecks()">
+                <p>Cancelar</p>
+              </button>
+              <button type="button" class="login" (click)="signup()">
+                <p>Registrarme</p>
+              </button>
             </div>
-        </div>
-        </div>
-        <div class="bolsa-vacia" *ngIf="carrito==null">
-            <p class="info"><b>Bolsita vacía :(</b></p>
-            <p class="tip">Añade productos a la bolsa para hacer un pedido :)</p>
-        </div>
+          </div>
+      </div>
     </div>
-
-    <!-- Modal footer -->
-    <div class="modal-footer" id="buttons" *ngIf="carrito!=null">
-        <div class="footer-content">
-        <div class="total">
-            <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
+  </div>
+  
+  <div class="modal fade" id="modalCarrito">
+    <div class="modal-dialog modal-top-right">
+      <div class="modal-content">
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h2 class="modal-title">Bolsita</h2>
+          <div class="productos" *ngIf="carrito!=null">
+            <div class="producto" *ngFor="let producto of carrito">
+              <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
+              <div class="info-producto">
+                <p class="text"><b>{{producto.name}}</b></p>
+                <p class="text">{{producto.price_int}}<span class="dec">, {{producto.price_dec}} €</span></p>
+                <div class="acciones-producto">
+                  <p class="accion" (click)="restarProducto(producto)">-</p> 
+                  <p><b>{{producto.cantidad}}</b></p> 
+                  <p class="accion" (click)="sumarProducto(producto)">+</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bolsa-vacia" *ngIf="carrito==null">
+              <p class="info"><b>Bolsita vacía :(</b></p>
+              <p class="tip">Añade productos a la bolsa para hacer un pedido :)</p>
+          </div>
         </div>
-        <div class="boton">
-            <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="user==null">
+  
+        <!-- Modal footer -->
+        <div class="modal-footer" id="buttons" *ngIf="carrito!=null">
+          <div class="footer-content">
+            <div class="total">
+              <p><b>Total </b> </p> <p><b>{{total}} €</b></p>
+            </div>
+            <div class="boton">
+              <button type="button" class="login" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="user==null">
                 <p>Procesar pedido</p>
               </button>
               <button type="button" class="login" data-bs-dismiss="modal" (click)="procesarPedido()" *ngIf="user!=null">
                 <p>Procesar pedido</p>
               </button>
+            </div>
+          </div>
+          
         </div>
-        </div>
-        
+      </div>
     </div>
-    </div>
-</div>
-</div>
+  </div>

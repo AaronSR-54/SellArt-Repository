@@ -211,4 +211,8 @@ export class ProductosService {
       })
     )
   }
+
+  removeProducto(productoId:number){
+    return this.http.delete<any>(`${this.url}/productos/${productoId}`)
+  }
 }

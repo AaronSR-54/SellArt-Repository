@@ -16,6 +16,12 @@
                 object-fit: cover;
             }
         }
+        .bio{
+            width: 20rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
         button{
             font-size: small;
             color: rgba(26, 26, 26);
@@ -26,23 +32,6 @@
             }
             margin: 0 0.2rem;
             user-select: none;
-        }
-        .cancelar{
-            background-color: rgba(242, 242, 242); 
-        }
-        .cancelar:hover{
-            transition: 0.3s;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-            cursor: pointer;
-        }
-        .aprobar{
-            background-color: rgba(26, 26, 26);
-            color: rgb(242, 242, 242);  
-        }
-        .aprobar:hover{
-            transition: 0.3s;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            cursor: pointer;
         }
     }
     .solicitud:hover{

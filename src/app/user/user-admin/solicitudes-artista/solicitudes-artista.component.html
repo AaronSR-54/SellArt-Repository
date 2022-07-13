@@ -3,21 +3,20 @@
         <tr>
             <th scope="col"><p><b>Usuario</b></p></th>
             <th scope="col"><p><b>Email</b></p></th>
-            <td scope="col"></td>
+            <th scope="col"><p><b>Biografía</b></p></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let solicitud of solicitudes" class="solicitud" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectSolicitud(solicitud)">
-            <th scope="row" class="user"><img class="avatar" src="{{solicitud.avatar!.url}}" alt="{{solicitud.avatar!.name}}"><span><p>{{solicitud.username}}</p></span></th>
-            <th><p>{{solicitud.email}}</p></th>
-            <td><p>
-                <span>
-                    <button type="button" class="cancelar"><p>Rechazar</p></button>
-                </span>
-                <span>
-                    <button type="button" class="aprobar"><p>Aprobar</p></button>
-                </span>
-            </p></td>
+            <th scope="row" class="user"><img class="avatar" src="{{solicitud.user.avatar!.url}}" alt="{{solicitud.user.avatar!.name}}"><span><p>{{solicitud.user.username}}</p></span></th>
+            <th><p>{{solicitud.user.email}}</p></th>
+            <th>
+                <p *ngIf="selectedSolicitud?.user?.biography==null">(El usuario no tiene biografía)</p>
+                <p class="bio" *ngIf="selectedSolicitud?.user?.biography!=null">{{selectedSolicitud?.user?.biography}}</p>
+            </th>
+        </tr>
+        <tr *ngIf="solicitudes.length==0">
+            <td colspan="3"><p>(No hay más solicitudes)</p></td>
         </tr>
     </tbody>
 </table>
@@ -27,16 +26,16 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="contentModal">
-                    <img src="{{selectedSolicitud?.avatar?.url}}" class="card-img-top" alt="{{selectedSolicitud?.avatar?.name}}">
+                    <img src="{{selectedSolicitud?.user?.avatar?.url}}" class="card-img-top" alt="{{selectedSolicitud?.user?.avatar?.name}}">
                     <div class="rightContent">
                         <div>
-                            <p class="modal-text"><b>{{selectedSolicitud?.username}}</b></p>
-                            <p class="description" *ngIf="selectedSolicitud?.biography==null">(El usuario no tiene biografía)</p>
-                            <p class="description" *ngIf="selectedSolicitud?.biography!=null">{{selectedSolicitud?.biography}}</p>
+                            <p class="modal-text"><b>{{selectedSolicitud?.user?.username}}</b></p>
+                            <p class="description" *ngIf="selectedSolicitud?.user?.biography==null">(El usuario no tiene biografía)</p>
+                            <p class="description" *ngIf="selectedSolicitud?.user?.biography!=null">{{selectedSolicitud?.user?.biography}}</p>
                         </div>
                         <div class="bottomContent">
-                            <button type="button" class="cancelar"><p>Rechazar</p></button>
-                            <button type="button" class="aprobar"><p>Aprobar</p></button>
+                            <button type="button" class="cancelar" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="rechazarSolicitud(selectedSolicitud)"><p>Rechazar</p></button>
+                            <button type="button" class="aprobar" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="aprobarSolicitud(selectedSolicitud)" ><p>Aprobar</p></button>
                         </div>       
                     </div> 
                 </div>

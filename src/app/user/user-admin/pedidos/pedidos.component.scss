@@ -4,6 +4,11 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     justify-content: center;
+    .input{
+        width: 12rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+    }
     .pedido{
         .resumen{
             width: 15rem;
@@ -44,6 +49,7 @@
     th{
         padding-left: 1rem;
     }
+    
 }
 
 #modalDetails{

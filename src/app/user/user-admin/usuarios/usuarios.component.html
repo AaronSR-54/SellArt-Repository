@@ -1,0 +1,45 @@
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col"><p><b>Usuario</b></p></th>
+            <th scope="col"><p><b>Email</b></p></th>
+            <th scope="col"><p><b>Biografía</b></p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users" class="users" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectUser(user)">
+            <th scope="row" class="user"><img class="avatar" src="{{user.avatar!.url}}" alt="{{user.avatar!.name}}"><span><p>{{user.username}}</p></span></th>
+            <th><p>{{user.email}}</p></th>
+            <th>
+                <p *ngIf="user?.biography==null">(El usuario no tiene biografía)</p>
+                <p class="bio" *ngIf="user?.biography!=null">{{user?.biography}}</p>
+            </th>
+        </tr>
+        <tr *ngIf="users.length==0">
+            <td colspan="3"><p>(No hay usuarios)</p></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" id="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="contentModal">
+                    <img src="{{selectedUser?.avatar?.url}}" class="card-img-top" alt="{{selectedUser?.avatar?.name}}">
+                    <div class="rightContent">
+                        <div>
+                            <p class="modal-text"><b>{{selectedUser?.username}}</b></p>
+                            <p class="description" *ngIf="selectedUser?.biography==null">(El usuario no tiene biografía)</p>
+                            <p class="description" *ngIf="selectedUser?.biography!=null">{{selectedUser?.biography}}</p>
+                        </div>
+                        <div class="bottomContent">
+                            <button type="button" class="cancelar" data-bs-toggle="modal" data-bs-target="#modalDetails"><p>Cancelar</p></button>
+                            <button type="button" class="eliminar" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="blockUser(selectedUser)"><p>Eliminar</p></button>
+                        </div>       
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

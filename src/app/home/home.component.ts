@@ -46,15 +46,22 @@ export class HomeComponent implements OnInit {
   };
 
   username: string = '';
+  email: string = '';
   password: string = '';
+  passwordConf: string = '';
 
   messageUser: string = 'Por favor, rellena el usuario';
+  messageEmail: string = 'Por favor, rellena el email';
   messagePassword: string = 'Por favor, rellena la contraseña';
+  messagePasswordConf: string = 'Por favor, rellena la contraseña';
   messageLogin: string = 'Usuario y/o contraseña incorrectos';
 
   invalidLogin: boolean = false;
+  invalidSignup: boolean = false;
   invalidUser: boolean = false;
+  invalidEmail: boolean = false;
   invalidPassword: boolean = false;
+  invalidPasswordConf: boolean = false;
 
   user: User = this.loginService.currentUserValue;
   carrito: Carrito = this.carritoService.carritoValue;
@@ -111,9 +118,10 @@ export class HomeComponent implements OnInit {
     window.location.reload();
   }
 
-
-
   login(){
+    this.checkUsernameLogin()
+    this.checkPasswordLogin()
+
     if(!this.invalidUser && !this.invalidPassword){
       this.loginService.login(this.username, this.password)
       .then( () => {
@@ -123,54 +131,136 @@ export class HomeComponent implements OnInit {
       })
       .catch((error)=>{
         this.invalidLogin = true;
+        this.password = "";
         console.log(error)
       });
     }
   }
+ 
+  signup(){
+    this.checkUsername()
+    this.checkEmail()
+    this.checkPassword()
+    this.checkPasswordConf()
 
-  usernameChange(){
-    let inputUser = document.getElementById('username');
+    if(!this.invalidUser && !this.invalidEmail && !this.invalidPassword && !this.invalidPasswordConf){
+      let userRequest = {
+          username: this.username,
+          email: this.email,
+          password: this.password
+      }
+      this.loginService.signUp(userRequest).subscribe((res:any)=>{
+        this.loginService.setCurrentUser(res).then(()=>{
+          window.location.reload();
+        });
+      })
+    }
+  }
+
+  checkUsernameLogin(){
+    let inputUser = document.getElementById('usernameLogin');
     if(this.username==''){
       this.invalidUser = true;
       inputUser?.classList.add("is-invalid");
+      this.messageUser = 'Por favor, rellena el usuario';
     }else{
       this.invalidUser = false;
       inputUser?.classList.remove("is-invalid");
     }
   }
 
-  passwordChange(){
-    let inputPassword = document.getElementById('password');
+  checkPasswordLogin(){
+    let inputPassword = document.getElementById('passwordLogin');
     if(this.password==''){
       this.invalidPassword = true;
       inputPassword?.classList.add("is-invalid");
+      this.messagePassword = 'Por favor, rellena la contraseña';
     }else{
       this.invalidPassword = false;
       inputPassword?.classList.remove("is-invalid");
     }
   }
 
-  signup(){
-    // const form = document.querySelector('form');
-    // let image:any;
-    // form!.addEventListener('submit', async (e:any) => {
-    //   e.preventDefault();
-    //   await fetch('http://localhost:1337/api/upload', {
-    //     method: 'post',
-    //     body: new FormData(e.target)
-    //   }).then(()=>{
-    //     this.loginService.getUploads().subscribe((res)=>{
-    //       console.log(res.item.pop());
-    //       image = res.item.pop();
-    //     })
-    //   })
-    //   this.loginService.signUp(image).then(res=>console.log(res));
-    // });
+  checkUsername(){
+    let inputUser = document.getElementById('username');
+    if(this.username==''){
+      this.invalidUser = true;
+      inputUser?.classList.add("is-invalid");
+      this.messageUser = 'Por favor, rellena el usuario';
+    }else{
+      this.invalidUser = false;
+      inputUser?.classList.remove("is-invalid");
+    }
+  }
+
+  checkEmail(){
+    let inputEmail = document.getElementById('email');
+    if(this.email==''){
+      this.invalidEmail = true;
+      inputEmail?.classList.add("is-invalid");
+      this.messageEmail= 'Por favor, rellena el email';
+    }else if(!this.email.includes("@")){
+      this.invalidEmail = true;
+      inputEmail?.classList.add("is-invalid");
+      this.messageEmail = 'El formato del email es incorrecto';
+    }else{
+      this.invalidEmail = false;
+      inputEmail?.classList.remove("is-invalid");
+    }
+  }
+
+  checkPassword(){
+    let inputPassword = document.getElementById('password');
+    if(this.password==''){
+      this.invalidPassword = true;
+      inputPassword?.classList.add("is-invalid");
+      this.messagePassword = 'Por favor, rellena la contraseña';
+    }else if(this.password.length<8){
+      this.invalidPassword = true;
+      inputPassword?.classList.add("is-invalid");
+      this.messagePassword = 'Le faltan carácteres a la contraseña';
+    }else{
+      this.invalidPassword = false;
+      inputPassword?.classList.remove("is-invalid");
+    }
+  }
+
+  checkPasswordConf(){
+    let inputPasswordConf = document.getElementById('passwordConf');
+    if(this.passwordConf==''){
+      this.invalidPasswordConf = true;
+      inputPasswordConf?.classList.add("is-invalid");
+      this.messagePasswordConf = 'Por favor, rellena la contraseña';
+    }else if(this.passwordConf!=this.password){
+      this.invalidPasswordConf = true;
+      inputPasswordConf?.classList.add("is-invalid");
+      this.messagePasswordConf = 'Las contraseñas no coinciden';
+    }else{
+      this.invalidPasswordConf = false;
+      inputPasswordConf?.classList.remove("is-invalid");
+    }
+  }
+
+  limpiarChecks(){
+    this.invalidLogin = false;
+    this.invalidSignup = false;
+    this.invalidUser = false;
+    this.invalidEmail = false;
+    this.invalidPassword = false;
+    this.invalidPasswordConf = false;
+    let inputUser = document.getElementById('username');
+    inputUser?.classList.remove("is-invalid");
+    let inputEmail = document.getElementById('email');
+    inputEmail?.classList.remove("is-invalid");
+    let inputPassword = document.getElementById('password');
+    inputPassword?.classList.remove("is-invalid");
+    let inputPasswordConf = document.getElementById('passwordConf');
+    inputPasswordConf?.classList.remove("is-invalid");
   }
 
   logout(){
     this.loginService.logout();
-    window.location.reload();
+    this.router.navigate(['/']);
   }
 
   sumarProducto(producto:any){
@@ -186,6 +276,6 @@ export class HomeComponent implements OnInit {
   }
 
   procesarPedido(){
-    this.router.navigate(['/pedido']);
+    this.router.navigate(['/pedido'])
   }
 }

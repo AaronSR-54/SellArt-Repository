@@ -195,56 +195,6 @@ footer{
     }
 }
 
-#modal-dialog{
-    max-width: 60rem;
-}
-
-.contentModal{
-    display: flex;
-    align-items: center;
-    img{
-        width: 30rem;
-        height: 35rem;
-        object-fit: cover;
-        border-radius: 5px;
-        margin-right: 2rem;
-    }
-    .rightContent{
-        display:flex;
-        flex-direction: column;
-        justify-content: space-between;
-        text-align: justify;
-        margin-top: 1rem;
-
-        .description{
-            width: 26rem;
-            height: 26rem;
-            overflow: auto;
-        }
-
-        .bottomContent{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            button{
-                border: none;
-                border-radius: 4px;
-                p{
-                    margin: 0;
-                }
-                margin: 0 0.2rem;
-            }
-            .anadirCarrito{
-                background-color: rgba(26, 26, 26);
-                color: rgb(242, 242, 242);  
-            }
-            .dec{
-                font-size: 1.2rem;
-            }
-        } 
-    }
-}
-
 .modal{
     .modal-top-right{
         position: absolute;
@@ -327,43 +277,43 @@ footer{
 
         .inputs{
             margin-top: 1rem;
-            margin-left: 2.5rem;
-            width: 80%;                
+            margin-left: 1rem;
+            width: 90%;                
             .input{
                 display: flex;
-                align-items: baseline;
                 justify-content: center;
+                align-items: center;
                 p{
                     text-align: right;
-                    min-width: 6rem;
-                    
+                    width: 6rem;
+                    margin: 0;
                 }
                 .invalid{
+                    width: auto;
+                    font-size:medium;
                     margin: 0.5rem;
-                    color: red;
-                    font-weight: bold;
                 }
                 select,div{
                     margin: 0.5rem;
                     width: 15rem;
-                    .invalid{
-                        color: red;
-                        font-size: small;
-                        margin: 0;
-                    }
                 }
-                
-                
             }
-            
-            .signup{
-                margin-top: 1rem;
-                p{
-                    min-width: auto;
-                }                
+            .invalid{
+                text-align: right;
+                color: red;
+                font-weight: bold;
+                font-size: small;
+                margin: 0 2.9rem 0.2rem 0;
+            }
+            .info{
+                text-align: right;
+                width: 16rem;
+                color: rgba(26, 26, 26, 0.7);
+                font-size: smaller;
+                margin: 0 0 0.2rem 7.5rem;
             }
         }
-       
+
         #buttons{
             .footer-content{
                 display: flex;
@@ -391,11 +341,26 @@ footer{
                 background-color: rgba(26, 26, 26);
                 color: rgb(242, 242, 242);  
             }
+            .login:hover{
+                transition: 0.3s;
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+                cursor: pointer;
+            }
             .cancelar{
                 color: rgba(26, 26, 26);  
             }
+            .cancelar:hover{
+                transition: 0.3s;
+                text-shadow: 0 0 5px rgba(0,0,0,0.1);
+                cursor: pointer;
+            }
+
+            .signup{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 1rem;               
+            }   
         }
-        
-    }
-     
+    }   
 }

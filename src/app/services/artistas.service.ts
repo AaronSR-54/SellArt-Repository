@@ -59,6 +59,10 @@ export class ArtistasService {
     return this.http.get<any>(`${this.url}/solicitudes-artista?populate=*`)
   }
 
+  removeSolicitud(idSolicitud : number){
+    return this.http.delete<any>(`${this.url}/solicitudes-artista/${idSolicitud}`)
+  }
+
   anadirProductoaArtista(idProducto:number, user:User) {
 
     let productosId : number[] = []

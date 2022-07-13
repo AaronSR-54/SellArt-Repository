@@ -14,6 +14,8 @@ export class PedidosAdminComponent implements OnInit {
 
   selectedPedido? : Pedido;
 
+  estados : string[] = ["Cancelado", "Procesando", "Enviado", "Recibido"]
+
   constructor(private pedidosService : PedidoService) { }
 
   ngOnInit(): void {
@@ -46,15 +48,15 @@ export class PedidosAdminComponent implements OnInit {
     this.selectedPedido = pedido;
   }
 
-  cancelarPedido(selectedPedido:any){
+  changeEstado(selectedPedido:any){
     let requestPedido = {
       data: {
-        estado:"Cancelado"
+        estado: selectedPedido.estado
       }
     }
-
+    
     this.pedidosService.updatePedido(selectedPedido.id, requestPedido).subscribe(()=>{
-      this.pedidos?.forEach(pedido => pedido.id == selectedPedido.id ? pedido.estado = "Cancelado" : {});
+      this.pedidos?.forEach(pedido => pedido.id == selectedPedido.id ? pedido.estado = selectedPedido.estado : {});
     })
   }
 

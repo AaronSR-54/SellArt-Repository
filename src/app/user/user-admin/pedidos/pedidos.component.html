@@ -4,19 +4,22 @@
             <th scope="col"><p><b>Resumen</b></p></th>
             <td scope="col"><p><b>Fecha</b></p></td>
             <td scope="col"><p><b>Total</b></p></td>
-            <td scope="col"><p><b>Estado</b></p></td>
+            <td scope="input"><p><b>Estado</b></p></td>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pedido of pedidos" class="pedido" data-bs-toggle="modal" data-bs-target="#modalDetails" (click)="selectPedido(pedido)">
-            <th scope="row"><p class="resumen"><span *ngFor="let producto of pedido.pedidoProductos">{{producto.name}}, </span></p></th>
-            <td><p>{{pedido.fecha}}</p></td>
-            <td><p>{{pedido.total}} €</p></td>
-            <td><p>{{pedido.estado}}
-                <span *ngIf="pedido.estado=='Procesando' || pedido.estado=='Enviado'">
-                    <button type="button" class="cancelar" (click)="cancelarPedido(pedido)"><p>Cancelar</p></button>
-                </span>
-            </p></td>
+        <tr *ngFor="let pedido of pedidos" class="pedido" (click)="selectPedido(pedido)">
+            <th scope="row" data-bs-toggle="modal" data-bs-target="#modalDetails"><p class="resumen"><span *ngFor="let producto of pedido.pedidoProductos">{{producto.name}}, </span></p></th>
+            <td data-bs-toggle="modal" data-bs-target="#modalDetails"><p>{{pedido.fecha}}</p></td>
+            <td data-bs-toggle="modal" data-bs-target="#modalDetails"><p>{{pedido.total}} €</p></td>
+            <td class="input">
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="pedido.estado" (change)="changeEstado(pedido)">
+                    <option selected></option>
+                    <option [ngValue]="estado" *ngFor="let estado of estados">
+                    <p>{{estado}}</p>
+                    </option>
+                </select>
+            </td>
         </tr>
     </tbody>
 </table>
