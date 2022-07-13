@@ -105,6 +105,7 @@ export class UserArtistaComponent implements OnInit {
     this.name = this.selectedProducto.name;
     this.description = this.selectedProducto.description;
     this.price = this.selectedProducto.price_int + parseInt(this.selectedProducto.price_dec)*0.01;
+    this.productoTipo = this.selectedProducto.producto_tipo;
     this.editing()
   }
 
@@ -133,7 +134,9 @@ export class UserArtistaComponent implements OnInit {
          break; 
       } 
     }
-    if(this.name!="" && this.price!=0 && this.productoTipo){
+    console.log("🚀 ~ file: user-artista.component.ts ~ line 137 ~ UserArtistaComponent ~ changeEditing ~ this.productoTipo", this.productoTipo)
+    if(this.name!="" && this.price!=0 && this.productoTipo!=undefined){
+      
       this.changed=true;
     }
   }
