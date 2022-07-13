@@ -42,3 +42,12 @@ a,p{
 ::-webkit-scrollbar-track:active {
   background: #d4d4d4;
 }
+
+@media (max-width: 995px) {
+    .contenedor{
+        padding: 0 0 0 1rem;
+        display: flex;
+        flex-direction: column;
+        
+    }
+}

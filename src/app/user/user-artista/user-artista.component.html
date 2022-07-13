@@ -23,7 +23,7 @@
 
 </div>
 
-<div class="contenedor notArtist" *ngIf="user.role.name!='Artista'">
+<div class="contenedor notArtist" *ngIf="user.role.id!=3 && user.role.id!=4">
   <p><b>Todavía no dispones de los permisos para ser Artista :(</b></p>
   <p>Puedes solicitarlos clickando aquí: &nbsp;<span>
     <button type="button" (click)="solicitarArtista()" *ngIf="!solicitado">

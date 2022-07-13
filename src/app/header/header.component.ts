@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Carrito, Producto, User } from '../models/interfaces';
@@ -35,6 +35,8 @@ export class HeaderComponent implements OnInit {
 
   total: number = 0;
 
+  public screenWidth: any;
+
   constructor(
     private loginService: LoginService, 
     private carritoService : CarritoService,
@@ -50,8 +52,14 @@ export class HeaderComponent implements OnInit {
     }
     this.carrito = this.carritoService.carritoValue;
     this.total = this.carritoService.totalCarrito;
+    this.screenWidth = window.innerWidth;
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.screenWidth = window.innerWidth;
+  }
+  
   login(){
     this.checkUsernameLogin()
     this.checkPasswordLogin()
