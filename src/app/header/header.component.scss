@@ -8,17 +8,78 @@
 }
 
 header{
-    height: 106px;
-    padding: 0.5rem 1rem; 
-    box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.2);
-    padding-top: 1.3rem;
+    box-shadow: 0px 1px 5px rgba(26, 26, 26, 0.2);;
     margin-bottom: 2rem;
 
     .expanded{
+        padding: 1.3rem 1rem 1.3rem 1rem; 
         display: flex;
     }
     .reduced{
+        padding: 0.5rem; 
+        margin: 0;
         display: flex;
+        align-items: center;
+        flex-direction: column;
+        a{
+            margin: 0;
+        }
+        .items{
+            .img-fluid{
+                width: 8rem;
+                height: 3rem;
+            }
+            .right-items{
+                .user{
+                    margin: 0;
+                    .avatar{
+                        width: 1.8rem;
+                        height: 1.8rem;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+                .bi{
+                    font-size: 1.3rem;
+                    padding: 0.1rem 0.4rem 0.3rem 0.4rem;
+                    margin:0;
+                    .cantidadCarrito{
+                        position: absolute;
+                        top: 2rem;
+                        left: auto;
+                        right: 0.7rem;
+                        bottom: auto;
+                        font-size: 8px;
+                    }
+                }
+            }
+        }
+        .bottom-items{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+            .item{
+                text-decoration: none;
+                color: rgba(26, 26, 26, 0.7);
+                font-size: 1.3rem;
+                margin: 0 0.3rem 0.15rem 0.3rem;
+                padding: 0;
+            }
+            .item:hover{
+                transition: 0.3s;
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                color:rgba(26, 26, 26)
+            }
+            .separator{
+                font-size: small;
+                vertical-align: center;
+                color: rgba(26, 26, 26, 0.5);
+                user-select: none;
+                padding: 0 0 0.2rem 0;
+                margin: 0  0.3rem;
+            }
+        }
     }
 }
 
@@ -31,7 +92,6 @@ header{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-left: 1rem;
         .item{
             text-decoration: none;
             color: rgba(26, 26, 26, 0.7);
@@ -90,8 +150,10 @@ header{
 
             .cantidadCarrito{
                 position: absolute;
-                bottom: 30%;
-                left: 99.1%;
+                top: 3.3rem;
+                left: auto;
+                right: 1.2rem;
+                bottom: auto;
                 background-color: rgba(26, 26, 26);
                 border-radius: 5px;
                 margin: 0;
@@ -298,4 +360,13 @@ h2{
             }   
         }
     }   
+}
+
+@media (max-width: 995px) {
+    .modal{
+        .modal-top-right{
+            position: absolute;
+            right: 0.3rem;
+        }
+    }
 }

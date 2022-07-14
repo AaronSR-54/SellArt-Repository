@@ -1,11 +1,11 @@
 <header style="background-color: white">
-  <div class="expanded" *ngIf="screenWidth>600">
+  <div class="expanded" *ngIf="screenWidth>750">
 
     <a routerLink="home">
       <img src="../../assets/images/Imagotipo V. Horizontal Red_.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
     </a>
     <div class="items">
-      <div class="left-items" *ngIf="screenWidth>600">
+      <div class="left-items">
         <a class="item" routerLink="pinturas"><p>Pinturas</p></a>
         <a class="item" routerLink="figuras"><p>Figuras</p></a>
         <a class="item" routerLink="accesorios"><p>Accesorios</p></a>
@@ -37,29 +37,19 @@
     </div>
   </div>
   
-  <div class="reduced" *ngIf="screenWidth<600">
+  <div class="reduced" *ngIf="screenWidth<750">
 
-    <a routerLink="home">
-      <img src="../../assets/images/Imagotipo V. Horizontal Red_.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
-    </a>
-    <div class="items">
-      <div class="left-items" *ngIf="screenWidth>600">
-        <a class="item" routerLink="pinturas"><p>Pinturas</p></a>
-        <a class="item" routerLink="figuras"><p>Figuras</p></a>
-        <a class="item" routerLink="accesorios"><p>Accesorios</p></a>
-        <p class="separator">|</p>
-        <a class="item" routerLink="artistas"><p>Artistas</p></a>
-      </div>
-  
+    <div class="items"> 
+      <a routerLink="home">
+        <img src="../../assets/images/Imagotipo V. Horizontal Red_.svg" class="img-fluid" alt="Imagotipo V.Horizontal">
+      </a>
       <div class="right-items">
         <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="!user" (click)="limpiarChecks()">
           <img class="avatar" src="../../assets/images/avatar.svg">
-          <p>Iniciar Sesión</p>
         </div>
         <div class="dropdown" *ngIf="user">
           <div class="user" data-bs-toggle="dropdown">
             <img class="avatar" src="{{user.avatar!.url}}" alt="{{user.avatar!.name}}">
-            <p>{{user.username}}</p>
           </div>
           <div class="dropdown-menu dropdown-menu-end">
             <a class="dropdown-item" href="/user">Editar perfil</a>
@@ -72,6 +62,13 @@
         </div>
         <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"><p class="cantidadCarrito"*ngIf="carrito!=null">{{carrito.length}}</p></i>
       </div>
+    </div>
+    <div class="bottom-items">
+      <a class="item" routerLink="pinturas"><i class="bi bi-palette"></i></a>
+      <a class="item" routerLink="figuras"><i class="bi bi-person-badge"></i></a>
+      <a class="item" routerLink="accesorios"><i class="bi bi-watch"></i></a>
+      <p class="separator">|</p>
+      <a class="item" routerLink="artistas"><i class="bi bi-brush"></i></a>
     </div>
   </div>
 </header>

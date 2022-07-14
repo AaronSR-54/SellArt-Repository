@@ -43,11 +43,11 @@ a,p{
   background: #d4d4d4;
 }
 
-@media (max-width: 995px) {
+@media (max-width: 750px) {
     .contenedor{
         padding: 0 0 0 1rem;
         display: flex;
         flex-direction: column;
-        
+        min-height: calc(100vh - 112px - 118px - 32px);
     }
 }
