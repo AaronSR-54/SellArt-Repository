@@ -184,6 +184,7 @@ header{
      
 }
 
+
 h1{
     font-size: 1.8rem;
 }
@@ -191,6 +192,7 @@ h1{
 h2{
     font-size: 2rem;
 }
+
 
 .modal{
     .modal-top-right{
@@ -202,6 +204,11 @@ h2{
         border: none;
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
 
+        .modal-body{
+            .modal-title{
+                font-size: 1.5rem;
+            }
+        }
         .productos{
             display: flex;
             flex-direction: column;

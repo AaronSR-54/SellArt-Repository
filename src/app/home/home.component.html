@@ -140,7 +140,7 @@
               </div>
               <div class="bottomContent">
                 <h2>{{selectedProducto.price_int}}<span class="dec">, {{selectedProducto.price_dec}} €</span> </h2>
-                <button type="button" class="anadirCarrito" data-bs-dismiss="modal" (click)="anadirACarrito()"><p>Añadir a la bolsita</p></button>
+                <button type="button" class="anadirCarrito" data-bs-dismiss="modal" (click)="anadirACarrito()"><p>Añadir al carro de compra</p></button>
               </div>
             </div>        
           </div>
@@ -273,7 +273,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-          <h2 class="modal-title">Bolsita</h2>
+          <h2 class="modal-title">Carro de compra</h2>
           <div class="productos" *ngIf="carrito!=null">
             <div class="producto" *ngFor="let producto of carrito">
               <img src="{{producto.image.url}}" class="card-img-top" alt="{{producto.image.name}}">
@@ -289,8 +289,8 @@
             </div>
           </div>
           <div class="bolsa-vacia" *ngIf="carrito==null">
-              <p class="info"><b>Bolsita vacía :(</b></p>
-              <p class="tip">Añade productos a la bolsa para hacer un pedido :)</p>
+              <p class="info"><b>Carro de compra vacío</b></p>
+              <p class="tip">Añade productos al carro de compra para hacer un pedido</p>
           </div>
         </div>
   
