@@ -42,11 +42,11 @@ export class PedidoService {
         return response.data.map((item: PedidoResponse) => {
           return {
             id : item.id,
-            direccion : item.attributes.Direccion,
-            localidad : item.attributes.Localidad,
-            metodoPago : item.attributes.MetodoPago,
-            numTarjeta : item.attributes.NumTarjeta,
-            cadTarjeta : item.attributes.CadTarjeta,
+            direccion : item.attributes.direccion,
+            localidad : item.attributes.localidad,
+            metodoPago : item.attributes.metodoPago,
+            numTarjeta : item.attributes.numTarjeta,
+            cadTarjeta : item.attributes.cadTarjeta,
             fecha : item.attributes.createdAt,
             estado: item.attributes.estado,
             pedidoProductos : item.attributes.pedido_productos.data.map(
@@ -68,11 +68,11 @@ export class PedidoService {
         return response.data.map((item: PedidoResponse) => {
           return {
             id : item.id,
-            direccion : item.attributes.Direccion,
-            localidad : item.attributes.Localidad,
-            metodoPago : item.attributes.MetodoPago,
-            numTarjeta : item.attributes.NumTarjeta,
-            cadTarjeta : item.attributes.CadTarjeta,
+            direccion : item.attributes.direccion,
+            localidad : item.attributes.localidad,
+            metodoPago : item.attributes.metodoPago,
+            numTarjeta : item.attributes.numTarjeta,
+            cadTarjeta : item.attributes.cadTarjeta,
             fecha : item.attributes.createdAt,
             estado: item.attributes.estado,
             pedidoProductos : item.attributes.pedido_productos.data.map(

@@ -1,13 +1,11 @@
-import { UserResponse } from "./users.interfaces.";
-
 export interface PedidoRequest{
     data: {
         user : number;
-        Direccion : string;
-        Localidad : string;
-        MetodoPago : string;
-        NumTarjeta : string;
-        CadTarjeta : string;
+        direccion : string;
+        localidad : string;
+        metodoPago : string;
+        numTarjeta : string;
+        cadTarjeta : string;
         pedido_productos : number[];
     }
 }
@@ -25,11 +23,11 @@ export interface ProductoRequest{
 export interface PedidoResponse{
     id : number,
     attributes: {
-        Direccion : string;
-        Localidad : string;
-        MetodoPago : string;
-        NumTarjeta : string;
-        CadTarjeta : string;
+        direccion : string;
+        localidad : string;
+        metodoPago : string;
+        numTarjeta : string;
+        cadTarjeta : string;
         createdAt : Date;
         estado: string;
         pedido_productos : {

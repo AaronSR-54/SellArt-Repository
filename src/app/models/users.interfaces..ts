@@ -1,5 +1,3 @@
-import { Productos } from "./interfaces";
-
 export interface UserResponse {
     id: number;
     username: string;
