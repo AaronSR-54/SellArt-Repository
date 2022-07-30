@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -35,7 +36,7 @@ export class UserPerfilComponent implements OnInit {
   invalidPassword: boolean = false;
   invalidPasswordConf: boolean = false;
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -125,7 +126,7 @@ export class UserPerfilComponent implements OnInit {
         this.user.biography = res.biography
 
         this.loginService.setCurrentUser(this.user).then(()=>{
-          window.location.reload();
+          this.router.navigate(['/']);
         })
       });
     }

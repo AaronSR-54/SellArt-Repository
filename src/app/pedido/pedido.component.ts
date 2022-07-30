@@ -112,9 +112,9 @@ export class PedidoComponent implements OnInit {
         pedidoRequest = {
           data : {
             user : this.loginService.currentUserValue.id,
-            Direccion : this.direccion.calle + ", " + this.direccion.piso,
-            Localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
-            MetodoPago : "efectivo",
+            direccion : this.direccion.calle + ", " + this.direccion.piso,
+            localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
+            metodoPago : "efectivo",
             pedido_productos : this.idProductos,
             estado : "Procesando"
           }
@@ -123,11 +123,11 @@ export class PedidoComponent implements OnInit {
         pedidoRequest = {
           data : {
             user : this.loginService.currentUserValue.id,
-            Direccion : this.direccion.calle + ", " + this.direccion.piso,
-            Localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
-            MetodoPago : "tarjeta",
-            NumTarjeta : this.tarjeta.numero,
-            CadTarjeta : this.tarjeta.fecha,
+            direccion : this.direccion.calle + ", " + this.direccion.piso,
+            localidad : this.direccion.poblacion + " - " + this.direccion.cp + ", " + this.direccion.provincia + ", " + this.direccion.pais,
+            metodoPago : "tarjeta",
+            numTarjeta : this.tarjeta.numero,
+            cadTarjeta : this.tarjeta.fecha,
             pedido_productos : this.idProductos,
             estado : "Procesando"
           }

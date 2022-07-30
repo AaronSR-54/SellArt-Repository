@@ -16,7 +16,7 @@
       <div class="right-items">
         <div class="user" data-bs-toggle="modal" data-bs-target="#modalLogin" *ngIf="!user" (click)="limpiarChecks()">
           <img class="avatar" src="../../assets/images/avatar.svg">
-          <p>Iniciar Sesión</p>
+          <p>Iniciar sesión</p>
         </div>
         <div class="dropdown" *ngIf="user">
           <div class="user" data-bs-toggle="dropdown">
@@ -29,7 +29,7 @@
             <a class="dropdown-item" href="/user-artista">Perfil de artista</a>
             <a class="dropdown-item" href="/user-admin" *ngIf="user.role.name=='Administrator'">Perfil de administrador</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
+            <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
           </div>
         </div>
         <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"><p class="cantidadCarrito"*ngIf="carrito!=null">{{carrito.length}}</p></i>
@@ -57,7 +57,7 @@
             <a class="dropdown-item" href="/user-artista">Perfil de artista</a>
             <a class="dropdown-item" href="/user-admin" *ngIf="user.role.name=='Administrator'">Perfil de administrador</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
+            <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
           </div>
         </div>
         <i class="bi bi-bag" data-bs-toggle="modal" data-bs-target="#modalCarrito"><p class="cantidadCarrito"*ngIf="carrito!=null">{{carrito.length}}</p></i>
